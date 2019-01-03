@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/page/2/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <section id="posts" class="posts">
+    
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/43821/">函数的防抖和节流</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-09-06
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/javascript/">javascript</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/43821/" data-title="函数的防抖和节流">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>今天看了掘金的文章函数的防抖和节流，然后想自己总结一篇，应证一下是否学会了。</p>
+          <div class="read-more">
+            <a href="/posts/43821/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/49250/">redux-saga处理异步请求(初级篇)</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-09-05
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/react/">react</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/49250/" data-title="redux-saga处理异步请求(初级篇)">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>redux 是 react 中处理数据的方式，数据的获取有时候需要通过请求后台来获得，这个操作就是副作用，<code>redux-saga</code> 就是用来处理副作用的方式。</p>
+          <div class="read-more">
+            <a href="/posts/49250/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/34974/">使用canvas压缩图片</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-09-04
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/canvas/">canvas</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/34974/" data-title="使用canvas压缩图片">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>前俩天做了一个图片转 base64 上传的功能，发现如果图片的 base64 过大的话，请求会变的很慢，严重的直接超时了，所以想到了在上传前压缩一下图片，然后再上传到后台，这样可以大大的提高效率，在这里记录一下利用 canvas 压缩图片遇到的几个坑。完整代码会在文末给出。</p>
+          <div class="read-more">
+            <a href="/posts/34974/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/13347/">eslint配置记录</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-08-16
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/webpack/">webpack</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/13347/" data-title="eslint配置记录">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>eslint 可以帮助进行我们检查代码，使我们的代码写的整洁，高效，在这里总结一篇关于 eslint 配置的一些事项，一些规则持续更新。</p>
+<p>eslint 的配置文件放在根目录中，新建<code>.eslintrc.js</code>文件，然后开始配置，一般常见的配置如下:</p>
+          <div class="read-more">
+            <a href="/posts/13347/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/5777/">react16 生命周期</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-08-14
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/react/">react</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/5777/" data-title="react16 生命周期">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>react16 移除的生命周期</p>
+          <div class="read-more">
+            <a href="/posts/5777/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/34080/">react-redux脚手架搭建问题总结</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-07-23
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/react/">react</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/34080/" data-title="react-redux脚手架搭建问题总结">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>先列举功能点：</p>
+<ol>
+<li>react 热更新 react-hot-loader</li>
+<li>css 提取</li>
+<li>webpack4 的 splitcommonchunk</li>
+<li>react-router-dom 和 redux 整合</li>
+<li>redux-saga</li>
+<li>react-router 动态配置 react-loadable</li>
+<li>react-router-config 静态路由</li>
+<li>sass/less</li>
+<li>重复渲染问题处理</li>
+<li>webpack 打包第三方库</li>
+</ol>
+          <div class="read-more">
+            <a href="/posts/34080/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/55404/">谷歌云免费一年搭建梯子</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-06-29
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/随笔/">随笔</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/55404/" data-title="谷歌云免费一年搭建梯子">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>谷歌云现在有活动，新注册的可以免费使用一年，之前同事使用这个搭建了一个梯子，可以访问国外的网站，我今天自己搭建了一下，遇到不少坑，在这里记录一下,有俩个先决条件</p>
+<ul>
+<li>信用卡</li>
+<li>可以翻墙访问谷歌</li>
+</ul>
+<p>信用卡这个是谷歌必须要求的，在注册的时候就需要绑定，绑定成功会扣到 1 美元，过几天会退回来，就是验证一下信用卡是否可用。<br>翻墙这个问题可以使用蓝灯，也可以使用一个谷歌的扩展程序<code>谷歌访问助手</code>这个我在后面会给出链接，这个访问助手智能访问谷歌搜索和谷歌邮箱，其他的油管之类的就不行了。话不多说，紧接着开始教程。</p>
+          <div class="read-more">
+            <a href="/posts/55404/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/55893/">微信小程序支付流程梳理</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-06-26
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nodejs/">nodejs</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/55893/" data-title="微信小程序支付流程梳理">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>用 <code>thinkjs</code> 封装了个小程序支付的 <code>Service</code> 在这里记录一下，顺便梳理一下小程序支付的流程和思路。首先，先把官网的流程图放上来，然后按照图一步步的来。</p>
+          <div class="read-more">
+            <a href="/posts/55893/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/40486/">nginx初见</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-06-19
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nginx/">nginx</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/40486/" data-title="nginx初见">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>第一次近距离的接触 <code>nginx</code>,今天先来了解一下 nginx 的俩个重要的功能 <code>反向代理</code>和<code>负载均衡</code></p>
+          <div class="read-more">
+            <a href="/posts/40486/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/42422/">thinkjs项目结构简析</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-06-11
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nodejs/">nodejs</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/42422/" data-title="thinkjs项目结构简析">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>thinkjs 项目整合了 koa2.x,兼容了 koa 的所有功能, 同时封装了一些功能,MVC 的架构让开发变的更简单,条理</p>
+          <div class="read-more">
+            <a href="/posts/42422/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+      
+  <nav class="pagination">
+    
+      <a class="prev" href="/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">上一页</span>
+      </a>
+    
+    
+      <a class="next" href="/page/3/">
+        <span class="next-text">下一页</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+    
+  </section>
+
+          </div>
+          
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

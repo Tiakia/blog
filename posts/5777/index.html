@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="react16 生命周期">
+
+
+
+
+  <meta name="keywords" content="react,getDerivedStateFromProps,getSnapshotBeforeUpdate">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/5777/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> react16 生命周期 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          react16 生命周期
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-08-14
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/react/">react</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/5777/" data-title="react16 生命周期">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">组件进入挂载阶段（Mounting）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新阶段（Update）"><span class="toc-text">更新阶段（Update）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卸载阶段（UnMount）"><span class="toc-text">卸载阶段（UnMount）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误收集"><span class="toc-text">错误收集</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>react16 移除的生命周期</p>
+<a id="more"></a>
+<ul>
+<li><p>componentWillMount</p>
+</li>
+<li><p>componentWillReceiveProps</p>
+</li>
+<li><p>componentWillUpdate</p>
+</li>
+</ul>
+<p>react16 新的生命周期</p>
+<ul>
+<li><p>getDerivedStateFromProps</p>
+</li>
+<li><p>getSnapshotBeforeUpdate</p>
+</li>
+</ul>
+<p>整体生命周期流程图：<br><img src="/../images/react16.png" alt="react16"></p>
+<p>完整的生命周期流程（按顺序）</p>
+<h3>组件进入挂载阶段（Mounting）</h3>
+
+<p>调用的函数顺序</p>
+<ul>
+<li>constructor</li>
+<li>getDerivedStateFromProps</li>
+<li>render</li>
+<li>componentDidMount</li>
+</ul>
+<blockquote>
+<p>constructor</p>
+</blockquote>
+<p>组件的构造函数可以在这里进行 state 初始化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      isLoading: <span class="literal">false</span>,</span><br><span class="line">      goods: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>getDerivedStateFromProps</p>
+</blockquote>
+<p><code>static getDerivedStateFromProps(nextProps, prevState)</code></p>
+<p>构造函数初始化后进入该生命周期，取代原先的 <code>componentWillReceiveProps</code></p>
+<ul>
+<li>不能在该函数中使用 <code>this</code></li>
+<li>接收新的<code>props</code>，然后决定是否更新 旧的 <code>state</code></li>
+<li>函数会返回一个对象用来更新当前的<code>state</code>状态，如果不需要可以返回 <code>null</code></li>
+</ul>
+<p>调用时机：</p>
+<ul>
+<li>组件挂载时</li>
+<li>接收到新的 props 时</li>
+<li>调用了 setState 和 forceUpdate 时</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      isLoading: <span class="literal">true</span>,</span><br><span class="line">      goods: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> getDerivedStateFromProps(nextProps, prevState) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nextProps.goods !== prevState.goods) &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        isLoading: <span class="literal">false</span>,</span><br><span class="line">        goods: nextProps.goods</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>render</p>
+</blockquote>
+<p>render 方法 返回组件要渲染的东西</p>
+<blockquote>
+<p>componentDidMount</p>
+</blockquote>
+<p>组件装载后调用，可以在这里请求数据，操作 DOM 节点。</p>
+<h3 id="更新阶段（Update）"><a href="#更新阶段（Update）" class="headerlink" title="更新阶段（Update）"></a>更新阶段（Update）</h3><p><code>更新阶段生命周期函数调用：</code></p>
+<ul>
+<li>getDerivedStateFromProps</li>
+<li>shouldComponentUpdate</li>
+<li>render</li>
+<li>getSnapshotBeforeUpdate</li>
+<li>componentDidUpdate</li>
+</ul>
+<blockquote>
+<p>getDerivedStateFromProps</p>
+</blockquote>
+<p><code>static getDerivedStateFromProps(nextProps, prevState)</code><br>当组件的 props 改变，或者组件内部调用了 setState 或者 forceUpdate 会发生</p>
+<blockquote>
+<p>shouldComponentUpdate</p>
+</blockquote>
+<p><code>shouldComponentUpdate(nextProps, nextState)</code></p>
+<p>在组件 触发 render 之前都会调用这个函数 返回一个布尔值，如果返回 true 组件触发 render 渲染，返回 false 组件不触发 render 函数，默认返回 true，所以我们需要在函数中 比较 <code>this.props</code> 和 <code>nextProps</code> 以及 <code>this.state</code> 和 <code>nextState</code> 来决定是否需要 触发 render 函数渲染</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      isLoading: <span class="literal">true</span>,</span><br><span class="line">      goods: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  shouldComponentUpdate(nextProps, nextState) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.goods.length !== nextState.goods.length) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>官方推荐的是组件继承 <code>PureComponent</code> 来减少组件重复渲染的次数，而不是开发者自己手工书写。<code>PureComponent</code> 是官方提供的，在内部对 props 和 state 进行了 一层浅比较</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleComponent</span> <span class="keyword">extends</span> <span class="title">PureComponent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      isLoading: <span class="literal">true</span>,</span><br><span class="line">      goods: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>render</p>
+</blockquote>
+<p>根据 <code>shouldComponentUpdate</code> 返回的值 是否觉得需要调用 render 渲染</p>
+<blockquote>
+<p>getSnapshotBeforeUpdate</p>
+</blockquote>
+<p><code>getSnapshotBeforeUpdate(prevProps, prevState)</code></p>
+<p>这个方法在 render 之后，<code>componentDidUpdate</code> 之前调用，有两个参数 prevProps 和 prevState，表示之前的属性和之前的 state，这个函数有一个返回值，会作为第三个参数传给 <code>componentDidUpdate</code>，如果你不想要返回值，请返回 null，不写的话控制台会有警告</p>
+<p>还有这个方法一定要和 <code>componentDidUpdate</code> 一起使用，否则控制台也会有警告</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleComponent</span> <span class="keyword">extends</span> <span class="title">PureComponent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      messages: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">this</span>.handleMessage();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.interval = <span class="built_in">window</span>.setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.state.messages.length &gt; <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="built_in">window</span>.clearInterval(<span class="keyword">this</span>.interval);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">this</span>.handleMessage();</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  getSnapshotBeforeUpdate(prevProps, prevState) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.rootNode.scrollHeight;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidUpdate(prevProps, prevState, snapshot) &#123;</span><br><span class="line">    <span class="keyword">const</span> scrollTop = <span class="keyword">this</span>.rootNode.scrollTop;</span><br><span class="line">    <span class="keyword">if</span> (scrollTop &lt; <span class="number">5</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">this</span>.rootNode.scrollTop =</span><br><span class="line">      scrollTop + (<span class="keyword">this</span>.rootNode.scrollHeight - snapshot);</span><br><span class="line">  &#125;</span><br><span class="line">  componentWillUnMount() &#123;</span><br><span class="line">    windows.clearInterval(<span class="keyword">this</span>.interval);</span><br><span class="line">  &#125;</span><br><span class="line">  handleMessage() &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(<span class="function"><span class="params">prev</span> =&gt;</span> (&#123;</span><br><span class="line">      message: [<span class="string">`msg <span class="subst">$&#123;prev.messages.length&#125;</span>`</span>, ...prev.messages]</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div ref=&#123;n =&gt; (<span class="keyword">this</span>.listRef = n)&#125;&gt;</span><br><span class="line">        &#123;<span class="keyword">this</span>.state.message.map(<span class="function">(<span class="params">msg, idx</span>) =&gt;</span> (</span><br><span class="line">          &lt;div key=&#123;idx&#125;&gt;&#123;msg&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        ))&#125;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>componentDidUpdate</p>
+</blockquote>
+<p><code>componentDidUpdate(prevProps, prevState, snapshot)</code></p>
+<p>该方法在<code>getSnapshotBeforeUpdate</code>方法之后被调用，有三个参数<code>prevProps</code>，<code>prevState</code>，<code>snapshot</code>，表示之前的 props，之前的 state，和 snapshot。第三个参数是<code>getSnapshotBeforeUpdate</code>返回的，在这个函数里我们可以操作 DOM，和发起服务器请求，还可以<code>setState</code>，但是注意一定要用 if 语句控制，否则会导致无限循环</p>
+<h3 id="卸载阶段（UnMount）"><a href="#卸载阶段（UnMount）" class="headerlink" title="卸载阶段（UnMount）"></a>卸载阶段（UnMount）</h3><p>组件卸载的时候只有一个生命周期函数</p>
+<blockquote>
+<p>componentWillUnmount</p>
+</blockquote>
+<p>当我们的组件被卸载或者销毁了就会调用，我们可以在这个函数里去清除一些定时器，取消网络请求，清理无效的 DOM 元素等垃圾清理工作</p>
+<p>注意不要在这个函数里去调用 setState，因为组件不会重新渲染了</p>
+<h3 id="错误收集"><a href="#错误收集" class="headerlink" title="错误收集"></a>错误收集</h3><p>在 react16 之前，如果代码报错时候，会直接出现红屏，react16 之后可以直接使用这个函数来收集错误设置错误显示时的<code>state</code>，这样在界面上就不会出现红屏,但是这里有个问题，就是在捕获到错误的瞬间，React 会在这次渲染周期中将这个组件渲染为<code>null</code></p>
+<blockquote>
+<p>componentDidCatch</p>
+</blockquote>
+<p>`componentDidCatch(error, info)</p>
+<blockquote>
+<p>getDerivedStateFromError</p>
+</blockquote>
+<p>为解决上述问题，react 在 16.6 版本新增了一个生命周期函数<br>这个方法跟<code>getDerivedStateFromProps</code>类似，唯一的区别是他只有在出现错误的时候才触发，他相对于<code>componentDidCatch</code>的优势是在当前的渲染周期中就可以修改<code>state</code>，以在当前渲染就可以出现错误的 UI，而不需要一个 null 的中间态。<br>而这个方法的出现，也意味着以后出现错误的时候，修改<code>state</code>展现错误时界面的状态应该放在这里去做，而后续收集错误信息之类的放到<code>componentDidCatch</code>里面。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/5777/">http://www.tiankai.party/posts/5777/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/react/">react</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/13347/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">eslint配置记录</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/34080/">
+        <span class="next-text nav-default">react-redux脚手架搭建问题总结</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

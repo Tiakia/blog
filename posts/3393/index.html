@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="java中数组的使用">
+
+
+
+
+  <meta name="keywords" content="java, Tiankai's Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/3393/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> java中数组的使用 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          java中数组的使用
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-26
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/3393/" data-title="java中数组的使用">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-中操作数组需要四步"><span class="toc-text">java 中操作数组需要四步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-声明数组"><span class="toc-text">1.声明数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-分配空间"><span class="toc-text">2.分配空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-赋值"><span class="toc-text">3.赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-处理数组中的数据"><span class="toc-text">4.处理数组中的数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二维数组"><span class="toc-text">二维数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-声明数组并分配空间"><span class="toc-text">1.声明数组并分配空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-赋值"><span class="toc-text">2.赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-处理数组"><span class="toc-text">3.处理数组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-中数组的操作"><span class="toc-text">java 中数组的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#java-中提供了一个-Arrays-类来对数组进行操作。"><span class="toc-text">java 中提供了一个 Arrays 类来对数组进行操作。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#java-中对数组的-foreach-循环"><span class="toc-text">java 中对数组的 foreach 循环</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h3 id="java-中操作数组需要四步"><a href="#java-中操作数组需要四步" class="headerlink" title="java 中操作数组需要四步"></a>java 中操作数组需要四步</h3><h4 id="1-声明数组"><a href="#1-声明数组" class="headerlink" title="1.声明数组"></a>1.声明数组</h4><p>语法：<br> <strong>数据类型[] 数组名</strong><br> <strong>数据类型 数组名[]</strong></p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] score; <span class="comment">//存储学生成绩 类型为整型</span></span><br><span class="line"><span class="keyword">double</span> height[]; <span class="comment">//存储学生身高 类型为浮点型</span></span><br><span class="line">String[] names; <span class="comment">//存储学生姓名 类型为字符串</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="2-分配空间"><a href="#2-分配空间" class="headerlink" title="2.分配空间"></a>2.分配空间</h4><p>简单的说就是指定数组中最多可存储多少个元素</p>
+<p>语法:<br><strong>数组名 = new 数据类型[数组长度]</strong></p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scores = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];<span class="comment">//长度为5的整数数组</span></span><br><span class="line">height = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="number">5</span>];</span><br><span class="line">names = <span class="keyword">new</span> String[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面俩步可以合并为一个步骤：</p>
+</blockquote>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] scores = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="3-赋值"><a href="#3-赋值" class="headerlink" title="3.赋值"></a>3.赋值</h4><p>分配空间后就可以向数组中放数据了，数组中元素都是通过下标来访问的，例如向 scores 数组中存放学生成绩</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scores[<span class="number">0</span>] = <span class="number">89</span>;</span><br><span class="line">scores[<span class="number">1</span>] = <span class="number">79</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="4-处理数组中的数据"><a href="#4-处理数组中的数据" class="headerlink" title="4.处理数组中的数据"></a>4.处理数组中的数据</h4><p>我们可以对赋值后的数组进行操作和处理，如获取并输出数组中元素的值</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">"scores数组中的第一个元素的值："</span>+ scores[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+<p>在 Java 中还提供了另外一种直接创建数组的方式，它将声明数组、分配空间和赋值合并完成，如:</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] scores = &#123;<span class="number">78</span>,<span class="number">91</span>,<span class="number">84</span>,<span class="number">68</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>等价于：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] scores = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">78</span>,<span class="number">91</span>,<span class="number">84</span>,<span class="number">68</span>&#125;;<span class="comment">//new int[]后为空不能指定长度</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong><br>1.<code>int[] score = new int[5];</code>声明方式需要指定数组长度<br>2.<code>int[] score = new int[5];</code>声明方式 int 后面的中括号<code>[]</code>不能丢<br>3.<code>int[] score = new int[]{1,2,3,4,5}</code>声明方式<code>new int[]</code>中括号里不能写数字</p>
+<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><h4 id="1-声明数组并分配空间"><a href="#1-声明数组并分配空间" class="headerlink" title="1.声明数组并分配空间"></a>1.声明数组并分配空间</h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型[][] 数组名 = <span class="keyword">new</span> 数据类型[行的个数][列的个数];</span><br></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数据类型[][] 数组名;</span><br><span class="line">数组名 = <span class="keyword">new</span> 数据类型[行的个数][列的个数];</span><br></pre></td></tr></table></figure>
+<h4 id="2-赋值"><a href="#2-赋值" class="headerlink" title="2.赋值"></a>2.赋值</h4><p>二维数组的赋值，和一维数组类似，可以通过下标来逐个赋值，注意索引从 0 开始</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数组名[行的索引][列的索引] = 值;</span><br><span class="line"><span class="keyword">int</span> num[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//第一行第一列的值为1</span></span><br></pre></td></tr></table></figure>
+<p>也可以在声明数组的同时为其赋值</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型[][] 数组名 =&#123;&#123;值<span class="number">1</span>,值<span class="number">2</span>...&#125;,&#123;值<span class="number">11</span>,值<span class="number">22</span>...&#125;,&#123;值<span class="number">21</span>,值<span class="number">22</span>...&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="3-处理数组"><a href="#3-处理数组" class="headerlink" title="3.处理数组"></a>3.处理数组</h4><p>二维数组的访问和输出同一维数组一样，只是多了一个下标而已。在循环输出时，需要里面再内嵌一个循环，即使用二重循环来输出二维数组中的每一个元素。如：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个俩行三列的二维数组并赋值</span></span><br><span class="line"><span class="keyword">int</span>[][] num=&#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;&#125;;</span><br><span class="line"><span class="comment">//定位行</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;num.length; i++)&#123;</span><br><span class="line"><span class="comment">//定位每行的元素</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;num[i].length; j++)&#123;</span><br><span class="line">    <span class="comment">//依次输出每个元素</span></span><br><span class="line">        System.out.println(num[i][j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//实现换行</span></span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>需要了解的：</strong> 在定义二维数组时也可以只指定行的个数，然后再为每一行分别指定列的个数。如果每行的列数不同，则创建的是不规则的二维数组，如下所示</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] num = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][];<span class="comment">//定义一个三行的二维数组</span></span><br><span class="line">num[<span class="number">0</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>] <span class="comment">//为第一行分配俩列</span></span><br><span class="line">num[<span class="number">1</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>] <span class="comment">//位第二行分配三列</span></span><br><span class="line">num[<span class="number">3</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">4</span>] <span class="comment">//为第三行分配四列</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意:</strong></p>
+<p>1.常见的声明数组并赋值的方式：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] sum = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;; =&gt; <span class="keyword">int</span>[] sum = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>[][] scores = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>2.如果只是声明数组的长度但是并不赋值</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] num = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">6</span>];</span><br><span class="line"><span class="keyword">int</span>[][] scores = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="java-中数组的操作"><a href="#java-中数组的操作" class="headerlink" title="java 中数组的操作"></a>java 中数组的操作</h3><h4 id="java-中提供了一个-Arrays-类来对数组进行操作。"><a href="#java-中提供了一个-Arrays-类来对数组进行操作。" class="headerlink" title="java 中提供了一个 Arrays 类来对数组进行操作。"></a>java 中提供了一个 Arrays 类来对数组进行操作。</h4><p>第一步：要先导入 Arrays 包</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> com.imooc;</span><br><span class="line">improt java.util.Arrays; <span class="comment">//导入Arrays包。</span></span><br></pre></td></tr></table></figure>
+<p>第二步：使用 Arrays 包中的方法对数组进行操作</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc;</span><br><span class="line"><span class="keyword">import</span> java.uitl.Arrays; <span class="comment">//导入Arrays包。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] scores = &#123;<span class="number">79</span>,<span class="number">80</span>,<span class="number">99</span>,<span class="number">50</span>,<span class="number">62</span>&#125;;</span><br><span class="line">        <span class="comment">//调用Arrays包中的sort方法对数组进行排序</span></span><br><span class="line">        Arrays.sort(scores);</span><br><span class="line">        <span class="comment">//调用Arrays包中的toString将数组转换为字符串</span></span><br><span class="line">        System.out.println(Arrays.toString(scores));</span><br><span class="line">        <span class="comment">//[50, 62, 79, 80, 99]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="java-中对数组的-foreach-循环"><a href="#java-中对数组的-foreach-循环" class="headerlink" title="java 中对数组的 foreach 循环"></a>java 中对数组的 foreach 循环</h4><p>语法</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(元素类型 元素变量 : 遍历对象)&#123;</span><br><span class="line">    执行代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] scores = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">89</span>, <span class="number">72</span>, <span class="number">64</span>, <span class="number">58</span>, <span class="number">99</span>&#125;;</span><br><span class="line">        Arrays.sort(socres);</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> score : scores) &#123;</span><br><span class="line">            System.out.println(score);<span class="comment">//58 68 72 89 99</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/3393/">http://www.tiankai.party/posts/3393/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/java/">java</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/56302/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">java中的方法</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/37652/">
+        <span class="next-text nav-default">java中float和double的区别，char和string的区别</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

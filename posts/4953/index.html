@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="理解javaScript的隐式转换">
+
+
+
+
+  <meta name="keywords" content="javascript, Tiankai's Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/4953/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 为什么++[[]][+[]]+[+[]]=10? - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          为什么++[[]][+[]]+[+[]]=10?
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-28
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/javascript/">javascript</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/4953/" data-title="为什么++[[]][+[]]+[+[]]=10?">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#先来一波运算符的优先级-："><span class="toc-text">先来一波运算符的优先级 ：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原始类型之间的隐式转换"><span class="toc-text">原始类型之间的隐式转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“-”-号的运算规则"><span class="toc-text">“+” 号的运算规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-使用ToPrimitive转换为原始值"><span class="toc-text">1. 使用ToPrimitive转换为原始值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-原始值之间的隐式转换"><span class="toc-text">2. 原始值之间的隐式转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h3 id="先来一波运算符的优先级-："><a href="#先来一波运算符的优先级-：" class="headerlink" title="先来一波运算符的优先级 ："></a>先来一波运算符的优先级 ：</h3><p><img src="/../images/advance.png" alt="javaScript运算符优先级"></p>
+<a id="more"></a>
+<h3 id="原始类型之间的隐式转换"><a href="#原始类型之间的隐式转换" class="headerlink" title="原始类型之间的隐式转换"></a>原始类型之间的隐式转换</h3><blockquote>
+<p>js 有五种原始值</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">"Null"</span>, <span class="string">"Undefined"</span>, <span class="string">"String"</span>, <span class="string">"Boolean"</span>, <span class="string">"Number"</span>];</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">原始类型的值</th>
+<th style="text-align:center">转换为数值</th>
+<th style="text-align:center">转换为字符串</th>
+<th style="text-align:center">转换为布尔</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">false</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">“false”</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">true</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">“true”</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">“0”</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">“1”</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">“0”</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">“0”</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">“1”</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">“1”</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">“NaN”</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">infinity</td>
+<td style="text-align:center">infinity</td>
+<td style="text-align:center">“infinity”</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">-infinity</td>
+<td style="text-align:center">-infinity</td>
+<td style="text-align:center">“-infinity”</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">“”</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">“”</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">“name”</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">“name”</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">null</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">“null”</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">undefined</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">“undefined”</td>
+<td style="text-align:center">false</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">引用类型的值</th>
+<th style="text-align:center">转换为数值</th>
+<th style="text-align:center">转换为字符串</th>
+<th style="text-align:center">转换为布尔</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">[]</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">“”</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">[10]</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">“10”</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">[10,20]</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">“10,20”</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">{}</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">“[Object Object]”</td>
+<td style="text-align:center">true</td>
+</tr>
+</tbody>
+</table>
+<h3 id="“-”-号的运算规则"><a href="#“-”-号的运算规则" class="headerlink" title="“+” 号的运算规则"></a>“+” 号的运算规则</h3><blockquote>
+<p>js 在加法运算的时候会把运算对象转换为原始值然后进行运算</p>
+</blockquote>
+<h4 id="1-使用ToPrimitive转换为原始值"><a href="#1-使用ToPrimitive转换为原始值" class="headerlink" title="1. 使用ToPrimitive转换为原始值"></a>1. 使用<code>ToPrimitive</code>转换为原始值</h4><p>JS 引擎内部转换为原始值时,都会调用<code>ToPrimitive</code>函数转换，然后在<code>ToPrimitive</code>函数内部会调用<code>valueOf()</code>和<code>toString()</code>方法进行转换</p>
+<p><strong>转换规则如下：</strong></p>
+<p>如果运算值不是 Date 类型，那么在运算转换的时候</p>
+<ol>
+<li>如果 obj 为原始值，直接返回；</li>
+<li>否则调用 obj.valueOf()，如果执行结果是原始值，返回之；</li>
+<li>否则调用 obj.toString()，如果执行结果是原始值，返回之；</li>
+<li>否则抛异常。</li>
+</ol>
+<p>如果是 Date 类型的话，将上面的第 2 步和第 3 步调换，即：</p>
+<ol>
+<li>如果 obj 为原始值，直接返回；</li>
+<li>否则调用 obj.toString()，如果执行结果是原始值，返回之；</li>
+<li>否则调用 obj.valueOf()，如果执行结果是原始值，返回之；</li>
+<li>否则抛异常。</li>
+</ol>
+<p><code>toString</code> 用来返回对象的字符串表示</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name: <span class="string">"obj"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj.toString()); <span class="comment">// "[Object Object]"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj1.toString()); <span class="comment">// "[Object Object]"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">10</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.toString()); <span class="comment">// "10"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr1 = [];</span><br><span class="line"><span class="built_in">console</span>.log(arr1.toString()); <span class="comment">// ""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="built_in">console</span>.log(date.toString()); <span class="comment">// Wed Apr 11 2018 11:52:55 GMT+0800 (中国标准时间)</span></span><br></pre></td></tr></table></figure>
+<p><code>valueOf</code> 用来返回对象的原始值，可能是字符串、数值或 bool 值等，看具体的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name: <span class="string">"obj"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj.valueOf()); <span class="comment">// &#123;name: "obj"&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj1.valueOf()); <span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">10</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.valueOf()); <span class="comment">// [10]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr1 = [];</span><br><span class="line"><span class="built_in">console</span>.log(arr1.valueOf()); <span class="comment">// []</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="built_in">console</span>.log(date.valueOf()); <span class="comment">// 1523419204170</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-原始值之间的隐式转换"><a href="#2-原始值之间的隐式转换" class="headerlink" title="2. 原始值之间的隐式转换"></a>2. 原始值之间的隐式转换</h4><ul>
+<li>如果在一端出现字符串类型的值时，转换为字符串进行运算</li>
+<li>其他情况转换为数值进行运算</li>
+</ul>
+<p>所以可以将上面的代码以加号分割成左右俩部分</p>
+<p><strong>左： ++[[]][+[]]</strong></p>
+<p><strong>右： [+[]]</strong></p>
+<blockquote>
+<p>温馨提示：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[] :</span><br><span class="line">转换成字符串会转换为<span class="string">""</span></span><br><span class="line">转换为数字会转换为0</span><br><span class="line">转换为布尔值会转换为<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意点</strong> 几种强制转换类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+[] 前面有加号会把运算对象转换为数字</span><br><span class="line">+new Date 转换成时间戳</span><br><span class="line">! 会把运算对象转换为bool值</span><br></pre></td></tr></table></figure>
+<p><strong>左边细分： ++[[]] 和 [+[]]</strong></p>
+<ol>
+<li>(<code>[]</code>优先级高于 <code>++</code> 先算<code>[]</code>里的)</li>
+<li><code>+[]</code> 前面有<code>+</code>会转换为数字 得 <code>[0]</code></li>
+<li>左边最终为 <code>++[[]][0]</code> 取出数组<code>[[]]</code>的第一个元素累加即：<code>++[]</code></li>
+<li><code>++[]</code> 进行累计运算 <code>[]</code> 转换为 数值 <code>0</code> 即 <code>++0</code>;</li>
+</ol>
+<p><strong>右边细分：+[] 转换为数字 得 0</strong></p>
+<ol>
+<li>右边最终为 <code>[0]</code></li>
+<li>最终的表达式就成了 <code>++0+[0]</code></li>
+<li>运算的时候，对<code>[0]</code>使用 <code>valueOf()</code>方法，返回的不是原始值，继续调用 <code>toString</code> 方法得到<code>&quot;0&quot;</code>，然后在进行 <code>++0+&quot;0&quot;</code> , <code>++</code> 优先于 <code>+</code> 最终结果得到的就是 <code>1+ &quot;0&quot; =&quot;10&quot;</code>;</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上我们可以得出一个结论：<br>js 在进行加法运算的时候</p>
+<ol>
+<li>首先会对加号俩边不是原始值的数据进行<code>ToPrimitive</code>转换为原始值</li>
+<li>在俩边都是原始值后，会进行原始值之间适当的隐式转换，再进行运算</li>
+</ol>
+<blockquote>
+<p>相等比较的隐式转换规则</p>
+</blockquote>
+<ol>
+<li>只要布尔类型参与比较，该布尔类型的值首先会被转换为数字类型</li>
+<li>当数字类型和字符串类型做相等比较时，字符串类型会被转换为数字类型</li>
+<li>当对象类型和原始类型做相等比较时，对象类型会依照 <code>ToPrimitive</code> 规则转换为原始类型</li>
+<li><code>null</code> 和 <code>undefined</code> 之间互相宽松相等（<code>==</code>），并且也与其自身相等，但和其他所有的值都不宽松相等（<code>==</code>）。</li>
+</ol>
+<ul>
+<li>推荐 github 上一个 repo <code>jsfuck</code> 各种隐式转换的情况</li>
+</ul>
+<blockquote>
+<p>参考链接</p>
+</blockquote>
+<p><a href="https://github.com/jawil/blog/issues/5" target="_blank" rel="noopener">jawil’s blog</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/4953/">http://www.tiankai.party/posts/4953/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/javascript/">javascript</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/62362/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">7个你可能不认识的css单位</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/54278/">
+        <span class="next-text nav-default">webpack-dev-server报错解决</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

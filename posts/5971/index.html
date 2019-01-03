@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Nodejs之Buffer">
+
+
+
+
+  <meta name="keywords" content="nodejs, Tiankai's Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/5971/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> Nodejs之Buffer - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Nodejs之Buffer
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-04-11
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nodejs/">nodejs</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/5971/" data-title="Nodejs之Buffer">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Buffer-类"><span class="toc-text">Buffer 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建-Buffer"><span class="toc-text">创建 Buffer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#写入缓冲区"><span class="toc-text">写入缓冲区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#从缓冲区读取数据"><span class="toc-text">从缓冲区读取数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将-Buffer-转换为-JSON-对象"><span class="toc-text">将 Buffer 转换为 JSON 对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缓冲区合并"><span class="toc-text">缓冲区合并</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缓冲区比较"><span class="toc-text">缓冲区比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缓冲区裁剪"><span class="toc-text">缓冲区裁剪</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缓冲区拷贝"><span class="toc-text">缓冲区拷贝</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h4 id="Buffer-类"><a href="#Buffer-类" class="headerlink" title="Buffer 类"></a>Buffer 类</h4><p>用于操作二进制数据的<br>它的声明和赋值和 java 中的数组操作差不多</p>
+<h4 id="创建-Buffer"><a href="#创建-Buffer" class="headerlink" title="创建 Buffer"></a>创建 Buffer</h4><a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buf = <span class="keyword">new</span> Buffer(size);<span class="comment">//创建并为buffer分配空间，长度固定不能更改</span></span><br><span class="line"><span class="keyword">var</span> buf = <span class="keyword">new</span> Buffer(array);<span class="comment">//声明并赋值</span></span><br><span class="line"><span class="keyword">var</span> buf = <span class="keyword">new</span> Buffer(string[,encoding]);<span class="comment">//把字符转换为二进制、编码方式</span></span><br><span class="line"><span class="comment">//默认为utf-8编码  支持 "ascli" "utf8" "utf16le" "ucs2" "base64" "hex"</span></span><br></pre></td></tr></table></figure>
+<h4 id="写入缓冲区"><a href="#写入缓冲区" class="headerlink" title="写入缓冲区"></a>写入缓冲区</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf.write(string[,offset[,length]][,encoding]);</span><br></pre></td></tr></table></figure>
+<p>参数</p>
+<ul>
+<li><code>string</code> - 写入缓冲区的字符串</li>
+<li><code>offset</code> - 缓冲区开始写入的索引值，默认为 0</li>
+<li><code>length</code> - 写入的字节数， 默认为 buffer.length</li>
+<li><code>encoding</code> - 使用的编码，默认为 ‘utf8’</li>
+</ul>
+<p><strong>返回值</strong><br>返回实际写入的大小。如果 buffer 空间不足， 则只会写入部分字符串。</p>
+<h4 id="从缓冲区读取数据"><a href="#从缓冲区读取数据" class="headerlink" title="从缓冲区读取数据"></a>从缓冲区读取数据</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf.toString([encoding[,start[,end]]]);</span><br></pre></td></tr></table></figure>
+<p>参数</p>
+<ul>
+<li><code>encoding</code> - 使用的编码。 默认为 utf-8</li>
+<li><code>start</code> - 指定开始读取的索引位置，默认为 0</li>
+<li><code>end</code> - 结束位置，默认为缓冲区末尾</li>
+</ul>
+<p><strong>返回值</strong><br>解码缓冲区数据并使用指定的编码返回字符串。</p>
+<h4 id="将-Buffer-转换为-JSON-对象"><a href="#将-Buffer-转换为-JSON-对象" class="headerlink" title="将 Buffer 转换为 JSON 对象"></a>将 Buffer 转换为 JSON 对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf.toJSON();</span><br></pre></td></tr></table></figure>
+<h4 id="缓冲区合并"><a href="#缓冲区合并" class="headerlink" title="缓冲区合并"></a>缓冲区合并</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Buffer.concat(list[,totalLength]);</span><br></pre></td></tr></table></figure>
+<p>参数</p>
+<ul>
+<li><code>list</code> - 用于合并的 Buffer 对象数组列表</li>
+<li><code>totalLength</code> - 指定合并后 Buffer 对象的总长度</li>
+</ul>
+<p><strong>返回值</strong><br>返回一个多个成员合并的新 Buffer 对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buf1 = <span class="keyword">new</span> Buffer(<span class="string">"Hello"</span>);</span><br><span class="line"><span class="keyword">var</span> buf2 = <span class="keyword">new</span> Buffer(<span class="string">"World"</span>);</span><br><span class="line"><span class="keyword">var</span> buf3 = Buffer.concat([buf1, buf2]);</span><br><span class="line"><span class="built_in">console</span>.log(buf3.toString()); <span class="comment">// Hello World</span></span><br></pre></td></tr></table></figure>
+<h4 id="缓冲区比较"><a href="#缓冲区比较" class="headerlink" title="缓冲区比较"></a>缓冲区比较</h4><p>buf.compare(otherBuffer);</p>
+<p>参数</p>
+<ul>
+<li><code>otherBuffer</code> - 与 buf 对象比较的另外一个 Buffer 对象</li>
+</ul>
+<p><strong>返回值</strong><br>返回一个数字，表示 buf 在 otherBuffer 之前，之后或相同</p>
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buf1 = <span class="keyword">new</span> Buffer(<span class="string">"ABC"</span>);</span><br><span class="line"><span class="keyword">var</span> buf2 = <span class="keyword">new</span> Buffer(<span class="string">"ABCD"</span>);</span><br><span class="line"><span class="keyword">var</span> result = buf1.compare(buf2);</span><br><span class="line"><span class="keyword">if</span> (result &lt; <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(buf1 + <span class="string">" 在 "</span> + buf2 + <span class="string">" 之前"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (result === <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(buf1 + <span class="string">" 与 "</span> + buf2 + <span class="string">" 相同"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(buf1 + <span class="string">" 在 "</span> + buf2 + <span class="string">" 之后"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// result</span></span><br><span class="line"><span class="comment">// ABC 在 ABCD 之前</span></span><br></pre></td></tr></table></figure>
+<h4 id="缓冲区裁剪"><a href="#缓冲区裁剪" class="headerlink" title="缓冲区裁剪"></a>缓冲区裁剪</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf.slice([start[,end]]);</span><br></pre></td></tr></table></figure>
+<p>含头不含尾规则</p>
+<p><strong>返回值</strong><br>返回一个新的缓冲区，它和旧缓冲区<strong>指向同一块内存</strong>，但是从索引 start 到 end 的位置剪切。</p>
+<h4 id="缓冲区拷贝"><a href="#缓冲区拷贝" class="headerlink" title="缓冲区拷贝"></a>缓冲区拷贝</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf.copy(targetBuffer[, targetStart[, sourceStart[, sourceEnd]]])</span><br></pre></td></tr></table></figure>
+<p>参数</p>
+<ul>
+<li><code>buf:</code> 源 buffer</li>
+<li><code>targetBuffer:</code> 要拷贝的 buffer</li>
+<li><code>targetStart:</code> 在待拷贝 buffer 的第几个位置开始放置</li>
+<li><code>sourceStart:</code> 源 buffer 的第几个开始进行拷贝 含头不含尾</li>
+</ul>
+<p><strong>从 buf 中拷贝到 targetBuffer 中</strong></p>
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer1 = <span class="keyword">new</span> Buffer(<span class="string">"ABC"</span>);</span><br><span class="line"><span class="comment">// 拷贝一个缓冲区</span></span><br><span class="line"><span class="keyword">var</span> buffer2 = <span class="keyword">new</span> Buffer(<span class="number">3</span>);</span><br><span class="line">buffer1.copy(buffer2);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"buffer2 content: "</span> + buffer2.toString());</span><br><span class="line"><span class="comment">//result</span></span><br><span class="line"><span class="comment">// buffer2 content: ABC</span></span><br></pre></td></tr></table></figure>
+<p><strong>比较 slice 和 copy</strong></p>
+<p><code>slice</code> 选取的 buf 和原来引用的是相同的地址<br><code>copy</code> 方法 和原来的引用的地址不同</p>
+<p><strong>字节长度和字符串长度不一样，一个汉字的字符串长度为 1 (utf8 编码)，字节长度为 3.</strong></p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Buffer.isBuffer(); <span class="comment">//判断是否是 buffer 对象</span></span><br><span class="line">Buffer.byteLength(str); <span class="comment">//获得 str 的字节长度</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/5971/">http://www.tiankai.party/posts/5971/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/nodejs/">nodejs</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/61557/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Nodejs之http</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/27357/">
+        <span class="next-text nav-default">Nodejs之fs文件模块</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

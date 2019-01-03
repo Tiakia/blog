@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="前端渲染和服务端渲染引发的思考">
+
+
+
+
+  <meta name="keywords" content="nodejs, react, Tiankai's Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/64431/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 前端渲染和服务端渲染引发的思考 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          前端渲染和服务端渲染引发的思考
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-04-25
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nodejs/">nodejs</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/64431/" data-title="前端渲染和服务端渲染引发的思考">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#先了解一下各自的定义"><span class="toc-text">先了解一下各自的定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#服务端渲染"><span class="toc-text">服务端渲染</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#前端渲染"><span class="toc-text">前端渲染</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#看一下优缺点"><span class="toc-text">看一下优缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结："><span class="toc-text">总结：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#解决办法"><span class="toc-text">解决办法</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>到底是选择 前后端分离呢 还是 服务端渲染呢？</p>
+</blockquote>
+<p>今天在梳理项目结构的时候，遇到一个问题，我上一个使用 nodejs 的项目使用的 express,这次想使用 koa 来尝试一下，然后也更加体会一下后端的 MVC 模式，在构建视图目录的时候卡住了，我计划前端用的 react 一系列，然后 后端管理页面到底使用 模板引擎呢 还是使用 api 接口呢，在谷歌的时候由此引出了这个疑问 - 到底是选择前后端分离呢 还是 服务端渲染呢？</p>
+<a id="more"></a>
+<h3 id="先了解一下各自的定义"><a href="#先了解一下各自的定义" class="headerlink" title="先了解一下各自的定义"></a>先了解一下各自的定义</h3><h4 id="服务端渲染"><a href="#服务端渲染" class="headerlink" title="服务端渲染"></a>服务端渲染</h4><p>服务端渲染简称 SSR，后端的程序在把 html 页面吐给前端之前，先把 html 页面上的特定区域，特定符号，给用数据填充过，再扔给前端，这就是服务端渲染</p>
+<h4 id="前端渲染"><a href="#前端渲染" class="headerlink" title="前端渲染"></a>前端渲染</h4><p>后端的 html 页面作为静态文件存在，前端请求时后端不对该文件做任何内容上的修改，直接以资源的方式返回给前端，前端拿到页面后，根据写在 html 页面上的 js 代码，对该 html 的内容进行修改。这就是前端渲染</p>
+<h4 id="看一下优缺点"><a href="#看一下优缺点" class="headerlink" title="看一下优缺点"></a>看一下优缺点</h4><ul>
+<li>前后端分离 - 前端渲染<ul>
+<li>优点：<ul>
+<li>局部刷新</li>
+<li>富交互</li>
+<li>节约服务器成本</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>单页面应用下，首屏空白问题</li>
+<li>SEO</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>服务端渲染<ul>
+<li>优点：<ul>
+<li>首屏性能</li>
+<li>SEO</li>
+<li>不用关心浏览器兼容性</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>占用服务器资源</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>从优缺点来看，前端渲染关键点就是 <strong>首屏性能</strong> 和 <strong>SEO</strong> 俩点</p>
+<p><strong>为什么前端渲染不利于 SEO:</strong></p>
+<p>后端渲染 html 叫<strong>吐</strong>或者<strong>喷，爬虫</strong>可以看到完整的呈现源码<br>前端模板渲染 html 叫<strong>填，爬虫</strong>看不到完整的呈现源码</p>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p><strong>SEO</strong>的解决办法：</p>
+<ol>
+<li>SSR 同构 - 服务端渲染 比如：React 的 Next.js 框架 ,通过在 server 端获取初始 state,返回已经含有数据的 DOM 结构，再交给客户端实例化 React，之后客户端接手路由渲染任务</li>
+</ol>
+<p>前端渲染解决<strong>首屏性能</strong>：</p>
+<ol>
+<li>前后端分离的时候使用预渲染部分路由（webpack 的 prerender-spa-plugin 插件）</li>
+<li>部分代码同构，展示主要部分</li>
+<li>加载动画优化 Skeleton Screen – 骨架屏</li>
+</ol>
+<p><strong>综上所述</strong></p>
+<p>具体的项目具体选择，如果项目是偏管理类的，那么不需要考虑 SEO 的问题。</p>
+<p>如果需要 SEO 的项目，那么推荐 SSR 服务端渲染</p>
+<p>如果不需要 SEO 的项目，推荐前后端分离</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/64431/">http://www.tiankai.party/posts/64431/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/nodejs/">nodejs</a>
+            
+              <a href="/tags/react/">react</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/51002/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Emacs的配置和使用</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/1711/">
+        <span class="next-text nav-default">Nodejs之querystring</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

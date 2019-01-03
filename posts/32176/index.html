@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="移动端手机布局方案">
+
+
+
+
+  <meta name="keywords" content="rem, vw, em">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/32176/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 移动端布局方案 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          移动端布局方案
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-28
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/css/">css</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/32176/" data-title="移动端布局方案">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#em"><span class="toc-text">em</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rem"><span class="toc-text">rem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rem-的使用方案一"><span class="toc-text">rem 的使用方案一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rem-的使用方案二"><span class="toc-text">rem 的使用方案二</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dpr"><span class="toc-text">dpr</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vw-和-vh"><span class="toc-text">vw 和 vh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>面试的时候被问到了，移动端的布局，一直没有总结，在这里做个总结，移动端的布局方案。<br>初始的移动端布局采用的是 bootstrap 的<code>media query</code>方案，后来演变到<code>em</code>，再到现在的<code>rem</code>，配合<code>js</code>,或配合<code>vw</code>和<code>scss</code>，再加上<code>flex box</code>弹性盒子布局，还有正在酝酿的<code>css grid</code>方案，在实际工作中应该灵活应用，而不是一味的使用<code>rem</code>或<code>flex</code>等。<br>以前我们做的移动端适配就是设置 meta 标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后，布局的时候使用 bootstrap 和 Midea query 配合来达到一个基本的 h5 的页面，这个方案在今天看来已经远远满足不了我们的需求。</p>
+<a id="more"></a>
+<h3 id="em"><a href="#em" class="headerlink" title="em"></a>em</h3><p>在使用<code>em</code>作单位时，一定需要知道其父元素的设置，因为<code>em</code>就是一个相对值，而且是一个相对于父元素的值.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.child</span> &#123;</span><br><span class="line">  font-size: 2em; // 16px * 2</span><br><span class="line">  line-height: 2em; // 64px</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>em</code>在做字体的单位时，相对于父元素<code>font-size</code>，而在做其他单位时，相对于的是自身的<code>font-size</code>大小</p>
+<h3 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h3><p><code>rem</code>则是相对于根元素<code>html</code>来进行计算的，如果子元素设置<code>rem</code>那么通过更改根元素<code>html</code>元素的字体大小，就可以让子元素的大小发生变化，这实际上也是一种等比缩放。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  width: 1rem; //100px</span><br><span class="line">  height: 0.5rem; //50px</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么，<code>div</code>的宽就是 <code>100px</code> 高是 <code>50px</code>。<br>在实际工作中，可以使用<code>js</code>获取<code>clientWidth</code>来计算根元素<code>html</code>的<code>font-size</code>大小，使用<code>scss</code>来把 px 转换成 rem</p>
+<h3 id="rem-的使用方案一"><a href="#rem-的使用方案一" class="headerlink" title="rem 的使用方案一"></a>rem 的使用方案一</h3><ul>
+<li>js 只设置 html 的 font-size</li>
+</ul>
+<blockquote>
+<p>前提是 假定 设计师 给我们的 图是 750 的</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">doc, win</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> docEl = doc.documentElement,</span><br><span class="line">    <span class="comment">//横向屏幕事件监听</span></span><br><span class="line">    resizeEvt = <span class="string">"orientationchange"</span> <span class="keyword">in</span> <span class="built_in">window</span> ? <span class="string">"orientationchange"</span> : <span class="string">"resize"</span>,</span><br><span class="line">    recalc = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> clientWidth = docEl.clientWidth; <span class="comment">//获取设备的宽度</span></span><br><span class="line">      <span class="keyword">if</span> (!clientWidth) <span class="keyword">return</span>;</span><br><span class="line">      <span class="keyword">if</span> (clientWidth &gt;= <span class="number">750</span>) &#123;</span><br><span class="line">        docEl.style.fontSize = <span class="string">"100px"</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        docEl.style.fontSize = <span class="number">100</span> * (clientWidth / <span class="number">750</span>) + <span class="string">"px"</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  <span class="keyword">if</span> (!doc.addEventListener) <span class="keyword">return</span>;</span><br><span class="line">  win.addEventListener(resizeEvt, recalc, <span class="literal">false</span>);</span><br><span class="line">  doc.addEventListener(<span class="string">"DOMContentLoaded"</span>, recalc, <span class="literal">false</span>);</span><br><span class="line">&#125;)(<span class="built_in">document</span>, <span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>代码解释</strong>：<br>如果页面的宽度超过了 750px，那么页面中 html 的<code>font-size</code>恒为 100px，否则，页面中 html 的<code>font-size</code>的大小为：<code>100 * (当前页面宽度 / 750)</code></p>
+<p><strong>为什么 750px</strong></p>
+<p>这个要根据设计出的图了，这里还会涉及到一个<code>dpr</code>设备像素比的东西，这个在下文会有介绍。设计师如果是按照 iPhone6 为原型出图的话，iPhone6 的<code>dpr</code>为<code>2</code>，它的屏幕宽度为<code>375</code>，那么一般出图都是 <code>375 * 2 = 750</code>的。</p>
+<p><strong>为什么是 100px</strong></p>
+<p>这是为了计算方便，设置为<code>1rem = 100px</code>后，页面的宽度就是<code>7.5rem</code>，这样如果一个输入框,设计师给我们的标注的高是 80px 的话，那么我们直接就可以除以 100，得出 0.8rem 了。这个做法也是网易的做法。</p>
+<p><strong>以 750px 为基准</strong></p>
+<p><table><tr><td>屏幕宽度</td><td>320</td><td>480</td><td>640</td><td>750</td></tr><tr><td>屏幕对比比例</td><td>0.427</td><td>0.64</td><td>0.853</td><td>1</td></tr><tr><td>html font-size</td><td>42.7px</td><td>64px</td><td>85.3px</td><td>100px</td></tr><tr><td>屏幕宽度</td><td>7.4941rem</td><td>7.5rem</td><td>7.5029rem</td><td>7.5rem</td></tr></table></p>
+<blockquote>
+<p>或者如果知道项目的主流媒体设备的话也可以使用<code>media-query</code>设置<code>html</code>的<code>font-size</code>但是这个方案不推荐</p>
+</blockquote>
+<p>使用这个方案的话 <code>meta</code> 标签要这样设置</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个方案所有设备不考虑 dpr，会出现经典的 1px 边框的问题，对于要求严格的项目来说更适合下面这种方式。</p>
+<h3 id="rem-的使用方案二"><a href="#rem-的使用方案二" class="headerlink" title="rem 的使用方案二"></a>rem 的使用方案二</h3><ul>
+<li>js 设置 meta 标签 viewport 配合 scss</li>
+</ul>
+<h4 id="dpr"><a href="#dpr" class="headerlink" title="dpr"></a>dpr</h4><p><code>dpr(devicePixelRatio)</code>称为设备像素比，每款设备的<code>devicePixelRatio</code>都是已知，并且不变的，目前高清屏，普遍都是 2，不过还有更高的，比如 2.5, 3 等。</p>
+<ul>
+<li>布局要点一： 动态的设置<code>viewport</code>的<code>scale</code>等于 <code>1 / dpr</code>，设置页面缩放可以使得 1 个 CSS 像素(<code>1px</code>)由 1 个设备像素来显示，从而提高显示精度</li>
+<li>布局要点二： 动态的设置<code>html</code>的<code>font-size</code>为设备的宽度除以 10，主流的把页面分成 10 份，那么 750 的设计图每一份就是 75px，1rem = 75px;</li>
+<li>布局要点三： 使用<code>scss</code>计算<code>rem</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">doc, win</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> docEl = win.document.documentElement; <span class="comment">// html</span></span><br><span class="line">  <span class="keyword">var</span> resizeEvt =</span><br><span class="line">    <span class="string">"orientationchange"</span> <span class="keyword">in</span> <span class="built_in">window</span> ? <span class="string">"orientationchange"</span> : <span class="string">"resize"</span>;</span><br><span class="line">  <span class="keyword">var</span> metaEl = doc.querySelector(<span class="string">'meta[name="viewport"]'</span>);</span><br><span class="line">  <span class="keyword">var</span> dpr = <span class="number">0</span>; <span class="comment">//初始化数据</span></span><br><span class="line">  <span class="keyword">var</span> scale = <span class="number">0</span>; <span class="comment">//初始化数据</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//对iOS设备进行dpr的判断，对于Android系列，始终认为其dpr为1</span></span><br><span class="line">  <span class="keyword">if</span> (!dpr &amp;&amp; !scale) &#123;</span><br><span class="line">    <span class="keyword">var</span> isAndroid = win.navigator.appVersion.match(<span class="regexp">/android/gi</span>);</span><br><span class="line">    <span class="keyword">var</span> isIPhone = win.navigator.appVersion.match(<span class="regexp">/[iphone|ipad]/gi</span>);</span><br><span class="line">    <span class="keyword">var</span> devicePixelRatio = win.devicePixelRatio; <span class="comment">//获得设备的dpr</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (isIPhone) &#123;</span><br><span class="line">      dpr = devicePixelRatio;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      drp = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    scale = <span class="number">1</span> / dpr;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * ================================================</span></span><br><span class="line"><span class="comment">   *   设置font-size</span></span><br><span class="line"><span class="comment">   * ================================================</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> clientWidth = docEl.clientWidth &gt; <span class="number">750</span> ? <span class="number">750</span> : docEl.clientWidth;</span><br><span class="line">  <span class="keyword">if</span> (!clientWidth) <span class="keyword">return</span>;</span><br><span class="line">  docEl.style.fontSize = clientWidth / <span class="number">10</span> + <span class="string">"px"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * ================================================</span></span><br><span class="line"><span class="comment">   *   设置data-dpr和viewport</span></span><br><span class="line"><span class="comment">   * ================================================</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">  docEl.setAttribute(<span class="string">"data-dpr"</span>, dpr);</span><br><span class="line">  <span class="comment">// 如果标签不存在append，如果存在改写meta:viewport标签</span></span><br><span class="line">  <span class="keyword">if</span> (!metaEl) &#123;</span><br><span class="line">    metaEl = doc.createElement(<span class="string">"meta"</span>);</span><br><span class="line">    metaEl.setAttribute(<span class="string">"name"</span>, <span class="string">"viewport"</span>);</span><br><span class="line">    metaEl.setAttribute(</span><br><span class="line">      <span class="string">"content"</span>,</span><br><span class="line">      <span class="string">"width=device-width, initial-scale="</span> +</span><br><span class="line">        scale +</span><br><span class="line">        <span class="string">", maximum-scale="</span> +</span><br><span class="line">        scale +</span><br><span class="line">        <span class="string">", minimum-scale="</span> +</span><br><span class="line">        scale +</span><br><span class="line">        <span class="string">", user-scalable=no"</span></span><br><span class="line">    );</span><br><span class="line">    <span class="built_in">document</span>.documentElement.firstElementChild.appendChild(metaEl); <span class="comment">//添加到head标签中</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    metaEl.setAttribute(</span><br><span class="line">      <span class="string">"content"</span>,</span><br><span class="line">      <span class="string">"width=device-width, initial-scale="</span> +</span><br><span class="line">        scale +</span><br><span class="line">        <span class="string">", maximum-scale="</span> +</span><br><span class="line">        scale +</span><br><span class="line">        <span class="string">", minimum-scale="</span> +</span><br><span class="line">        scale +</span><br><span class="line">        <span class="string">", user-scalable=no"</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)(<span class="built_in">document</span>, <span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>rem 使用 scss 快速的把设计图上的标注转换为 rem</p>
+</blockquote>
+<p>使用<code>scss</code>直接把<code>px</code>转为 <code>rem</code></p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$base-font-size</span>: <span class="number">75px</span>; <span class="comment">//根据项目具体设置</span></span><br><span class="line">@function toRem(<span class="variable">$px</span>) &#123;</span><br><span class="line">  @return (<span class="variable">$px</span>/<span class="variable">$base-font-size</span>) * 1rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: toRem(<span class="number">80px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在实际项目中可以根据<code>js</code>来，动态的设置 html 的<code>font-size</code>,要注意的是，要把计算<code>font-size</code>的代码放到加载 css 代码之前,最好是内联。</p>
+<p><strong>文本单位</strong></p>
+<p>文本单位一般不建议使用 rem，建议使用 px 或 em，使用 px 的话可以使用下面这个 scss 的混合宏</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">mixin</span> font-dpr(<span class="variable">$font-size</span>) &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="variable">$font-size</span>;</span><br><span class="line"></span><br><span class="line">  <span class="selector-attr">[data-dpr="2"]</span> &amp; &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="variable">$font-size</span> * <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-attr">[data-dpr="3"]</span> &amp; &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="variable">$font-size</span> * <span class="number">3</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: @include font-dpr(<span class="number">16px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a>vw 和 vh</h3><p>详情请见我的另一篇博客 <a href="http://www.tiankai.party/7%E4%B8%AA%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%B8%8D%E8%AE%A4%E8%AF%86%E7%9A%84css%E5%8D%95%E4%BD%8D.html">七个你可能没见过的 css 单位</a><br>上文中多次提到了这个 <code>vw</code> 它直接把浏览器分成了 100 份 ， <code>100vw</code> 就是 浏览器的宽度，那么 在设置 <code>html</code> 的 <code>font-size</code> 的时候，就可以直接设置，<code>html:{font-size: 10vw}</code>不需要使用 js 去设置根元素的<code>font-size</code>了，有个问题就是设置临界点，<code>max-width</code> 的问题，上面使用 js 设置的时候在设备宽度大于 750 的时候<code>font-size</code>就固定不变了，由于 <code>dpr</code> 的存在 这个时候应该访问 pc 端的设计图了,使用的时候也应该注意这一点。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>1.设置 viewport 标签的 scale 属性适配 dpr 不同的 设备</p>
+<p>2.动态计算 html 的 font-size，</p>
+<p>3.对于固定宽度的元素使用 rem 布局，外层的容器元素使用 flex 布局</p>
+<p>4.元素的 font-size 可能需要额外的媒介查询，并且 font-size 不使用 rem，可以使用 em</p>
+<p>5.设置 max-width，当宽度大于这个 max-width 的时候，左右居中。</p>
+<p>6.推荐阅读 从网易与淘宝的 font-size 思考前端设计稿与工作流 中 手淘的 工作流程</p>
+<blockquote>
+<p>参考链接</p>
+</blockquote>
+<ul>
+<li><a href="http://www.cnblogs.com/lyzg/p/4877277.html#_label6" target="_blank" rel="noopener">从网易与淘宝的 font-size 思考前端设计稿与工作流</a></li>
+<li><a href="https://github.com/amfe/article/issues/17" target="_blank" rel="noopener">使用 Flexible 实现手淘 H5 页面的终端适配</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/32176/">http://www.tiankai.party/posts/32176/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/rem/">rem</a>
+            
+              <a href="/tags/vw/">vw</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/25745/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Emacs提高效率的插件</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/55534/">
+        <span class="next-text nav-default">mongoDB中的条件查询</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

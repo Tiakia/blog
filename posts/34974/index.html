@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="使用canvas压缩图片">
+
+
+
+
+  <meta name="keywords" content="canvas,fileReader,img">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/34974/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 使用canvas压缩图片 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          使用canvas压缩图片
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-09-04
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/canvas/">canvas</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/34974/" data-title="使用canvas压缩图片">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#踩坑"><span class="toc-text">踩坑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#知识点："><span class="toc-text">知识点：</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>前俩天做了一个图片转 base64 上传的功能，发现如果图片的 base64 过大的话，请求会变的很慢，严重的直接超时了，所以想到了在上传前压缩一下图片，然后再上传到后台，这样可以大大的提高效率，在这里记录一下利用 canvas 压缩图片遇到的几个坑。完整代码会在文末给出。</p>
+<a id="more"></a>
+<h4 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h4><ol>
+<li>第一个坑，在压缩图片的时候没获取图片本身的宽高，给了一个 <code>600*480</code> 的定宽定高，因为是手机端的，在上传图片的时候都是几兆的图片，所以这块没任何问题。出问题的地方在 修改头像的时候，测试的时候上传的图片都是小图片，然后就出现了 压缩后的图片显示不完全，大部分都是空白的现象，这就是因为在压缩的时候没有考虑图片原本的宽高的情况。</li>
+<li>第二个坑，解决第一个坑的办法就是在图片加载完成后（onload），获取图片本身的宽高，然后赋值给<code>canvas</code>,这样进行操作，但是这有个坑就是，图片加载是异步的，在你<code>return</code>的时候，返回的可能是 <code>undefined</code> 而不是你需要的 压缩后的 base64。这里的解决方法是，新建一个 <code>Promise</code>，然后把结果 <code>resolve()</code> 返回去，在调用的时候 <code>.then()</code> 得到结果。</li>
+</ol>
+<h4 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h4><ol>
+<li><code>canvas</code>的<code>toDataURL(&#39;image/png&#39;, 0.9)</code>; 把 canvas 画的图片转换为 base64,第一个参数表示的是图片的类型，第二个参数表示的是图片的清晰度。</li>
+<li>规定一个最大尺寸，如果图片本身的宽高大于这个尺寸，按照最大的一个边进行缩放，另一个根据图片的 比例 进行设置，然后设置给 <code>canvas</code>.</li>
+</ol>
+<figure class="highlight javascript"><figcaption><span>miniImage.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">miniSize</span>(<span class="params">imgData, maxSize = <span class="number">200</span> * <span class="number">1024</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// const maxSize = 200 * 1024;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (imgData &amp;&amp; imgData.files &amp;&amp; imgData.files.size &lt; maxSize) &#123;</span><br><span class="line">    <span class="keyword">return</span> imgData.url;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"----------------压缩图片-------------------"</span>);</span><br><span class="line">    <span class="keyword">const</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">"canvas"</span>);</span><br><span class="line">    <span class="keyword">let</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">    img.src = imgData.url;</span><br><span class="line">    <span class="keyword">let</span> ctx = canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">      img.addEventListener(</span><br><span class="line">        <span class="string">"load"</span>,</span><br><span class="line">        <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="comment">//图片原始尺寸</span></span><br><span class="line">          <span class="keyword">let</span> originWidth = <span class="keyword">this</span>.width;</span><br><span class="line">          <span class="keyword">let</span> originHeight = <span class="keyword">this</span>.height;</span><br><span class="line">          <span class="comment">// 最大尺寸限制</span></span><br><span class="line">          <span class="keyword">let</span> maxWidth = <span class="number">400</span>,</span><br><span class="line">            maxHeight = <span class="number">400</span>;</span><br><span class="line">          <span class="comment">// 目标尺寸</span></span><br><span class="line">          <span class="keyword">let</span> targetWidth = originWidth,</span><br><span class="line">            targetHeight = originHeight;</span><br><span class="line">          <span class="comment">// 图片尺寸超过400x400的限制</span></span><br><span class="line">          <span class="keyword">if</span> (originWidth &gt; maxWidth || originHeight &gt; maxHeight) &#123;</span><br><span class="line">            <span class="keyword">if</span> (originWidth / originHeight &gt; maxWidth / maxHeight) &#123;</span><br><span class="line">              <span class="comment">// 更宽，按照宽度限定尺寸</span></span><br><span class="line">              targetWidth = maxWidth;</span><br><span class="line">              targetHeight = <span class="built_in">Math</span>.round(</span><br><span class="line">                maxWidth * (originHeight / originWidth)</span><br><span class="line">              );</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              targetHeight = maxHeight;</span><br><span class="line">              targetWidth = <span class="built_in">Math</span>.round(</span><br><span class="line">                maxHeight * (originWidth / originHeight)</span><br><span class="line">              );</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          canvas.width = targetWidth;</span><br><span class="line">          canvas.height = targetHeight;</span><br><span class="line">          ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, targetWidth, targetHeight);</span><br><span class="line">          <span class="keyword">let</span> base64 = canvas.toDataURL(<span class="string">"image/png"</span>, <span class="number">0.9</span>);</span><br><span class="line">          resolve(base64);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="literal">false</span></span><br><span class="line">      );</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">onChangeImg = <span class="keyword">async</span> (files, type, index) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> previous = <span class="keyword">this</span>.props.imagePicker.files;</span><br><span class="line">  <span class="keyword">if</span> (type === <span class="string">"add"</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = miniSize(files[files.length - <span class="number">1</span>]);</span><br><span class="line">    <span class="comment">//使用 .then() 调用获得结果</span></span><br><span class="line">    <span class="keyword">await</span> result.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      previous.push(&#123; <span class="attr">url</span>: res &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">"remove"</span>) &#123;</span><br><span class="line">    previous.splice(index, <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">await</span> <span class="keyword">this</span>.props.dispatch(&#123;</span><br><span class="line">    type: <span class="string">"imagePicker/saveImage"</span>,</span><br><span class="line">    payload: &#123;</span><br><span class="line">      files: previous</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/34974/">http://www.tiankai.party/posts/34974/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/canvas/">canvas</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/49250/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">redux-saga处理异步请求(初级篇)</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/13347/">
+        <span class="next-text nav-default">eslint配置记录</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

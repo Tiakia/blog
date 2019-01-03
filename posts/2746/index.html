@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Nodejs之URL">
+
+
+
+
+  <meta name="keywords" content="nodejs, Tiankai's Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/2746/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> Nodejs之URL - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Nodejs之URL
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-04-11
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nodejs/">nodejs</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/2746/" data-title="Nodejs之URL">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#parse"><span class="toc-text">parse</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h3 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url.parse(urlString, bool, bool);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>第二个参数决定 query 部分以字符串返回还是以对象形式返回，默认为字符串返回即第二个参数默认为 false;<br>第三个参数表示在没有完整协议串的时候（即无 http:/https:）的时候‘//’之后的字符如何解释，若为 false 即将‘//’之后的当做路径解释，若为 true 则会将‘//’与‘/’之间的字符串解释为主机</p>
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(url);</span><br><span class="line"><span class="keyword">var</span> _url =</span><br><span class="line">  <span class="string">"http://www.imooc.com:8080/course/list?from=scott&amp;course=node#floor1"</span>;</span><br><span class="line">url.parse(_url);</span><br><span class="line"></span><br><span class="line"><span class="comment">//result</span></span><br><span class="line"><span class="comment">/*&#123;</span></span><br><span class="line"><span class="comment">    protocol: 'http',// 表示 url 采用什么协议</span></span><br><span class="line"><span class="comment">    slashed: true,// 是否有斜线</span></span><br><span class="line"><span class="comment">    auth: null,</span></span><br><span class="line"><span class="comment">    host: 'imooc.com:8080',//表示主机</span></span><br><span class="line"><span class="comment">    port: '8080',//端口</span></span><br><span class="line"><span class="comment">    hostname: 'imooc.com',//主机名称</span></span><br><span class="line"><span class="comment">    hash: '#floor1',//#后面的内容，包含#</span></span><br><span class="line"><span class="comment">    serach: '?from=scott&amp;course=node',//？后面#之前的内容包含？（查询字符串）</span></span><br><span class="line"><span class="comment">    query: 'from=scott&amp;course=node',// search 不包含？的内容（给 http 服务器发送数据）</span></span><br><span class="line"><span class="comment">    pathname: '/course/list',//路径的名称，一般指主域名之后的内容</span></span><br><span class="line"><span class="comment">    path: '/course/list?from=scott&amp;course=node',//路径</span></span><br><span class="line"><span class="comment">    herf: 'http://imooc.com:8080/course/list?from=scott&amp;course=node#floor1'</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure>
+<p>第二个参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第二个参数 bool 值，处理 query 字段,默认是 false</span></span><br><span class="line">url.parse(_url, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">//result</span></span><br><span class="line"><span class="comment">/*&#123;</span></span><br><span class="line"><span class="comment">    protocol: 'http',</span></span><br><span class="line"><span class="comment">    slashed: true,</span></span><br><span class="line"><span class="comment">    auth: null,</span></span><br><span class="line"><span class="comment">    host: 'imooc.com:8080',</span></span><br><span class="line"><span class="comment">    port: '8080',</span></span><br><span class="line"><span class="comment">    hostname: 'imooc.com',</span></span><br><span class="line"><span class="comment">    hash: '#floor1',</span></span><br><span class="line"><span class="comment">    serach: '?from=scott&amp;course=node',</span></span><br><span class="line"><span class="comment">    query: &#123;from: 'scott', course: 'node' &#125;,//成了对象</span></span><br><span class="line"><span class="comment">    pathname: '/course/list',</span></span><br><span class="line"><span class="comment">    path: '/course/list?from=scott&amp;course=node',</span></span><br><span class="line"><span class="comment">    herf: 'http://imooc.com:8080/course/list?from=scott&amp;course=node#floor1'</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure>
+<p>输出结果（看 query)</p>
+<p>没有第三个参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">url.parse(<span class="string">"//imooc.com/course/list"</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">//result</span></span><br><span class="line"><span class="comment">/*&#123;</span></span><br><span class="line"><span class="comment">    protocol: null,</span></span><br><span class="line"><span class="comment">    slashed: null,</span></span><br><span class="line"><span class="comment">    auth: null,</span></span><br><span class="line"><span class="comment">    host: null,</span></span><br><span class="line"><span class="comment">    port: null,</span></span><br><span class="line"><span class="comment">    hostname: null,</span></span><br><span class="line"><span class="comment">    hash: null,</span></span><br><span class="line"><span class="comment">    serach: '',</span></span><br><span class="line"><span class="comment">    query: &#123;&#125;,</span></span><br><span class="line"><span class="comment">    pathname: '//imooc.com/course/list',</span></span><br><span class="line"><span class="comment">    path: '//imooc.com/course/list',</span></span><br><span class="line"><span class="comment">    herf: '//imooc.com/course/list'</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure>
+<p>有第三个参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">url.parse(<span class="string">"//imooc.com/course/list"</span>, <span class="literal">true</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//result</span></span><br><span class="line"><span class="comment">/*&#123;</span></span><br><span class="line"><span class="comment">    protocol: null,</span></span><br><span class="line"><span class="comment">    slashed: true,</span></span><br><span class="line"><span class="comment">    auth: null,</span></span><br><span class="line"><span class="comment">    host: 'imooc.com',</span></span><br><span class="line"><span class="comment">    port: null,</span></span><br><span class="line"><span class="comment">    hostname: 'imooc.com',</span></span><br><span class="line"><span class="comment">    hash: null,</span></span><br><span class="line"><span class="comment">    serach: '',</span></span><br><span class="line"><span class="comment">    query: &#123;&#125;,</span></span><br><span class="line"><span class="comment">    pathname: '/course/list',</span></span><br><span class="line"><span class="comment">    path: '/course/list',</span></span><br><span class="line"><span class="comment">    herf: '//imooc.com/course/list'</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/2746/">http://www.tiankai.party/posts/2746/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/nodejs/">nodejs</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/27357/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Nodejs之fs文件模块</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/23313/">
+        <span class="next-text nav-default">Nodejs之全局对象</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

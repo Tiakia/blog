@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="react-redux脚手架搭建问题总结">
+
+
+
+
+  <meta name="keywords" content="react,redux,redux-saga,react-router-config">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/34080/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> react-redux脚手架搭建问题总结 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          react-redux脚手架搭建问题总结
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-07-23
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/react/">react</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/34080/" data-title="react-redux脚手架搭建问题总结">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#babel-配置"><span class="toc-text">babel 配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#resolve-配置"><span class="toc-text">resolve 配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#react-hot-loader"><span class="toc-text">react-hot-loader</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#为什么需要引入-babel-runtime"><span class="toc-text">为什么需要引入 babel-runtime ?</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#热更新还需俩个插件"><span class="toc-text">热更新还需俩个插件</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#代码分割配置"><span class="toc-text">代码分割配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HthmlWebpackPlugin"><span class="toc-text">HthmlWebpackPlugin</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#webpack-dll-config-js"><span class="toc-text">webpack.dll.config.js</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#生产配置"><span class="toc-text">生产配置</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>先列举功能点：</p>
+<ol>
+<li>react 热更新 react-hot-loader</li>
+<li>css 提取</li>
+<li>webpack4 的 splitcommonchunk</li>
+<li>react-router-dom 和 redux 整合</li>
+<li>redux-saga</li>
+<li>react-router 动态配置 react-loadable</li>
+<li>react-router-config 静态路由</li>
+<li>sass/less</li>
+<li>重复渲染问题处理</li>
+<li>webpack 打包第三方库</li>
+</ol>
+<a id="more"></a>
+<h5 id="babel-配置"><a href="#babel-配置" class="headerlink" title="babel 配置"></a>babel 配置</h5><figure class="highlight javascript"><figcaption><span>.babelrc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"presets"</span>:[</span><br><span class="line">  <span class="string">"react"</span>,</span><br><span class="line">  [<span class="string">"env"</span>, &#123;</span><br><span class="line">  <span class="string">"targets"</span>: &#123;</span><br><span class="line">    <span class="string">"browsers"</span>: [<span class="string">"last 2 versions"</span>, <span class="string">"safari &gt;= 7"</span>],</span><br><span class="line">    <span class="string">"node"</span>: <span class="string">"current"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"modules"</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="string">"debug"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"include"</span>: [</span><br><span class="line">    <span class="string">"transform-es2015-arrow-functions"</span>, <span class="comment">//箭头函数</span></span><br><span class="line">    <span class="string">"transform-es2015-spread"</span> <span class="comment">//扩展运算符</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"exclude"</span>: [],</span><br><span class="line">  <span class="string">"useBuiltIns"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;]</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"plugins"</span>:[</span><br><span class="line">  [<span class="string">"transform-runtime"</span>, &#123;</span><br><span class="line">    <span class="string">"helpers"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="string">"polyfill"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="string">"regenerator"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"moduleName"</span>: <span class="string">"babel-runtime"</span></span><br><span class="line">  &#125;],</span><br><span class="line">  [<span class="string">"transform-object-rest-spread"</span>, &#123;<span class="string">"useBuiltIns"</span>: <span class="literal">true</span>&#125;],</span><br><span class="line">  <span class="string">"syntax-dynamic-import"</span> <span class="comment">// import() 函数</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="resolve-配置"><a href="#resolve-配置" class="headerlink" title="resolve 配置"></a>resolve 配置</h5><p>在文件中可以直接使用 <code>src</code> 关键字 来引入文件</p>
+<figure class="highlight javascript"><figcaption><span>webpack.common.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">  alias: &#123;</span><br><span class="line">      <span class="keyword">static</span>: Path(<span class="string">'../static'</span>),</span><br><span class="line">      src: Path(<span class="string">'../src'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Path</code>是自己封装的</p>
+<figure class="highlight javascript"><figcaption><span>webpack.common.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Path = <span class="function">(<span class="params">filePath</span>) =&gt;</span> path.join(path.resolve(\_\_dirname,filePath));</span><br></pre></td></tr></table></figure>
+<h5 id="react-hot-loader"><a href="#react-hot-loader" class="headerlink" title="react-hot-loader"></a>react-hot-loader</h5><p>热更新使用的是 <code>react-hot-loader</code> 这个插件，可以在不刷新 state 的时候，刷新页面<br>入口文件配置：</p>
+<figure class="highlight javascript"><figcaption><span>webpack.dev.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    index: [</span><br><span class="line">        <span class="string">`webpack-dev-server/client?http://localhost:<span class="subst">$&#123;AppPort&#125;</span>`</span>,</span><br><span class="line">        <span class="string">'webpack/hot/only-dev-server'</span>,</span><br><span class="line">        <span class="string">'react-hot-loader/patch'</span>,</span><br><span class="line">        <span class="string">'babel-polyfill'</span>,</span><br><span class="line">        Path(<span class="string">'../src/main.js'</span>)</span><br><span class="line">    ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p><code>transform-runtime</code> 只会对 es6 的语法进行转换，而不会对新 api(Set、Maps 等)进行转换。如果需要转换新 api，就要引入<code>babel-polyfill</code></p>
+<h5 id="为什么需要引入-babel-runtime"><a href="#为什么需要引入-babel-runtime" class="headerlink" title="为什么需要引入 babel-runtime ?"></a>为什么需要引入 babel-runtime ?</h5><p><code>babel-polyfill</code> 通过帮助函数(helper) 实现 es6 功能后，会重复出现在一些模块里，导致编译后的代码体积变大。Babel 为了解决这个问题，提供了单独的包 <code>babel-runtime</code> 供编译模块复用工具函数。这时候就需要使用 <code>transform-runtime</code>：启用 <code>babel-runtime</code>，以避免编译输出的重复问题</p>
+<h6 id="热更新还需俩个插件"><a href="#热更新还需俩个插件" class="headerlink" title="热更新还需俩个插件"></a>热更新还需俩个插件</h6><figure class="highlight javascript"><figcaption><span>webpack.dev.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示 模块的 相对路径</span></span><br><span class="line"><span class="keyword">new</span> webpack.NamedModulesPlugin(),</span><br><span class="line"><span class="comment">// 浏览器 刷新</span></span><br><span class="line"><span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),</span><br></pre></td></tr></table></figure>
+<h5 id="代码分割配置"><a href="#代码分割配置" class="headerlink" title="代码分割配置"></a>代码分割配置</h5><figure class="highlight javascript"><figcaption><span>webpack.dev.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">optimization: &#123;</span><br><span class="line">  minimize: <span class="literal">false</span>,</span><br><span class="line">  runtimeChunk: <span class="literal">true</span>,</span><br><span class="line">  mergeDuplicateChunks: <span class="literal">true</span>,</span><br><span class="line">  removeEmptyChunks: <span class="literal">true</span>,</span><br><span class="line">  splitChunks: &#123;</span><br><span class="line">    chunks: <span class="string">'async'</span>,</span><br><span class="line">    cacheGroups: &#123;</span><br><span class="line">      commons: &#123;</span><br><span class="line">          test: <span class="regexp">/[\\/]node_modules[\\/]/</span>,</span><br><span class="line">          name: <span class="string">"vendor"</span>,</span><br><span class="line">          chunks: <span class="string">"all"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个暂定这个配置，后期优化后，会更新上来</p>
+<h5 id="HthmlWebpackPlugin"><a href="#HthmlWebpackPlugin" class="headerlink" title="HthmlWebpackPlugin"></a>HthmlWebpackPlugin</h5><p>插入 js 使用 assetHtmlPlugin</p>
+<figure class="highlight javascript"><figcaption><span>webpack.dev.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">  title: <span class="string">'React-Redux-App'</span>,</span><br><span class="line">  inject: <span class="literal">true</span>,</span><br><span class="line">  template: Path(<span class="string">'../static/tpl.html'</span>),</span><br><span class="line">  chunksSortMode: <span class="string">'none'</span></span><br><span class="line">&#125;),</span><br><span class="line"><span class="keyword">new</span> AddAssetHtmlPlugin([</span><br><span class="line">  &#123;</span><br><span class="line">    filepath: Path(<span class="string">'../static/js/vendors_lib.js'</span>),</span><br><span class="line">    includeSourcemap: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    filepath: Path(<span class="string">'../build/\*.js'</span>),</span><br><span class="line">    includeSourcemap: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">]),</span><br></pre></td></tr></table></figure>
+<h5 id="webpack-dll-config-js"><a href="#webpack-dll-config-js" class="headerlink" title="webpack.dll.config.js"></a>webpack.dll.config.js</h5><p>打包第三方公共的库</p>
+<p>webpack.dev.js</p>
+<figure class="highlight javascript"><figcaption><span>webpack.dev.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- tab js --&gt;</span><br><span class="line"><span class="keyword">new</span> webpack.DllReferencePlugin(&#123;</span><br><span class="line">      context: __dirname,</span><br><span class="line">      manifest: <span class="built_in">require</span>(path.resolve(__dirname, <span class="string">'../static/vendors-manifest.json'</span>))</span><br><span class="line">  &#125;),</span><br><span class="line">&lt;!-- endtab --&gt;</span><br></pre></td></tr></table></figure>
+<p>webpack.dll.config.js</p>
+<figure class="highlight javascript"><figcaption><span>webpack.dll.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">  vendors: [</span><br><span class="line">    <span class="string">'react'</span>,</span><br><span class="line">    <span class="string">'react-dom'</span>,</span><br><span class="line">    <span class="string">'react-router-dom'</span>,</span><br><span class="line">    <span class="string">'redux'</span>,</span><br><span class="line">    <span class="string">'react-redux'</span></span><br><span class="line">  ]</span><br><span class="line">  &#125;,</span><br><span class="line">  output:&#123;</span><br><span class="line">    filename: <span class="string">'[name]\_lib.js'</span>,</span><br><span class="line">    path: path.resolve(**dirname, <span class="string">'../static/js'</span>),</span><br><span class="line">    library: <span class="string">'[name]\_lib'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.DllPlugin(&#123;</span><br><span class="line">      context: **dirname,</span><br><span class="line">      path: path.resolve(\_\_dirname,<span class="string">'../static/[name]-manifest.json'</span>),</span><br><span class="line">      name: <span class="string">'[name]\_lib'</span></span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> UglifyJsPlugin(&#123;</span><br><span class="line">      parallel: <span class="literal">true</span>,</span><br><span class="line">      sourceMap: <span class="literal">true</span>,</span><br><span class="line">      uglifyOptions: &#123;</span><br><span class="line">        warnings: <span class="literal">false</span>,</span><br><span class="line">        output: &#123;</span><br><span class="line">          comments: <span class="literal">false</span>,</span><br><span class="line">          beautify: <span class="literal">false</span></span><br><span class="line">        &#125;,</span><br><span class="line">        compress: &#123;</span><br><span class="line">          warnings: <span class="literal">false</span>,</span><br><span class="line">          drop_console: <span class="literal">true</span>,</span><br><span class="line">          collapse_vars: <span class="literal">true</span>,</span><br><span class="line">          reduce_vars: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  mode: <span class="string">'development'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>项目开始前 要先 运行一下 <code>webpack.dll.config.js</code></p>
+<h5 id="生产配置"><a href="#生产配置" class="headerlink" title="生产配置"></a>生产配置</h5><p>css 压缩:<br>loaders</p>
+<figure class="highlight javascript"><figcaption><span>webpack.pro.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">"mini-css-extract-plugin"</span>);</span><br><span class="line">    &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">            MiniCssExtractPlugin.loader,</span><br><span class="line">            <span class="string">'css-loader'</span>,</span><br><span class="line">            <span class="string">'postcss-loader'</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">    test: <span class="regexp">/\.scss$/i</span>,</span><br><span class="line">    use: [</span><br><span class="line">      MiniCssExtractPlugin.loader,</span><br><span class="line">      <span class="string">'css-loader'</span>,</span><br><span class="line">      <span class="string">'postcss-loader'</span>,</span><br><span class="line">      <span class="string">'sass-loader'</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    test: <span class="regexp">/\.less$/i</span>,</span><br><span class="line">    use: [</span><br><span class="line">      MiniCssExtractPlugin.loader,</span><br><span class="line">      <span class="string">'css-loader'</span>,</span><br><span class="line">      <span class="string">'postcss-loader'</span>,</span><br><span class="line">      <span class="string">'less-loader'</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>js 压缩：<br>plugins</p>
+<figure class="highlight javascript"><figcaption><span>webpack.pro.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> UglifyJsPlugin(&#123;</span><br><span class="line">    sourceMap: <span class="literal">true</span>,</span><br><span class="line">    test: <span class="regexp">/\.jsx?$/i</span>,</span><br><span class="line">    parallel: <span class="literal">true</span>, <span class="comment">//使用多进程并行和文件换成提高构建速度</span></span><br><span class="line">    cache: <span class="literal">true</span>,</span><br><span class="line">    uglifyOptions: &#123;</span><br><span class="line">        nameCache: <span class="literal">true</span>,</span><br><span class="line">        warnings: <span class="literal">false</span>,</span><br><span class="line">        compress: &#123;</span><br><span class="line">            warnings: <span class="literal">false</span>,  <span class="comment">//删除无用代码时不输出警告</span></span><br><span class="line">            drop_console: <span class="literal">true</span>,  <span class="comment">//删除所有console语句，可以兼容IE</span></span><br><span class="line">            collapse_vars: <span class="literal">true</span>,  <span class="comment">//内嵌已定义但只使用一次的变量</span></span><br><span class="line">            reduce_vars: <span class="literal">true</span>,  <span class="comment">//提取使用多次但没定义的静态值到变量</span></span><br><span class="line">        &#125;,</span><br><span class="line">        output: &#123;</span><br><span class="line">            beautify: <span class="literal">false</span>, <span class="comment">//最紧凑的输出，不保留空格和制表符</span></span><br><span class="line">            comments: <span class="literal">false</span>, <span class="comment">//删除所有注释</span></span><br><span class="line">        &#125;,</span><br><span class="line">        ie8: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;),</span><br><span class="line"><span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">  filename: <span class="string">"[name].css"</span>,</span><br><span class="line">  chunkFilename: <span class="string">"[id].css"</span></span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/tiakia/react-redux-app" target="_blank" rel="noopener">项目链接</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/34080/">http://www.tiankai.party/posts/34080/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/react/">react</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/5777/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">react16 生命周期</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/55404/">
+        <span class="next-text nav-default">谷歌云免费一年搭建梯子</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

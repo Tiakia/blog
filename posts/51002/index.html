@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Emacs的配置和使用">
+
+
+
+
+  <meta name="keywords" content="emacs">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/51002/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> Emacs的配置和使用 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Emacs的配置和使用
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-06-06
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/emacs/">emacs</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/51002/" data-title="Emacs的配置和使用">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改的配置"><span class="toc-text">修改的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#垃圾回收机制修改"><span class="toc-text">垃圾回收机制修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置中文环境-日期正常显示"><span class="toc-text">设置中文环境,日期正常显示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置启动时的大小及位置"><span class="toc-text">设置启动时的大小及位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ivy-搜索到时候取消显示匹配的数字"><span class="toc-text">ivy 搜索到时候取消显示匹配的数字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mode-line-自定义显示"><span class="toc-text">mode-line 自定义显示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#增加yasnippet模板"><span class="toc-text">增加yasnippet模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#增加全局搜索差价-ag"><span class="toc-text">增加全局搜索差价 ag</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#增加中文输入法-pyim"><span class="toc-text">增加中文输入法 pyim</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#增加web-mode支持-jsx-js-css-html-x2026"><span class="toc-text">增加web-mode支持 jsx/js/css/html…</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改变-emacs-的透明度"><span class="toc-text">改变 emacs 的透明度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Org-mode-的使用"><span class="toc-text">Org-mode 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#链接"><span class="toc-text">链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#插入链接的快捷键"><span class="toc-text">插入链接的快捷键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#标记文本"><span class="toc-text">标记文本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Table-use-Tab-to-enter"><span class="toc-text">Table use Tab to enter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#org-导出为其他文件"><span class="toc-text">org 导出为其他文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#org-输入代码"><span class="toc-text">org 输入代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Todo"><span class="toc-text">Todo</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h3 id="修改的配置"><a href="#修改的配置" class="headerlink" title="修改的配置"></a>修改的配置</h3><h4 id="垃圾回收机制修改"><a href="#垃圾回收机制修改" class="headerlink" title="垃圾回收机制修改"></a>垃圾回收机制修改</h4><p>purcell 的老是报错 就参考了 spacemacs 的配置</p>
+<figure class="highlight lisp"><figcaption><span>init.el</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">setq</span> gc-cons-threshold <span class="number">100000000</span>)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="设置中文环境-日期正常显示"><a href="#设置中文环境-日期正常显示" class="headerlink" title="设置中文环境,日期正常显示"></a>设置中文环境,日期正常显示</h4><figure class="highlight lisp"><figcaption><span>init-preload.el</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">set-language-environment</span> 'Chinese-GBK)</span><br><span class="line">(<span class="name">prefer-coding-system</span> 'utf-8-unix)</span><br></pre></td></tr></table></figure>
+<h4 id="设置启动时的大小及位置"><a href="#设置启动时的大小及位置" class="headerlink" title="设置启动时的大小及位置"></a>设置启动时的大小及位置</h4><figure class="highlight lisp"><figcaption><span>init-preload.el</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">;;设置窗口位置为屏库左上角(0,0)</span></span><br><span class="line">(<span class="name">set-frame-position</span> (<span class="name">selected-frame</span>) <span class="number">0</span> <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">(<span class="name">set-frame-width</span> (<span class="name">selected-frame</span>) <span class="number">110</span>)</span><br><span class="line">(<span class="name">set-frame-height</span> (<span class="name">selected-frame</span>) <span class="number">33</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="ivy-搜索到时候取消显示匹配的数字"><a href="#ivy-搜索到时候取消显示匹配的数字" class="headerlink" title="ivy 搜索到时候取消显示匹配的数字"></a>ivy 搜索到时候取消显示匹配的数字</h4><figure class="highlight lisp"><figcaption><span>init-ivy.el</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ivy-count-format <span class="string">""</span></span><br></pre></td></tr></table></figure>
+<h4 id="mode-line-自定义显示"><a href="#mode-line-自定义显示" class="headerlink" title="mode-line 自定义显示"></a>mode-line 自定义显示</h4><h4 id="增加yasnippet模板"><a href="#增加yasnippet模板" class="headerlink" title="增加yasnippet模板"></a>增加<code>yasnippet</code>模板</h4><h4 id="增加全局搜索差价-ag"><a href="#增加全局搜索差价-ag" class="headerlink" title="增加全局搜索差价 ag"></a>增加全局搜索差价 <code>ag</code></h4><h4 id="增加中文输入法-pyim"><a href="#增加中文输入法-pyim" class="headerlink" title="增加中文输入法 pyim"></a>增加中文输入法 <code>pyim</code></h4><h4 id="增加web-mode支持-jsx-js-css-html-x2026"><a href="#增加web-mode支持-jsx-js-css-html-x2026" class="headerlink" title="增加web-mode支持 jsx/js/css/html&#x2026;"></a>增加<code>web-mode</code>支持 jsx/js/css/html&#x2026;</h4><h3 id="改变-emacs-的透明度"><a href="#改变-emacs-的透明度" class="headerlink" title="改变 emacs 的透明度"></a>改变 emacs 的透明度</h3><ul>
+<li>类似 mac 下的效果</li>
+<li>init-alph.el</li>
+</ul>
+<ol>
+<li>具体的配置见<a href="https://www.github.com/tiakia/.emacs.d" target="_blank" rel="noopener">My GitHub</a></li>
+</ol>
+<h3 id="Org-mode-的使用"><a href="#Org-mode-的使用" class="headerlink" title="Org-mode 的使用"></a>Org-mode 的使用</h3><p><code>tap键:</code> show/hide 展示/隐藏 一级标题下的其他 item<br><code>* 一级标题</code><br><code>** 二级标题</code></p>
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><ul>
+<li><a href="http://www.tiankai.party">Here’s my Blog</a></li>
+</ul>
+<h4 id="插入链接的快捷键"><a href="#插入链接的快捷键" class="headerlink" title="插入链接的快捷键"></a>插入链接的快捷键</h4><p><code>C-c &amp; C-l</code>: add link</p>
+<p><code>C-c &amp; C-o</code>: open the Link</p>
+<h4 id="标记文本"><a href="#标记文本" class="headerlink" title="标记文本"></a>标记文本</h4><p><strong>bold text</strong>, <code>*bold text*</code></p>
+<p><em>italic text</em>, <code>/italic text/</code></p>
+<p><u>underlined text</u>, <code>_underline text_</code></p>
+<p><del>strikethrough line</del>, <code>+strikethrough line+</code></p>
+<p><code>verbatim</code> <code>=verbatim=</code></p>
+<h4 id="Table-use-Tab-to-enter"><a href="#Table-use-Tab-to-enter" class="headerlink" title="Table use Tab to enter"></a>Table use Tab to enter</h4><p>|Name|Age|Occupation|生成表格然后 使用 tab 来输入 会自动对齐自动添加</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">| Name     | Age   | Occupation      |</span><br><span class="line">| -------- | ----- | --------------- |</span><br><span class="line">| Allen    | 15    | Teacher         |</span><br><span class="line">| Clyve    | 34    | Office-worker   |</span><br><span class="line">| Barney   | 65    | Worker          |</span><br><span class="line">| -------- | ----- | --------------- |</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Age</th>
+<th>Occupation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allen</td>
+<td>15</td>
+<td>Teacher</td>
+</tr>
+<tr>
+<td>Clyve</td>
+<td>34</td>
+<td>Office-worker</td>
+</tr>
+<tr>
+<td>Barney</td>
+<td>65</td>
+<td>Worker</td>
+</tr>
+</tbody>
+</table>
+<h4 id="org-导出为其他文件"><a href="#org-导出为其他文件" class="headerlink" title="org 导出为其他文件"></a>org 导出为其他文件</h4><p><code>C-c &amp; C-e</code> 选择一个模板导出 (例如: h - o 导出为 html 并打开)</p>
+<p>标题文件声明</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#+STARTUP: overview</span></span><br><span class="line"><span class="section">#+TITLE: org-lesson</span></span><br><span class="line"><span class="section">#+OPTIONS: toc:nil</span></span><br><span class="line"><span class="section">#+CREATOR: Tiankai</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>toc:nil 忽略导航,导出为 HTML 的时候会忽略</p>
+</blockquote>
+<h4 id="org-输入代码"><a href="#org-输入代码" class="headerlink" title="org 输入代码"></a>org 输入代码</h4><ul>
+<li>输入 <code>&lt;s</code> 敲 tab 键 生成代码块,填写 mode</li>
+<li><code>C-c &#39;</code> 到相应的 mode 编写代码,编写完成后 <code>C-c &#39;</code>返回</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#+BEGIN_SRC js2</span></span><br><span class="line">  function add(x, y)&#123;</span><br><span class="line"><span class="code">    return x + y</span></span><br><span class="line">  &#125;</span><br><span class="line">  let sum = add(3,4);</span><br><span class="line"><span class="section">#+END_SRC</span></span><br></pre></td></tr></table></figure>
+<h4 id="Todo"><a href="#Todo" class="headerlink" title="Todo"></a>Todo</h4><figure class="highlight"><figcaption><span>todo.org</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">** DONE cycle through states</span><br><span class="line">CLOSED: [2018-06-06 Wed 16:24]</span><br><span class="line"></span><br><span class="line">** TODO explain todo lists</span><br><span class="line">DEADLINE: &lt;2018-06-07 Thu&gt;</span><br><span class="line">** NEXT 写周报</span><br><span class="line">DEADLINE: &lt;2018-06-08 Fri&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>C-c &amp; C-t</code> 来改变当前事项是完成还是未完成</li>
+<li><code>shift &amp; 上/下/左/右</code> 可以调整时间</li>
+<li><code>C-c &amp; C-d</code> 调出日历选择日期</li>
+<li><code>C-c &amp; a &amp; L</code> 显示所有待做事情</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/51002/">http://www.tiankai.party/posts/51002/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/emacs/">emacs</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/42422/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">thinkjs项目结构简析</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/64431/">
+        <span class="next-text nav-default">前端渲染和服务端渲染引发的思考</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

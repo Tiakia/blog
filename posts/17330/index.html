@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="java中定义一个类的步骤">
+
+
+
+
+  <meta name="keywords" content="java, Tiankai's Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/17330/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> java中定义一个类的步骤 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          java中定义一个类的步骤
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-31
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/17330/" data-title="java中定义一个类的步骤">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#类是定义对象拥有的属性和方法"><span class="toc-text">类是定义对象拥有的属性和方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-定义类名"><span class="toc-text">a. 定义类名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-定义属性"><span class="toc-text">b.定义属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用对象步骤"><span class="toc-text">使用对象步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-创建对象"><span class="toc-text">1.创建对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-使用对象"><span class="toc-text">2.使用对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成员变量和局部变量"><span class="toc-text">成员变量和局部变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#成员变量"><span class="toc-text">成员变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#局部变量"><span class="toc-text">局部变量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#局部变量和成员变量的区别"><span class="toc-text">局部变量和成员变量的区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法"><span class="toc-text">构造方法</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h3 id="类是定义对象拥有的属性和方法"><a href="#类是定义对象拥有的属性和方法" class="headerlink" title="类是定义对象拥有的属性和方法"></a>类是定义对象拥有的属性和方法</h3><p>类的组成： 属性和方法</p>
+<h4 id="a-定义类名"><a href="#a-定义类名" class="headerlink" title="a. 定义类名"></a>a. 定义类名</h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="b-定义属性"><a href="#b-定义属性" class="headerlink" title="b.定义属性"></a>b.定义属性</h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名</span>&#123;</span><br><span class="line">    <span class="comment">//定义属性部分（成员变量）</span></span><br><span class="line">    属性<span class="number">1</span>的类型 属性<span class="number">1</span>;</span><br><span class="line">    属性<span class="number">2</span>的类型 属性<span class="number">2</span>;</span><br><span class="line">      ...</span><br><span class="line">    <span class="comment">//定义方法部分</span></span><br><span class="line">    方法<span class="number">1</span>;</span><br><span class="line">    方法<span class="number">2</span>;</span><br><span class="line">      ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Telphone</span></span>&#123;</span><br><span class="line">    <span class="comment">//定义对象的属性</span></span><br><span class="line">    <span class="keyword">float</span> screen;</span><br><span class="line">    <span class="keyword">float</span> cpu;</span><br><span class="line">    <span class="keyword">float</span> mem;</span><br><span class="line">    <span class="comment">//定义对象的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">callPhone</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Telphone有打电话的功能"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sendMsg</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Telphone有发短信的功能"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用对象步骤"><a href="#使用对象步骤" class="headerlink" title="使用对象步骤"></a>使用对象步骤</h3><h4 id="1-创建对象"><a href="#1-创建对象" class="headerlink" title="1.创建对象"></a>1.创建对象</h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">类名 对象名 = <span class="keyword">new</span> 类名();</span><br><span class="line">Telphone phone = <span class="keyword">new</span> Telphone();</span><br></pre></td></tr></table></figure>
+<h4 id="2-使用对象"><a href="#2-使用对象" class="headerlink" title="2.使用对象"></a>2.使用对象</h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">phone.screen = <span class="number">5</span>;<span class="comment">//给screen属性赋值5</span></span><br><span class="line">phone.sendMsg();<span class="comment">//调用sendMsg方法</span></span><br></pre></td></tr></table></figure>
+<h3 id="成员变量和局部变量"><a href="#成员变量和局部变量" class="headerlink" title="成员变量和局部变量"></a>成员变量和局部变量</h3><h4 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h4><blockquote>
+<p>在类中定义，用来描述对象将要有什么。</p>
+</blockquote>
+<h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><blockquote>
+<p>在类的方法中定义，在方法中临时保存数据的。</p>
+</blockquote>
+<h5 id="局部变量和成员变量的区别"><a href="#局部变量和成员变量的区别" class="headerlink" title="局部变量和成员变量的区别"></a>局部变量和成员变量的区别</h5><p>1.同一个方法中，不允许有同名局部变量<br>2.在不同的方法中，可以有同名局部变量<br>3.两类变量同名时，局部变量优先<br>4.局部变量的作用域仅限定义它的方法，成员变量的作用域在整个类内部都是可见的<br>5.java 给成员变量初始值，不给局部变量初始值</p>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><p>1.使用 new+构造方法 创建一个新的对象</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Telphone phone = <span class="keyword">new</span> Telphone();</span><br><span class="line"><span class="comment">//Telphone()就是一个构造方法</span></span><br><span class="line"><span class="comment">//phone是使用构造方法实例化出来的对象</span></span><br></pre></td></tr></table></figure>
+<p>2.构造方法时定义在 java 类中的一个用来初始化对象的方法，构造方法与类同名且没有返回值。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> 构造方法名()&#123;</span><br><span class="line">    <span class="comment">//初始化代码</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//没有返回值</span></span><br><span class="line"><span class="comment">//构造方法名与类名相同</span></span><br><span class="line"><span class="comment">// 可以指定参数</span></span><br></pre></td></tr></table></figure>
+<p>3.如果没有指定一个无参的构造方法，系统会自动生成一个无参的构造方法，如果不满意，可以自己定义一个无参的构造方法。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main():</span><br><span class="line">    Telphone phone = <span class="keyword">new</span> Telphone();</span><br><span class="line">class Telphone:</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Telphone</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"无参的构造方法执行了！"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>4.有参的构造方法</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">main():</span><br><span class="line">    Telphone phone2 = <span class="keyword">new</span> Telphone(<span class="number">1.5f</span>,<span class="number">2.0f</span>,<span class="number">2.0f</span>);</span><br><span class="line">class Telphone:</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Telphone</span><span class="params">(<span class="keyword">float</span> newScreen,<span class="keyword">float</span> newCpu,<span class="keyword">float</span> newMem)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(newScreen&lt;<span class="number">3.5f</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">"参数输入有误，默认为3.5f"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            screen = newScreen;</span><br><span class="line">        &#125;</span><br><span class="line">        cpu = newCpu;</span><br><span class="line">        mem = newMem;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>无参和有参的构造方法可以创建对象，但是通过有参的构造方法可以给对象中的实例变量赋值。</p>
+</blockquote>
+<p>5.构造方法有重载的特性：方法名相同，但参数不同的多个方法调用时会自动根据不同的参数选择相应的方法。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/17330/">http://www.tiankai.party/posts/17330/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/java/">java</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/15627/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Nodejs中read和readFile以及write和writefile的区别</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/56302/">
+        <span class="next-text nav-default">java中的方法</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

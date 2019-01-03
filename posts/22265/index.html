@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="nodejs读取文件、表格数据处理数据">
+
+
+
+
+  <meta name="keywords" content="node-xlsx">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/22265/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> nodejs的魅力-fs模块 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          nodejs的魅力-fs模块
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-03-01
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nodejs/">nodejs</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/22265/" data-title="nodejs的魅力-fs模块">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#node-xlsx"><span class="toc-text">node-xlsx</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#读取表格"><span class="toc-text">读取表格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#写入表格"><span class="toc-text">写入表格</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>nodejs 的魔法之 fs 模板<br>好久没有更新博客了，最近事真多，手头上又有外包项目，又有公司的项目，过段时间会出一个<code>d3</code>的总结，现在公司使用的就是<code>d3</code>描绘地图，记录一下踩过的坑和注意事项。前端时间为了学习<code>node</code>做了一个博客的后台，那会是第一次感受到了<code>node</code>的魅力，第一次使用是在做地图这个项目的时候，要处理大量的数据，都是一些重复性的操作，后来突然想到了<code>node</code>的<code>fs</code>模板，当时心就痒痒的，然后就试着跑了一段<code>node</code>。读出文件中的数据，然后再对数据处理，最后再把数据写入文件中。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">精简 world.json</span></span><br><span class="line"><span class="comment">生成的 world_m.json 只保留当前国家的名字</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">"./../data/originData/world.json"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">console</span>.error(err);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//这里转换一下这样在命令行才可以看到数据</span></span><br><span class="line">  <span class="keyword">const</span> countrys = <span class="built_in">JSON</span>.parse(data.toString());</span><br><span class="line">  <span class="comment">//可以随时打印一下看看数据格式</span></span><br><span class="line">  <span class="comment">//console.log(countrys); return;</span></span><br><span class="line">  <span class="keyword">var</span> type,</span><br><span class="line">    geometry = &#123;&#125;,</span><br><span class="line">    properties = &#123;&#125;;</span><br><span class="line">  data = &#123;</span><br><span class="line">    type: <span class="string">"FeatureCollection"</span>,</span><br><span class="line">    features: []</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">//遍历数据获取自己想要属性</span></span><br><span class="line">  countrys.features.map(<span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">    type = val.type;</span><br><span class="line">    geometry = val.geometry;</span><br><span class="line">    properties = val.properties.NAME_LONG;</span><br><span class="line">    data.features.push(&#123;</span><br><span class="line">      type: type,</span><br><span class="line">      properties: &#123; <span class="attr">name</span>: properties &#125;,</span><br><span class="line">      geometry: geometry</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//写入文件这里是同步写入</span></span><br><span class="line">  fs.writeFile(</span><br><span class="line">    <span class="string">"./../data/world_m.json"</span>,</span><br><span class="line">    <span class="built_in">JSON</span>.stringify(data),</span><br><span class="line">    &#123; <span class="attr">encoding</span>: <span class="string">"utf8"</span> &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.error(err);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"文件写入成功"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>当时，第一次打开<code>world_m.json</code>的时候浑身上下特别的通透，我好像掌握了什么了不得的技能，可能对后端来说这不是什么难事，但对于我一个前端来说，做到这真真是感受到了代码的魅力。紧随其后又存生成的 world_m.json 数据里面提取出与中国接壤的数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  从 world_m.json 世界地图数据中 提取出与中国接壤的国家的数据</span></span><br><span class="line"><span class="comment">  并生成 other.json 文件</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">"./../data/world_m.json"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">console</span>.error(err);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> countrys = <span class="built_in">JSON</span>.parse(data.toString());</span><br><span class="line">  <span class="comment">//console.log(countrys); return;</span></span><br><span class="line">  <span class="keyword">var</span> type,</span><br><span class="line">    geometry = &#123;&#125;,</span><br><span class="line">    properties = &#123;&#125;,</span><br><span class="line">    data = &#123;</span><br><span class="line">      type: <span class="string">"FeatureCollection"</span>,</span><br><span class="line">      features: []</span><br><span class="line">    &#125;,</span><br><span class="line">    countryName = [</span><br><span class="line">      <span class="string">"Afghanistan"</span>,</span><br><span class="line">      <span class="string">"Bhutan"</span>,</span><br><span class="line">      <span class="string">"Dem. Rep. Korea"</span>,</span><br><span class="line">      <span class="string">"Iran"</span>,</span><br><span class="line">      <span class="string">"Japan"</span>,</span><br><span class="line">      <span class="string">"Kazakhstan"</span>,</span><br><span class="line">      <span class="string">"Kyrgyzstan"</span>,</span><br><span class="line">      <span class="string">"Lao PDR"</span>,</span><br><span class="line">      <span class="string">"Mongolia"</span>,</span><br><span class="line">      <span class="string">"Myanmar"</span>,</span><br><span class="line">      <span class="string">"Nepal"</span>,</span><br><span class="line">      <span class="string">"Pakistan"</span>,</span><br><span class="line">      <span class="string">"Tajikistan"</span>,</span><br><span class="line">      <span class="string">"Thailand"</span>,</span><br><span class="line">      <span class="string">"Turkmenistan"</span>,</span><br><span class="line">      <span class="string">"Uzbekistan"</span>,</span><br><span class="line">      <span class="string">"Vietnam"</span>,</span><br><span class="line">      <span class="string">"India"</span>,</span><br><span class="line">      <span class="string">"Russian Federation"</span>,</span><br><span class="line">      <span class="string">"Republic of Korea"</span></span><br><span class="line">    ]; <span class="comment">//要提取的国家的名字</span></span><br><span class="line"></span><br><span class="line">  countrys.features.map(<span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (countryName.indexOf(val.properties.name) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(val.properties.name);</span><br><span class="line">      type = val.type;</span><br><span class="line">      geometry = val.geometry;</span><br><span class="line">      properties = val.properties.name;</span><br><span class="line">      data.features.push(&#123;</span><br><span class="line">        type: type,</span><br><span class="line">        properties: &#123; <span class="attr">name</span>: properties &#125;,</span><br><span class="line">        geometry: geometry</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  fs.writeFile(</span><br><span class="line">    <span class="string">`./../data/other.json`</span>,</span><br><span class="line">    <span class="built_in">JSON</span>.stringify(data),</span><br><span class="line">    &#123; <span class="attr">encoding</span>: <span class="string">"utf8"</span> &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.error(err);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"文件写入成功:  "</span> + countryName);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>第一次觉得数据处理这么有趣，也是第一次发现代码离我们这么近，昨天晚上帮我对象做 Excel 表格数据处理的时候，心血来潮我能不能用 node 读取表格中的数据，然后对数据处理好后，再写入表格中，这样就不用一个个的复制粘贴了，说干就干，网上招了个入门简单的<code>node-xlsx</code>插件，然后就开始了。。。，悲剧的是，有时候真的 Excel 表格的功能真的是很强大，它有去重，有排序的功能，所以我只要把数据对应的找出来然后生成表格复制到原来的表格中，使用人家自带的功能三俩下就出来了，偏偏自己走了弯路非要把没有对应的数据也要提出来，唉。。。以后再处理表格数据的时候就知道了，一些没必要代码做的东西，尽量不用。。。</p>
+<h3 id="node-xlsx"><a href="#node-xlsx" class="headerlink" title="node-xlsx"></a>node-xlsx</h3><p>这个插件主要就是俩个功能，一个读取表格数据，还有一个就是写入表格数据。上手容易。</p>
+<h4 id="读取表格"><a href="#读取表格" class="headerlink" title="读取表格"></a>读取表格</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> xlsx = <span class="built_in">require</span>(<span class="string">"node-xlsx"</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> list = xlsx.parse(<span class="string">"./../data/myData/1.xlsx"</span>)[<span class="number">0</span>].data;</span><br></pre></td></tr></table></figure>
+<p>读取的结果是一个大的数组，如果你的一个<code>xlsx</code>文件里有多个表格的话，那么就会以数组的形式读取出来</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">"sheet1"</span>, <span class="comment">//表格一的名字</span></span><br><span class="line">    data: [</span><br><span class="line">      <span class="comment">//每一行的数据，包括表头</span></span><br><span class="line">      <span class="comment">//如果需要空几个单元格，赋值的时候直接 data[数组下标隔开几个]</span></span><br><span class="line">      <span class="comment">//然后在生成表格的时候就会自动空开单元格</span></span><br><span class="line">      <span class="comment">//时间的话也完全不需要转，表格中的设置单元格式就可以转过来</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">"sheet2"</span>, <span class="comment">//表格二的名字</span></span><br><span class="line">    data: []</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<h4 id="写入表格"><a href="#写入表格" class="headerlink" title="写入表格"></a>写入表格</h4><p>直接<code>fs.writeFile</code>写入的话是不会生成表格的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer = xlsx.build([</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">"sheet1"</span>,</span><br><span class="line">    data: origin <span class="comment">//写入数据</span></span><br><span class="line">  &#125;</span><br><span class="line">]);</span><br><span class="line">fs.writeFile(<span class="string">"./result.xlsx"</span>, buffer, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"导出成功"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>好像是掌握了了不得的技能呢。。。哈哈，程序路漫漫呐</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/22265/">http://www.tiankai.party/posts/22265/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/nodejs/">nodejs</a>
+            
+              <a href="/tags/fs/">fs</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/3341/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Http请求之预检请求</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/25745/">
+        <span class="next-text nav-default">Emacs提高效率的插件</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

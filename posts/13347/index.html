@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="eslint配置记录">
+
+
+
+
+  <meta name="keywords" content="eslint">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/13347/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> eslint配置记录 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          eslint配置记录
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-08-16
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/webpack/">webpack</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/13347/" data-title="eslint配置记录">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#rules"><span class="toc-text">rules:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extends"><span class="toc-text">extends:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#parser"><span class="toc-text">parser:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#plugins"><span class="toc-text">plugins:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#env"><span class="toc-text">env:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eslintignore"><span class="toc-text">eslintignore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rules-1"><span class="toc-text">rules</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>eslint 可以帮助进行我们检查代码，使我们的代码写的整洁，高效，在这里总结一篇关于 eslint 配置的一些事项，一些规则持续更新。</p>
+<p>eslint 的配置文件放在根目录中，新建<code>.eslintrc.js</code>文件，然后开始配置，一般常见的配置如下:</p>
+<a id="more"></a>
+<figure class="highlight javascript"><figcaption><span>.eslintrc.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  parser: <span class="string">"babel-eslint"</span>,</span><br><span class="line">  env: &#123;</span><br><span class="line">    browser: <span class="literal">true</span>,</span><br><span class="line">    node: <span class="literal">true</span>,</span><br><span class="line">    es6: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [<span class="string">"react"</span>, <span class="string">"jsx-a11y"</span>],</span><br><span class="line">  rules: &#123;</span><br><span class="line">    <span class="string">"react/prop-types"</span>: [<span class="number">2</span>],</span><br><span class="line">    <span class="string">"jsx-a11y/href-no-hash"</span>: <span class="string">"off"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  extends: <span class="string">"react-app"</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们来详细的看一下 各个字段所代表的意思：</p>
+<h3 id="rules"><a href="#rules" class="headerlink" title="rules:"></a>rules:</h3><p>是你具体配置的 eslint 的规则对象，对象的属性名为具体的规则名称，其他的规则名称会在文末有个总结，属性值是定义规则的开闭原则可以使用以下的值：</p>
+<ul>
+<li><code>&quot;off&quot;</code> or <code>0</code>-关闭规则</li>
+<li><code>&quot;warn&quot;</code> or <code>1</code>-将规则视为一个警告，不会影响编译</li>
+<li><code>&quot;error&quot;</code> or <code>2</code>- 将规则视为一个错误，在打包编译的时候会报错</li>
+</ul>
+<h3 id="extends"><a href="#extends" class="headerlink" title="extends:"></a>extends:</h3><p>这个字段表示的是 eslint 的扩展，你可以通过这个来使用社区别人写好的规则，我这里使用的是 <code>create-react-app</code> 的 eslint 扩展。也可以使用 <code>&quot;extends&quot;: &quot;eslint:recommended&quot;</code>这样会开启 eslint 推荐打开的规则。</p>
+<h3 id="parser"><a href="#parser" class="headerlink" title="parser:"></a>parser:</h3><p>规定 eslint 的解析器，默认是 <code>esprima</code>，在这个配置中使用的是<code>bael-eslint</code>解析器</p>
+<h3 id="plugins"><a href="#plugins" class="headerlink" title="plugins:"></a>plugins:</h3><p>eslint 支持 第三方插件，在使用前必须安装他们，插件名称可以省略 <code>eslint-plugin-</code>前缀,常用的俩个插件就是 <code>eslint-plugin-react</code> 和 <code>eslint-plugin-jsx-a11y</code>,如果在 <code>rules</code> 规则对象中使用 插件中的规则的话，就如上面配置中的那样是 <code>react/prop-tyeps</code> 这样来使用。</p>
+<h3 id="env"><a href="#env" class="headerlink" title="env:"></a>env:</h3><p>规定了 eslint 的启用环境</p>
+<h3 id="eslintignore"><a href="#eslintignore" class="headerlink" title="eslintignore"></a>eslintignore</h3><p>配置 忽略 eslint 语法检查的文件，可以配置在 <code>package.json</code> 文件里,同样 eslint 的配置同样也可以放在 <code>package.json</code> 文件里</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"mypackage"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"0.0.1"</span>,</span><br><span class="line">  <span class="attr">"eslintConfig"</span>: &#123;</span><br><span class="line">    <span class="attr">"env"</span>: &#123;</span><br><span class="line">      <span class="attr">"browser"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">"node"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"eslintIgnore"</span>: [<span class="string">"hello.js"</span>, <span class="string">"world.js"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="rules-1"><a href="#rules-1" class="headerlink" title="rules"></a>rules</h3><p>这些规则 js 中的可能的错误或逻辑错误有关：</p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for-direction</td>
+<td>强制 <code>“for”</code> 循环中更新子句的计数器朝着正确的方向移动</td>
+</tr>
+<tr>
+<td>getter-return</td>
+<td>强制 getter 函数中出现  <code>return</code>  语句</td>
+</tr>
+<tr>
+<td>no-await-in-loop</td>
+<td>禁止在循环中出现  <code>await</code></td>
+</tr>
+<tr>
+<td>no-compare-neg-zero</td>
+<td>禁止与 -0 进行比较</td>
+</tr>
+<tr>
+<td>no-cond-assign</td>
+<td>禁止条件表达式中出现赋值操作符</td>
+</tr>
+<tr>
+<td>no-console</td>
+<td>禁用 <code>console</code></td>
+</tr>
+<tr>
+<td>no-constant-condition</td>
+<td>禁止在条件中使用常量表达式</td>
+</tr>
+<tr>
+<td>no-control-regex</td>
+<td>禁止在正则表达式中使用控制字符</td>
+</tr>
+<tr>
+<td>no-debugger</td>
+<td>禁用 <code>debugger</code></td>
+</tr>
+<tr>
+<td>no-duplicate-case</td>
+<td>禁止出现重复 <code>case</code> 标签</td>
+</tr>
+<tr>
+<td>no-dupe-args</td>
+<td>禁止 <code>function</code> 定义中出现重命名参数</td>
+</tr>
+<tr>
+<td>no-dupe-keys</td>
+<td>禁止对象字面量中出现重复的 <code>key</code></td>
+</tr>
+<tr>
+<td>no-empty</td>
+<td>禁止出现空语句块</td>
+</tr>
+<tr>
+<td>no-empty-character-class</td>
+<td>禁止在正则表达式中使用空字符集</td>
+</tr>
+<tr>
+<td>no-ex-assign</td>
+<td>禁止对 <code>catch</code> 字句的参数重新赋值</td>
+</tr>
+<tr>
+<td>no-extra-boolean-cast</td>
+<td>禁止不必要的布尔转换</td>
+</tr>
+<tr>
+<td>no-extra-parens</td>
+<td>禁止不必要的括号</td>
+</tr>
+<tr>
+<td>no-extra-semi</td>
+<td>禁止不必要的分号</td>
+</tr>
+<tr>
+<td>no-func-assign</td>
+<td>禁止对 <code>function</code> 声明重新赋值</td>
+</tr>
+<tr>
+<td>no-inner-declarations</td>
+<td>禁止在嵌套的块中出现变量声明或  <code>function</code>  声明</td>
+</tr>
+<tr>
+<td>no-invalid-regexp</td>
+<td>禁止  <code>RegExp</code>  构造函数中存在无效的正则表达式字符串</td>
+</tr>
+<tr>
+<td>no-irregular-whitespace</td>
+<td>禁止在字符串和注释之外不规则的空白</td>
+</tr>
+<tr>
+<td>no-obj-calls</td>
+<td>禁止把全局对象作为函数调用</td>
+</tr>
+<tr>
+<td>no-prototype-builtins</td>
+<td>禁止直接调用  <code>Object.prototypes</code>  的内置属性</td>
+</tr>
+<tr>
+<td>no-regex-spaces</td>
+<td>禁止正则表达式字面量中出现多个空格</td>
+</tr>
+<tr>
+<td>no-sparse-arrays</td>
+<td>禁用稀疏数组</td>
+</tr>
+<tr>
+<td>no-template-curly-in-string</td>
+<td>禁止在常规字符串中出现模板字面量占位符语法</td>
+</tr>
+<tr>
+<td>no-unexpected-multiline</td>
+<td>禁止出现令人困惑的多行表达式</td>
+</tr>
+<tr>
+<td>no-unreachable</td>
+<td>禁止在<code>return</code>、<code>throw</code>、<code>continue</code>  和  <code>break</code>  语句之后出现不可达代码</td>
+</tr>
+<tr>
+<td>no-unsafe-finally</td>
+<td>禁止在  <code>finally</code>  语句块中出现控制流语句</td>
+</tr>
+<tr>
+<td>no-unsafe-negation</td>
+<td>禁止对关系运算符的左操作数使用否定操作符</td>
+</tr>
+<tr>
+<td>no-isnan</td>
+<td>要求使用  <code>isNaN()</code>  检查  <code>NaN</code></td>
+</tr>
+<tr>
+<td>valid-jsdoc</td>
+<td>强制使用有效的 JSDoc 注释</td>
+</tr>
+<tr>
+<td>valid-typeof</td>
+<td>强制  <code>typeof</code>  表达式与有效的字符串进行比较</td>
+</tr>
+</tbody>
+</table>
+<p>这些规则是关于最佳实践的：</p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accessor-pairs</td>
+<td>强制 getter 和 setter 在对象中成对出现</td>
+</tr>
+<tr>
+<td>array-callback-return</td>
+<td>强制数组方法的回调函数中有  <code>return</code>  语句</td>
+</tr>
+<tr>
+<td>block-scoped-var</td>
+<td>强制把变量的使用限制在其定义的作用域范围内</td>
+</tr>
+<tr>
+<td>class-methods-use-this</td>
+<td>强制类方法使用  <code>this</code></td>
+</tr>
+<tr>
+<td>complexity</td>
+<td>指定程序中允许的最大环路复杂度</td>
+</tr>
+<tr>
+<td>consistent-return</td>
+<td>要求  <code>return</code>  语句要么总是指定返回的值，要么不指定</td>
+</tr>
+<tr>
+<td>curly</td>
+<td>强制所有控制语句使用一致的括号风格</td>
+</tr>
+<tr>
+<td>default-case</td>
+<td>要求  <code>switch</code>  语句中有  <code>default</code>  分支</td>
+</tr>
+<tr>
+<td>dot-location</td>
+<td>强制在点号之前和之后一致的换行</td>
+</tr>
+<tr>
+<td>dot-notation</td>
+<td>强制尽可能地使用点号</td>
+</tr>
+<tr>
+<td>eqeqeq</td>
+<td>要求使用  <code>===</code>  和  <code>!==</code></td>
+</tr>
+<tr>
+<td>guard-for-in</td>
+<td>要求  <code>for-in</code>  循环中有一个  <code>if</code>  语句</td>
+</tr>
+<tr>
+<td>no-alert</td>
+<td>禁用  <code>alert</code>、<code>confirm</code>  和  <code>prompt</code></td>
+</tr>
+<tr>
+<td>no-caller</td>
+<td>禁用  <code>arguments.caller</code>  或  <code>arguments.callee</code></td>
+</tr>
+<tr>
+<td>no-case-declarations</td>
+<td>不允许在 case 子句中使用词法声明</td>
+</tr>
+<tr>
+<td>no-div-regex</td>
+<td>禁止除法操作符显式的出现在正则表达式开始的位置</td>
+</tr>
+<tr>
+<td>no-else-return</td>
+<td>禁止  <code>if</code>  语句中  <code>return</code>  语句之后有  <code>else</code>  块</td>
+</tr>
+<tr>
+<td>no-empty-pattern</td>
+<td>禁止使用空解构模式</td>
+</tr>
+<tr>
+<td>no-eq-null</td>
+<td>禁止在没有类型检查操作符的情况下与  <code>null</code>  进行比较</td>
+</tr>
+<tr>
+<td>no-eval</td>
+<td>禁用  <code>eval()</code></td>
+</tr>
+<tr>
+<td>no-extend-native</td>
+<td>禁止扩展原生类型</td>
+</tr>
+<tr>
+<td>no-extra-bind</td>
+<td>禁止不必要的  <code>.bind()</code>  调用</td>
+</tr>
+<tr>
+<td>no-extra-label</td>
+<td>禁用不必要的标签</td>
+</tr>
+<tr>
+<td>no-fallthrough</td>
+<td>禁止  <code>case</code>  语句落空</td>
+</tr>
+<tr>
+<td>no-floating-decimal</td>
+<td>禁止数字字面量中使用前导和末尾小数点</td>
+</tr>
+<tr>
+<td>no-global-assign</td>
+<td>禁止对原生对象或只读的全局对象进行赋值</td>
+</tr>
+<tr>
+<td>no-implicit-coercion</td>
+<td>禁止使用短符号进行类型转换</td>
+</tr>
+<tr>
+<td>no-implicit-globals</td>
+<td>禁止在全局范围内使用变量声明和  <code>function</code>  声明</td>
+</tr>
+<tr>
+<td>no-implied-eval</td>
+<td>禁止使用类似  <code>eval()</code>  的方法</td>
+</tr>
+<tr>
+<td>no-invalid-this</td>
+<td>禁止  <code>this</code>  关键字出现在类和类对象之外</td>
+</tr>
+<tr>
+<td>no-iterator</td>
+<td>禁用  <code>__iterator__</code>  属性</td>
+</tr>
+<tr>
+<td>no-labels</td>
+<td>禁用标签语句</td>
+</tr>
+<tr>
+<td>no-lone-blocks</td>
+<td>禁用不必要的嵌套块</td>
+</tr>
+<tr>
+<td>no-loop-func</td>
+<td>禁止在循环中出现  <code>function</code>  声明和表达式</td>
+</tr>
+<tr>
+<td>no-magic-numbers</td>
+<td>禁用魔术数字</td>
+</tr>
+<tr>
+<td>no-multi-spaces</td>
+<td>禁止使用多个空格</td>
+</tr>
+<tr>
+<td>no-multi-str</td>
+<td>禁止使用多行字符串</td>
+</tr>
+<tr>
+<td>no-new</td>
+<td>禁止使用  <code>new</code>  以避免产生副作用</td>
+</tr>
+<tr>
+<td>no-new-func</td>
+<td>禁止对  <code>Function</code>  对象使用  <code>new</code>  操作符</td>
+</tr>
+<tr>
+<td>no-new-wrappers</td>
+<td>禁止对  <code>String</code>，<code>Number</code>  和  <code>Boolean</code>  使用  <code>new</code>  操作符</td>
+</tr>
+<tr>
+<td>no-octal</td>
+<td>禁用八进制字面量</td>
+</tr>
+<tr>
+<td>no-octal-escape</td>
+<td>禁止在字符串中使用八进制转义序列</td>
+</tr>
+<tr>
+<td>no-param-reassign</td>
+<td>禁止对  <code>function</code>  的参数进行重新赋值</td>
+</tr>
+<tr>
+<td>no-proto</td>
+<td>禁用  <code>__proto__</code>  属性</td>
+</tr>
+<tr>
+<td>no-redeclare</td>
+<td>禁止多次声明同一变量</td>
+</tr>
+<tr>
+<td>no-restricted-properties</td>
+<td>禁止使用对象的某些属性</td>
+</tr>
+<tr>
+<td>no-return-assign</td>
+<td>禁止在  <code>return</code>  语句中使用赋值语句</td>
+</tr>
+<tr>
+<td>no-return-await</td>
+<td>禁用不必要的  <code>return await</code></td>
+</tr>
+<tr>
+<td>no-script-url</td>
+<td>禁止使用  <code>javascript:</code> url</td>
+</tr>
+<tr>
+<td>no-self-assign</td>
+<td>禁止自我赋值</td>
+</tr>
+<tr>
+<td>no-self-compare</td>
+<td>禁止自身比较</td>
+</tr>
+<tr>
+<td>no-sequences</td>
+<td>禁用逗号操作符</td>
+</tr>
+<tr>
+<td>no-throw-literal</td>
+<td>禁止抛出异常字面量</td>
+</tr>
+<tr>
+<td>no-unmodified-loop-condition</td>
+<td>禁用一成不变的循环条件</td>
+</tr>
+<tr>
+<td>no-unused-expressions</td>
+<td>禁止出现未使用过的表达式</td>
+</tr>
+<tr>
+<td>no-unused-labels</td>
+<td>禁用出现未使用过的标</td>
+</tr>
+<tr>
+<td>no-useless-call</td>
+<td>禁止不必要的  <code>.call()</code>  和  <code>.apply()</code></td>
+</tr>
+<tr>
+<td>no-useless-escape</td>
+<td>禁用不必要的转义字符</td>
+</tr>
+<tr>
+<td>no-useless-return</td>
+<td>禁止多余的 return 语句</td>
+</tr>
+<tr>
+<td>no-void</td>
+<td>禁用  <code>void</code>  操作符</td>
+</tr>
+<tr>
+<td>no-warning-comments</td>
+<td>禁止在注释中使用特定的警告术语</td>
+</tr>
+<tr>
+<td>no-with</td>
+<td>禁用  <code>with</code>  语句</td>
+</tr>
+<tr>
+<td>prefer-promise-reject-errors</td>
+<td>要求使用 Error 对象作为 Promise 拒绝的原因</td>
+</tr>
+<tr>
+<td>radix</td>
+<td>强制在<code>parseInt()</code>使用基数参数</td>
+</tr>
+<tr>
+<td>require-await</td>
+<td>禁止使用不带  <code>await</code>  表达式的 async 函数</td>
+</tr>
+<tr>
+<td>vars-on-top</td>
+<td>要求所有的  <code>var</code>  声明出现在它们所在的作用域顶部</td>
+</tr>
+<tr>
+<td>wrap-iife</td>
+<td>要求 IIFE 使用括号括起来</td>
+</tr>
+<tr>
+<td>yoda</td>
+<td>要求或禁止 “Yoda” 条件</td>
+</tr>
+<tr>
+<td>strict</td>
+<td>要求或禁止使用严格模式指令</td>
+</tr>
+</tbody>
+</table>
+<p>变量声明有关的规则：</p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>init-declarations</td>
+<td>要求或禁止  <code>var</code>  声明中的初始化</td>
+</tr>
+<tr>
+<td>no-catch-shadow</td>
+<td>禁止  <code>catch</code>  子句的参数与外层作用域中的变量同名</td>
+</tr>
+<tr>
+<td>no-delete-var</td>
+<td>禁止删除变量</td>
+</tr>
+<tr>
+<td>no-label-var</td>
+<td>不允许标签与变量同名</td>
+</tr>
+<tr>
+<td>no-restricted-globals</td>
+<td>禁用特定的全局变量</td>
+</tr>
+<tr>
+<td>no-shadow</td>
+<td>禁止变量声明与外层作用域的变量同名</td>
+</tr>
+<tr>
+<td>no-shadow-restricted-names</td>
+<td>禁止将标识符定义为受限的名字</td>
+</tr>
+<tr>
+<td>no-undef</td>
+<td>禁用未声明的变量，除非它们在  <code>/*global */</code>  注释中被提到</td>
+</tr>
+<tr>
+<td>no-undef-init</td>
+<td>禁止将变量初始化为  <code>undefined</code></td>
+</tr>
+<tr>
+<td>no-undefined</td>
+<td>禁止将  <code>undefined</code>  作为标识符</td>
+</tr>
+<tr>
+<td>no-unused-vars</td>
+<td>禁止出现未使用过的变量</td>
+</tr>
+<tr>
+<td>no-use-before-define</td>
+<td>禁止在变量定义之前使用它们</td>
+</tr>
+</tbody>
+</table>
+<p>关于 Node.js 规则的</p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>callback-return</td>
+<td>强制数组方法回调函数中有 return 语句</td>
+</tr>
+<tr>
+<td>global-require</td>
+<td>要求<code>require()</code>出现在顶层模块作用域中</td>
+</tr>
+<tr>
+<td>handle-callback-err</td>
+<td>要求回调函数中有错误处理</td>
+</tr>
+<tr>
+<td>no-buffer-constructor</td>
+<td>禁用 <code>Buffer()</code> 构造函数</td>
+</tr>
+<tr>
+<td>no-mixed-requires</td>
+<td>禁止混合常规变量声明和<code>require</code>调用</td>
+</tr>
+<tr>
+<td>no-new-require</td>
+<td>禁止调用<code>require</code> 时 使用 <code>new</code> 操作符</td>
+</tr>
+<tr>
+<td>no-path-concat</td>
+<td>禁止对  <code>__dirname</code>  和  <code>__filename</code>  进行字符串连接</td>
+</tr>
+<tr>
+<td>no-process-env</td>
+<td>禁用  <code>process.env</code></td>
+</tr>
+<tr>
+<td>no-process-exit</td>
+<td>禁用  <code>process.exit()</code></td>
+</tr>
+<tr>
+<td>no-restricted-modules</td>
+<td>禁用通过  <code>require</code>  加载的指定模块</td>
+</tr>
+<tr>
+<td>no-sync</td>
+<td>禁用同步方法</td>
+</tr>
+</tbody>
+</table>
+<p>关于代码编写风格的：</p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>array-bracket-newline</td>
+<td>在数组开括号后和闭括号前强制换行</td>
+</tr>
+<tr>
+<td>array-bracket-spacing</td>
+<td>强制数组方括号中使用一致的空格</td>
+</tr>
+<tr>
+<td>array-element-newline</td>
+<td>强制数组元素间出现换行</td>
+</tr>
+<tr>
+<td>block-spacing</td>
+<td>禁止或强制在代码块中开括号前和闭括号后有空格</td>
+</tr>
+<tr>
+<td>brace-style</td>
+<td>强制在代码块中使用一致的大括号风格</td>
+</tr>
+<tr>
+<td>camelcase</td>
+<td>强制使用骆驼拼写法命名约定</td>
+</tr>
+<tr>
+<td>capitalized-comments</td>
+<td>强制或禁止对注释的第一个字母大写</td>
+</tr>
+<tr>
+<td>comma-dangle</td>
+<td>要求或禁止末尾有逗号</td>
+</tr>
+<tr>
+<td>comma-spacing</td>
+<td>强制在逗号前后使用一致的空格</td>
+</tr>
+<tr>
+<td>comma-style</td>
+<td>强制使用一致的逗号风格</td>
+</tr>
+<tr>
+<td>computed-property-spacing</td>
+<td>强制在计算的属性的方括号中使用一致的空格</td>
+</tr>
+<tr>
+<td>consistent-this</td>
+<td>当获取当前执行环境的上下文时，强制使用一致的命名</td>
+</tr>
+<tr>
+<td>eol-last</td>
+<td>要求或禁止文件末尾存在空行</td>
+</tr>
+<tr>
+<td>func-call-sapcing</td>
+<td>要求或禁止在函数标识符和其调用之间有空格</td>
+</tr>
+<tr>
+<td>func-names</td>
+<td>要求或禁止使用命名的  <code>function</code>  表达式</td>
+</tr>
+<tr>
+<td>func-name-matching</td>
+<td>要求函数名与赋值给它们的变量名或属性名相匹配</td>
+</tr>
+<tr>
+<td>func-style</td>
+<td>强制一致地使用  <code>function</code>  声明或表达式</td>
+</tr>
+<tr>
+<td>function-paren-newline</td>
+<td>强制在函数括号内使用一致的换行</td>
+</tr>
+<tr>
+<td>id-blacklist</td>
+<td>禁用指定的标识符</td>
+</tr>
+<tr>
+<td>id-length</td>
+<td>强制标识符的最小和最大长度</td>
+</tr>
+<tr>
+<td>id-match</td>
+<td>要求标识符匹配一个指定的正则表达式</td>
+</tr>
+<tr>
+<td>implicit-arrow-linebreak</td>
+<td>强制隐式返回的箭头函数体的位置</td>
+</tr>
+<tr>
+<td>indent</td>
+<td>强制使用一致的缩进</td>
+</tr>
+<tr>
+<td>jsx-quotes</td>
+<td>强制在 JSX 属性中一致地使用双引号或单引号</td>
+</tr>
+<tr>
+<td>key-spacing</td>
+<td>强制在对象字面量的属性中键和值之间使用一致的间距</td>
+</tr>
+<tr>
+<td>keyword-spacing</td>
+<td>强制在关键字前后使用一致的空格</td>
+</tr>
+<tr>
+<td>line-comment-position</td>
+<td>强制行注释的位置</td>
+</tr>
+<tr>
+<td>linebreak-style</td>
+<td>强制使用一致的换行风格</td>
+</tr>
+<tr>
+<td>lines-around-comment</td>
+<td>要求在注释周围有空行</td>
+</tr>
+<tr>
+<td>lines-between-class-members</td>
+<td>要求或禁止类成员之间出现空行</td>
+</tr>
+<tr>
+<td>max-depth</td>
+<td>强制可嵌套的块的最大深度</td>
+</tr>
+<tr>
+<td>max-len</td>
+<td>强制一行的最大长度</td>
+</tr>
+<tr>
+<td>max-lines</td>
+<td>强制最大行数</td>
+</tr>
+<tr>
+<td>max-nested-callbacks</td>
+<td>强制回调函数最大嵌套深度</td>
+</tr>
+<tr>
+<td>max-params</td>
+<td>强制函数定义中最多允许的参数数量</td>
+</tr>
+<tr>
+<td>max-statements</td>
+<td>强制函数块最多允许的的语句数量</td>
+</tr>
+<tr>
+<td>max-statements-per-line</td>
+<td>强制每一行中所允许的最大语句数量</td>
+</tr>
+<tr>
+<td>multiline-comment-style</td>
+<td>强制对多行注释使用特定风格</td>
+</tr>
+<tr>
+<td>multiline-ternary</td>
+<td>要求或禁止在三元操作数中间换行</td>
+</tr>
+<tr>
+<td>new-cap</td>
+<td>要求构造函数首字母大写</td>
+</tr>
+<tr>
+<td>new-parens</td>
+<td>要求调用无参构造函数时有圆括号</td>
+</tr>
+<tr>
+<td>newline-per-cahined-call</td>
+<td>要求方法链中每个调用都有一个换行符</td>
+</tr>
+<tr>
+<td>no-array-constructor</td>
+<td>禁用  <code>Array</code>  构造函数</td>
+</tr>
+<tr>
+<td>no-bitwise</td>
+<td>禁用按位运算符</td>
+</tr>
+<tr>
+<td>no-continue</td>
+<td>禁用  <code>continue</code>  语句</td>
+</tr>
+<tr>
+<td>no-inline-comments</td>
+<td>禁止在代码后使用内联注释</td>
+</tr>
+<tr>
+<td>no-lonely-if</td>
+<td>禁止  <code>if</code>  作为唯一的语句出现在  <code>else</code>  语句中</td>
+</tr>
+<tr>
+<td>no-mixed-operators</td>
+<td>禁止混合使用不同的操作符</td>
+</tr>
+<tr>
+<td>no-mixed-spaces-and-tabs</td>
+<td>禁止空格和 tab 的混合缩进</td>
+</tr>
+<tr>
+<td>no-multi-assign</td>
+<td>禁止连续赋值</td>
+</tr>
+<tr>
+<td>no-multiple-empty-lines</td>
+<td>禁止出现多行空行</td>
+</tr>
+<tr>
+<td>no-negated-condition</td>
+<td>禁用否定的表达式</td>
+</tr>
+<tr>
+<td>no-nested-ternary</td>
+<td>禁用嵌套的三元表达式</td>
+</tr>
+<tr>
+<td>no-new-object</td>
+<td>禁用 Object 的构造函数</td>
+</tr>
+<tr>
+<td>no-plusplus</td>
+<td>禁用一元操作符 ++ 和 –</td>
+</tr>
+<tr>
+<td>no-restricted-syntax</td>
+<td>禁用特定的语法</td>
+</tr>
+<tr>
+<td>no-tabs</td>
+<td>禁用 tab</td>
+</tr>
+<tr>
+<td>no-ternary</td>
+<td>禁用三元操作符</td>
+</tr>
+<tr>
+<td>no-trailing-spaces</td>
+<td>禁用行尾空格</td>
+</tr>
+<tr>
+<td>no-underscore-dangle</td>
+<td>禁止标识符中有悬空下划线</td>
+</tr>
+<tr>
+<td>no-unneeded-ternary</td>
+<td>禁止可以在有更简单的可替代的表达式时使用三元操作符</td>
+</tr>
+<tr>
+<td>no-whitespace-before-property</td>
+<td>禁止属性前有空白</td>
+</tr>
+<tr>
+<td>nonblock-statement-body-position</td>
+<td>强制单个语句的位置</td>
+</tr>
+<tr>
+<td>object-curly-newline</td>
+<td>强制大括号内换行符的一致性</td>
+</tr>
+<tr>
+<td>object-curly-spacing</td>
+<td>强制在大括号中使用一致的空格</td>
+</tr>
+<tr>
+<td>object-property-newline</td>
+<td>强制将对象的属性放在不同的行上</td>
+</tr>
+<tr>
+<td>one-var</td>
+<td>强制函数中的变量要么一起声明要么分开声明</td>
+</tr>
+<tr>
+<td>one-var-declaration-per-line</td>
+<td>要求或禁止在变量声明周围换行</td>
+</tr>
+<tr>
+<td>operator-assignment</td>
+<td>要求或禁止在可能的情况下使用简化的赋值操作符</td>
+</tr>
+<tr>
+<td>operator-linebreak</td>
+<td>强制操作符使用一致的换行符</td>
+</tr>
+<tr>
+<td>padded-blocks</td>
+<td>要求或禁止块内填充</td>
+</tr>
+<tr>
+<td>padding-line-between-statements</td>
+<td>要求或禁止在语句间填充空行</td>
+</tr>
+<tr>
+<td>quote-props</td>
+<td>要求或禁止在语句间填充空行</td>
+</tr>
+<tr>
+<td>quotes</td>
+<td>强制使用一致的反勾号、双引号或单引号</td>
+</tr>
+<tr>
+<td>require-jsdoc</td>
+<td>要求使用 JSDoc 注释</td>
+</tr>
+<tr>
+<td>semi</td>
+<td>要求或禁止使用分号代替 ASI</td>
+</tr>
+<tr>
+<td>semi-spacing</td>
+<td>强制分号之前和之后使用一致的空格</td>
+</tr>
+<tr>
+<td>semi-style</td>
+<td>强制分号的位置</td>
+</tr>
+<tr>
+<td>sort-keys</td>
+<td>要求对象属性按序排列</td>
+</tr>
+<tr>
+<td>sort-vars</td>
+<td>要求同一个声明块中的变量按顺序排列</td>
+</tr>
+<tr>
+<td>space-before-blocks</td>
+<td>强制在块之前使用一致的空格</td>
+</tr>
+<tr>
+<td>space-before-function-paren</td>
+<td>强制在 function 的左括号之前使用一致的空格</td>
+</tr>
+<tr>
+<td>space-in-parens</td>
+<td>强制在圆括号内使用一致的空格</td>
+</tr>
+<tr>
+<td>space-infix-ops</td>
+<td>要求操作符周围有空格</td>
+</tr>
+<tr>
+<td>space-unary-ops</td>
+<td>强制在一元操作符前后使用一致的空格</td>
+</tr>
+<tr>
+<td>spaced-comment</td>
+<td>强制在注释中 // 或 /* 使用一致的空格</td>
+</tr>
+<tr>
+<td>switch-colon-spacing</td>
+<td>强制在 switch 的冒号左右有空格</td>
+</tr>
+<tr>
+<td>template-tag-spacing</td>
+<td>要求或禁止在模板标记和它们的字面量之间有空格</td>
+</tr>
+<tr>
+<td>unicode-bom</td>
+<td>要求或禁止 Unicode 字节顺序标记 (BOM)</td>
+</tr>
+<tr>
+<td>wrap-regex</td>
+<td>要求正则表达式被括号括起来</td>
+</tr>
+</tbody>
+</table>
+<p>ES6 规则：</p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arrow-body-style</td>
+<td>要求箭头函数体使用大括号</td>
+</tr>
+<tr>
+<td>arrow-parens</td>
+<td>要求箭头函数的参数使用圆括号</td>
+</tr>
+<tr>
+<td>arrow-spacing</td>
+<td>强制箭头函数的箭头前后使用一致的空格</td>
+</tr>
+<tr>
+<td>constructor-super</td>
+<td>要求在构造函数中有 super() 的调用</td>
+</tr>
+<tr>
+<td>generator-star-spacing</td>
+<td>强制 generator 函数中 * 号周围使用一致的空格</td>
+</tr>
+<tr>
+<td>no-class-assign</td>
+<td>禁止修改类声明的变量</td>
+</tr>
+<tr>
+<td>no-confusing-arrow</td>
+<td>禁止在可能与比较操作符相混淆的地方使用箭头函数</td>
+</tr>
+<tr>
+<td>no-const-assign</td>
+<td>禁止修改 const 声明的变量</td>
+</tr>
+<tr>
+<td>no-dupe-class-members</td>
+<td>禁止类成员中出现重复的名称</td>
+</tr>
+<tr>
+<td>no-duplicate-imports</td>
+<td>禁止重复模块导入</td>
+</tr>
+<tr>
+<td>no-new-symbol</td>
+<td>禁止 Symbolnew 操作符和 new 一起使用</td>
+</tr>
+<tr>
+<td>no-restricted-imports</td>
+<td>禁止使用指定的 import 加载的模块</td>
+</tr>
+<tr>
+<td>no-this-before-super</td>
+<td>禁止在构造函数中，在调用 super() 之前使用 this 或 super</td>
+</tr>
+<tr>
+<td>no-useless-computed-key</td>
+<td>禁止在对象中使用不必要的计算属性</td>
+</tr>
+<tr>
+<td>no-useless-constructor</td>
+<td>禁用不必要的构造函数</td>
+</tr>
+<tr>
+<td>no-useless-rename</td>
+<td>禁止在 import 和 export 和解构赋值时将引用重命名为相同的名字</td>
+</tr>
+<tr>
+<td>no-var</td>
+<td>要求使用 let 或 const 而不是 var</td>
+</tr>
+<tr>
+<td>object-shorthand</td>
+<td>要求或禁止对象字面量中方法和属性使用简写语法</td>
+</tr>
+<tr>
+<td>prefer-arrow-callback</td>
+<td>要求回调函数使用箭头函数</td>
+</tr>
+<tr>
+<td>prefer-const</td>
+<td>要求使用 const 声明那些声明后不再被修改的变量</td>
+</tr>
+<tr>
+<td>prefer-destructuring</td>
+<td>优先使用数组和对象解构</td>
+</tr>
+<tr>
+<td>prefer-numeric-literals</td>
+<td>禁用 parseInt() 和 Number.parseInt()，使用二进制，八进制和十六进制字面量</td>
+</tr>
+<tr>
+<td>prefer-rest-params</td>
+<td>要求使用剩余参数而不是 arguments</td>
+</tr>
+<tr>
+<td>prefer-spread</td>
+<td>要求使用扩展运算符而非 .apply()</td>
+</tr>
+<tr>
+<td>prefer-template</td>
+<td>要求使用模板字面量而非字符串连接</td>
+</tr>
+<tr>
+<td>require-yield</td>
+<td>要求 generator 函数内有 yield</td>
+</tr>
+<tr>
+<td>rest-spread-spacing</td>
+<td>强制剩余和扩展运算符及其表达式之间有空格</td>
+</tr>
+<tr>
+<td>sort-imports</td>
+<td>强制模块内的 import 排序</td>
+</tr>
+<tr>
+<td>symbol-description</td>
+<td>要求 symbol 描述</td>
+</tr>
+<tr>
+<td>template-curly-spacing</td>
+<td>要求或禁止模板字符串中的嵌入表达式周围空格的使用</td>
+</tr>
+<tr>
+<td>yield-star-spacing</td>
+<td>强制在 yield<em> 表达式中 </em> 周围使用空格</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/13347/">http://www.tiankai.party/posts/13347/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/eslint/">eslint</a>
+            
+              <a href="/tags/webpack/">webpack</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/34974/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">使用canvas压缩图片</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/5777/">
+        <span class="next-text nav-default">react16 生命周期</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

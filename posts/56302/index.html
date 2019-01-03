@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="java中的方法">
+
+
+
+
+  <meta name="keywords" content="java, Tiankai's Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/56302/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> java中的方法 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          java中的方法
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-26
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/56302/" data-title="java中的方法">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#无参无返回值的方法"><span class="toc-text">无参无返回值的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-定义方法"><span class="toc-text">1.定义方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-调用方法"><span class="toc-text">2.调用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#无参带返回值的方法"><span class="toc-text">无参带返回值的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#不容忽视的小陷进"><span class="toc-text">不容忽视的小陷进</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带参无返回值的方法"><span class="toc-text">带参无返回值的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带参带返回值的方法"><span class="toc-text">带参带返回值的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#java-中方法的重载"><span class="toc-text">java 中方法的重载</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>所谓方法，就是用来解决一类问题的代码的有序组合，是一个功能模块。</p>
+<p>一般情况下，定义一个方法的语法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">访问修饰符 返回值类型 方法名(参数列表)&#123;</span><br><span class="line">    方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<a id="more"></a>
+<p>1、 访问修饰符：方法允许被访问的权限范围， 可以是 public、protected、private 甚至可以省略 ，其中 public 表示该方法可以被其他任何代码调用，其他几种修饰符的使用在后面章节中会详细讲解滴</p>
+<p>2、 返回值类型：方法返回值的类型，如果方法不返回任何值，则返回值类型指定为 void ；如果方法具有返回值，则需要指定返回值的类型，并且在方法体中使用 return 语句返回值</p>
+<p>3、 方法名：定义的方法的名字，必须使用合法的标识符</p>
+<p>4、 参数列表：传递给方法的参数列表，参数可以有多个，多个参数间以逗号隔开，每个参数由参数类型和参数名组成，以空格隔开</p>
+<p>根据方法是否带参、是否带返回值，可将方法分为四类：</p>
+<ul>
+<li><p>Ø 无参无返回值方法</p>
+</li>
+<li><p>Ø 无参带返回值方法</p>
+</li>
+<li><p>Ø 带参无返回值方法</p>
+</li>
+<li><p>Ø 带参带返回值方法</p>
+</li>
+</ul>
+<h4 id="无参无返回值的方法"><a href="#无参无返回值的方法" class="headerlink" title="无参无返回值的方法"></a>无参无返回值的方法</h4><p>如果方法不包含参数，且没有返回值，我们称为无参无返回值的方法。</p>
+<p>方法的使用分两步：</p>
+<h4 id="1-定义方法"><a href="#1-定义方法" class="headerlink" title="1.定义方法"></a>1.定义方法</h4><p>例如：下面代码定义了一个方法名为 show ，没有参数，且没有返回值的方法，执行的操作为输出 “ welcome to imooc. ”</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Weclocm to imooc"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：<br>1.函数没有返回值，所以返回值得类型指定为<code>void</code>;</p>
+<h4 id="2-调用方法"><a href="#2-调用方法" class="headerlink" title="2.调用方法"></a>2.调用方法</h4><p>当需要调用方法执行某个操作时，可以先创建类的对象，然后通过<strong>对象名.方法名();</strong> 来实现.<br>例如：在下面的代码中，我们创建了一个名为 hello 的对象，然后通过调用该对象的 show( ) 方法输出信息。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//创建类HelloWorld的对象hello</span></span><br><span class="line">        HelloWorld hello = <span class="keyword">new</span> HelloWorld();</span><br><span class="line">        <span class="comment">//通过 对象名.方法名();调用方法</span></span><br><span class="line">        hello.show();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Welcom to imooc!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="无参带返回值的方法"><a href="#无参带返回值的方法" class="headerlink" title="无参带返回值的方法"></a>无参带返回值的方法</h4><p>如果方法不包含参数，但有返回值，我们称为无参带返回值的方法。<br>例如：下面的代码，定义了一个方法名为 calSum ，无参数，但返回值为 int 类型的方法，执行的操作为计算两数之和，并返回结果。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calcSum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">5</span>;</span><br><span class="line">    <span class="keyword">int</span> b=<span class="number">9</span>;</span><br><span class="line">    <span class="keyword">int</span> sum = a + b;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<ol>
+<li>这是一个返回值为整型的方法。所以 返回值的类型为 int;</li>
+<li>函数有返回值，因此必须使用<code>return</code>返回一个整型的数值;</li>
+<li>调用带返回值的方法时，由于方法执行后会返回一个结果，因此在调用待返回值的方法时一般都会接收其返回值并进行处理。如：</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//创建类HelloWorld的对象hello</span></span><br><span class="line">        HelloWorld hello = <span class="keyword">new</span> HelloWord();</span><br><span class="line">        <span class="comment">//调用方法并接收方法的返回值，保存在sum中</span></span><br><span class="line">        <span class="keyword">int</span> sum = hello.calcSum();</span><br><span class="line">        System.out.println(<span class="string">"俩数之和为："</span>+ sum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calcSum</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">9</span>;</span><br><span class="line">        <span class="keyword">int</span> sum = a + b;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="不容忽视的小陷进"><a href="#不容忽视的小陷进" class="headerlink" title="不容忽视的小陷进"></a>不容忽视的小陷进</h5><ol>
+<li>如果方法的返回类型为 void,则方法中不能使用 return 返回值。</li>
+<li>方法的返回值只能有一个，<code>return sum</code>。不能返回多个值。</li>
+<li>方法的返回值类型必须和方法定义的返回值类型相同。例如：定义返回值类型是<code>int</code>时，则不能返回<code>String</code>类型。</li>
+</ol>
+<h4 id="带参无返回值的方法"><a href="#带参无返回值的方法" class="headerlink" title="带参无返回值的方法"></a>带参无返回值的方法</h4><p>我们先来看一个带参数，但没有返回值的方法：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"欢迎您："</span>+ name+<span class="string">"!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>带参的方法在定义的时候，要规定参数的类型<code>String name</code>。</li>
+<li>在调用的时候必须传入符合定义类型的参数。</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HelloWorld hello = <span class="keyword">new</span> HelloWorld();</span><br><span class="line">hello.show(<span class="string">"北京"</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<ol>
+<li>调用带参方法的时候，必须保证实参的数量、类型、顺序与形参一一对应。定义的是<code>String</code>类型，在传入的时候就必须传入<code>String</code>;</li>
+<li>调用方法时实参不需要指定类型。</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello.show(<span class="string">"北京"</span>);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>方法的参数可以是基本数据类型，如 int、double 等，也可以是引用数据类型，如 String、数组等</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        HelloWorld hello = <span class="keyword">new</span> HelloWorld();</span><br><span class="line">        <span class="keyword">int</span> scores[] = &#123;<span class="number">84</span>,<span class="number">91</span>,<span class="number">74</span>,<span class="number">62</span>&#125;;</span><br><span class="line">        hello.print(scores);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>[] scores)</span></span>&#123;</span><br><span class="line">        System.out.println(Arrays.toString(scores));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>当方法参数有多个时，多个参数间以逗号分隔</li>
+</ol>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num3 = num1 + num2;</span><br><span class="line">    <span class="keyword">return</span> num3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="带参带返回值的方法"><a href="#带参带返回值的方法" class="headerlink" title="带参带返回值的方法"></a>带参带返回值的方法</h4><p>如果方法既包含参数，又带有返回值，我们称为带参带返回值的方法。<br>例如：下面的代码，定义了一个 show 方法，带有一个参数 name ，方法执行后返回一个 String 类型的结果</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">show</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"欢迎您："</span> + name + <span class="string">"!"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>show</code>方法定义了一个<code>String</code>的返回值,所以方法中必须使用<code>return</code>返回一个<code>String</code>类型的值.</li>
+<li><code>show</code>方法还带了一个<code>String</code>类型的参数。</li>
+</ol>
+<blockquote>
+<p>调用带参带返回的方法：</p>
+</blockquote>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HelloWorld hello = <span class="keyword">new</span> HelloWorld();</span><br><span class="line">String welcom = hello.show(<span class="string">"慕课网"</span>);</span><br><span class="line">System.out.println(welcom);</span><br></pre></td></tr></table></figure>
+<h4 id="java-中方法的重载"><a href="#java-中方法的重载" class="headerlink" title="java 中方法的重载"></a>java 中方法的重载</h4><p>如果同一个类中包含了两个或两个以上方法名相同、方法参数的个数、顺序或类型不同的方法，则称为方法的重载，也可称该方法被重载了。如下所示 4 个方法名称都为 show ，但方法的参数有所不同，因此都属于方法的重载</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123; <span class="comment">//无参无返回值</span></span><br><span class="line">    System.out.println(<span class="string">"Welcom"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(String name)</span></span>&#123;<span class="comment">//重载show方法，带参无返回值</span></span><br><span class="line">    System.out.println(<span class="string">"Welcom:"</span>+name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(String name, <span class="keyword">int</span> age)</span></span>&#123;<span class="comment">//重载show方法 带参俩个参数无返回值</span></span><br><span class="line">    System.out.println(<span class="string">"Welcom:"</span>+name);</span><br><span class="line">    System.out.println(<span class="string">"Age:"</span>+age);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(<span class="keyword">int</span> age,String name)</span></span>&#123;<span class="comment">//重载show方法，俩个参数顺序不同</span></span><br><span class="line">    System.out.println(<span class="string">"Welcom1:"</span>+ name);</span><br><span class="line">    System.out.println(<span class="string">"Age1:"</span>+age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问： 如何区分调用的是哪个重载方法呢？</p>
+<p>答： 当调用被重载的方法时， Java 会根据参数的个数和类型来判断应该调用哪个重载方法，参数完全匹配的方法将被执行。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    HelloWorld hello = <span class="keyword">new</span> HelloWorld;</span><br><span class="line">    hello.show();<span class="comment">//Welcom</span></span><br><span class="line">    hello.show(<span class="string">"tom"</span>);<span class="comment">//Welcom tom</span></span><br><span class="line">    hello.show(<span class="string">"jack"</span>,<span class="number">20</span>);<span class="comment">//Welcom jack Age: 20</span></span><br><span class="line">    hello.show(<span class="number">30</span>,<span class="string">"Marry"</span>);<span class="comment">//Welcom1 Marry Age1:30</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>判断方法重载的依据</strong></p>
+<ol>
+<li>必须是在同一个类中。</li>
+<li>方法名相同。</li>
+<li>方法的参数个数、顺序、类型不同。</li>
+<li>与方法的修饰符或返回值没有关系。</li>
+</ol>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/56302/">http://www.tiankai.party/posts/56302/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/java/">java</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/17330/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">java中定义一个类的步骤</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/3393/">
+        <span class="next-text nav-default">java中数组的使用</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

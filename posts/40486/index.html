@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="nginx初见">
+
+
+
+
+  <meta name="keywords" content="nginx,负载均衡,反向代理">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/40486/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> nginx初见 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          nginx初见
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-06-19
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nginx/">nginx</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/40486/" data-title="nginx初见">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#正向代理"><span class="toc-text">正向代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反向代理"><span class="toc-text">反向代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡"><span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#windows-安装-nginx"><span class="toc-text">windows 安装 nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx-简单命令"><span class="toc-text">nginx 简单命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx-配置文件"><span class="toc-text">nginx 配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#proxy-pass"><span class="toc-text">proxy_pass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#upstream"><span class="toc-text">upstream</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>第一次近距离的接触 <code>nginx</code>,今天先来了解一下 nginx 的俩个重要的功能 <code>反向代理</code>和<code>负载均衡</code></p>
+<a id="more"></a>
+<h3 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h3><p>正向代理隐藏真实请求的客户端<br>一个经典的例子就是大陆访问谷歌被墙,我们可以在国外搭建一台代理服务器,让代理服务器帮你去请求谷歌,代理服务器再把请求的结果返回来,完成一个正向代理的过程.</p>
+<h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><p>反向代理隐藏真实的服务端<br>反向代理则正好相反,当我们从客户端请求 一个资源 的时候,背后可能有成千上万台服务器在为我们提供服务,反向代理服务器会将我们的请求转发到真实的服务器上面,至于这个服务器是哪个我们不知道,可以用反向代理来做负载均衡</p>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>当用户访问网站的时候，先访问一个中间服务器，再让这个中间服务器在服务器集群中选择一个压力较小的服务器，然后将该访问请求引入选择的服务器.这个中间服务器就是反向代理服务器<br>所以，用户每次访问，都会保证服务器集群中的每个服务器压力趋于平衡，分担了服务器压力，避免了服务器崩溃的情况<br>一句话：nginx 会给你分配服务器压力小的去访问</p>
+<h3 id="windows-安装-nginx"><a href="#windows-安装-nginx" class="headerlink" title="windows 安装 nginx"></a>windows 安装 nginx</h3><p><a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">nginx 官网下载</a></p>
+<ul>
+<li>下载后,解压到文件目录</li>
+<li>命令行进入该文件目录</li>
+<li>运行<code>nginx</code>命令</li>
+</ul>
+<p>这个时候命令行没有任何显示,打开浏览器,输入<code>localhost:80</code>,然后就可以看到 nginx 的欢迎页面,一个简单的见面会.</p>
+<h3 id="nginx-简单命令"><a href="#nginx-简单命令" class="headerlink" title="nginx 简单命令"></a>nginx 简单命令</h3><ul>
+<li><code>nginx -v</code> 查看 nginx 的版本号</li>
+<li><code>start nginx</code> 启动 nginx 服务</li>
+<li><code>nginx -s reload</code> 重新启动服务</li>
+<li><code>nginx -s stop</code> 停止 nginx 服务</li>
+<li><code>nginx -s quit</code> 退出 nginx</li>
+<li><code>nginx -t</code> 测试配置文件的有效性</li>
+</ul>
+<p>windows 上如果修改了配置文件需要先<code>nginx -s quit</code> 退出 nginx ,然后再 <code>nginx -s reload</code> ,然后再<code>start nginx</code>启动 nginx 服务</p>
+<h3 id="nginx-配置文件"><a href="#nginx-配置文件" class="headerlink" title="nginx 配置文件"></a>nginx 配置文件</h3><p>找到 nginx 的配置文件<code>conf/nginx.conf</code></p>
+<figure class="highlight nginx"><figcaption><span>conf/nginx.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局配置</span></span><br><span class="line"><span class="attribute">user</span> nobody;  <span class="comment"># nginx子进程运行的用户和用户组</span></span><br><span class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;  <span class="comment"># 开启一个 nginx 工作进程,一般 CPU 几核就写几</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">error_log</span> logs/error.log;  <span class="comment"># 错误日志存放地址</span></span><br><span class="line"><span class="attribute">pid</span> logs/nginx.pid;  <span class="comment"># 主进程pid存放地址</span></span><br><span class="line"><span class="comment"># events 配置</span></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span> <span class="number">1024</span>; <span class="comment"># 一个进程能同时处理 1024 个请求</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># HTTP 配置</span></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    ...此处省略默认配置</span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">80</span>;  <span class="comment"># 监听本机上的 80 端口</span></span><br><span class="line">        <span class="attribute">server_name</span> localhost;  <span class="comment"># 域名 localhost</span></span><br><span class="line">        <span class="attribute">location</span> / &#123; <span class="comment"># 匹配路由</span></span><br><span class="line">            <span class="attribute">root</span> html; <span class="comment"># 站点根目录</span></span><br><span class="line">            <span class="attribute">index</span> index.html index.htm; <span class="comment"># 首页的配置</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="attribute">error_page</span> <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span> /50x.html; <span class="comment"># 错误页面的重定向</span></span><br><span class="line">        <span class="attribute">location</span> = /50x.html &#123;</span><br><span class="line">            <span class="attribute">root</span> html;  <span class="comment"># 站点根目录文件夹</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="proxy-pass"><a href="#proxy-pass" class="headerlink" title="proxy_pass"></a>proxy_pass</h3><p>nginx 的反向代理主要通过<code>proxy_pass</code>来实现,比如说实现访问<code>localhost:80</code>然后反向代理到我的博客.进行以下的配置:</p>
+<figure class="highlight nginx"><figcaption><span>nginx.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> localhost;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://www.tiankai.party;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后重新启动 nginx 服务,在浏览器输入 <code>localhost:80</code> 就发现被反向代理到了我的博客地址</p>
+<h3 id="upstream"><a href="#upstream" class="headerlink" title="upstream"></a>upstream</h3><p>实现负载均衡就要用到这个模块了.</p>
+<figure class="highlight nginx"><figcaption><span>nginx.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">   <span class="attribute">upstream</span> www.tiankai.party &#123;</span><br><span class="line">     ip_hash;</span><br><span class="line">     <span class="attribute">server</span> tiankai1.example.com; <span class="comment"># 服务器的地址</span></span><br><span class="line">     <span class="attribute">server</span> tiankai2.example.com;</span><br><span class="line">     <span class="attribute">server</span> tiankai3.example.com;</span><br><span class="line">     <span class="attribute">server</span> tiankai4.example.com;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="attribute">localtion</span> / &#123;</span><br><span class="line">       <span class="attribute">proxy_pass</span> http://www.tiankai.party</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当用户请求被反向代理到了<code>http://www.tiankai.party</code> 的时候,会对应的找到 名为 <code>www.tiankai.party</code> 的 <code>upstream</code> 的 四个 服务器,这样在访问<code>localhost:80</code>的时候,就会把请求代理到 这四个服务器上,实现负载均衡.</p>
+<p><code>ip_hash</code>的作用: 是为了在用户访问后留下记号,这样下次用户再进行访问的时候直接访问上次分发的服务器地址就行了.</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/40486/">http://www.tiankai.party/posts/40486/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/nginx/">nginx</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/55893/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">微信小程序支付流程梳理</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/42422/">
+        <span class="next-text nav-default">thinkjs项目结构简析</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="解密css单位">
+
+
+
+
+  <meta name="keywords" content="css, Tiankai's Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/62362/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 7个你可能不认识的css单位 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          7个你可能不认识的css单位
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-28
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/css/">css</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/62362/" data-title="7个你可能不认识的css单位">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#rem"><span class="toc-text">rem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#适用于网格布局"><span class="toc-text">适用于网格布局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vh-and-vw"><span class="toc-text">vh and vw</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vmin-and-vmax"><span class="toc-text">vmin and vmax</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ex-and-ch"><span class="toc-text">ex and ch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#补充："><span class="toc-text">补充：</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p><strong>注：</strong> <a href="https://github.com/simaQ/cssfun/issues/1" target="_blank" rel="noopener">原文链接</a></p>
+<p>众所周知 CSS 技术我们虽然很熟悉，在使用的过程却很容易被困住，这让我们在新问题出现的时候变得很不利。<br>随着 web 继续不断地发展，对于新技术新解决方案的要求也会不断增长。因此，作为网页设计师和前端开发人员，我们别无选择，必须熟悉我们手上的工具，做到知己知彼，这样才能百战不殆。</p>
+<a id="more"></a>
+<p>这就意味着有那么些个特别的货，虽然平常都不怎么会用上，但是一旦某个地方需要它们了，他们就真的是特么得合适不过来了呢。</p>
+<p>今儿，我就准备向大伙儿介绍一些你们之前可能很少见过 CSS 家伙们。他们每个都是度量的单位，类似 pixel 和 em 这样的，但是很有可能你之前从来就没听过这些家伙们！就让我们一起来交个朋友吧~</p>
+<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>我们首先介绍下和我们熟悉的很相似的货。em 被定义为相对于当前对象内文本的字体大小。炒个栗子，如果你给 body 小哥设置了 font-size 字体大小，那么 body 小哥的任何子元素的 1em 就是等于 body 设置的 font-size。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"test"</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  font-size: 1.2em; // calculated at 14px * 1.2, or 16.8px</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你看，这里 div 这娃的字体大小是 1.2em。解释来说，就是他从 body 爹爹那里继承的字体大小（这里是 14px）的 1.2 倍，结果就是 16.8px。</p>
+<p>但是，如果你用 em 一层一层级联得定义嵌套元素的字体大小又会花生什么事情呢？在下面这一小段代码里我们应用了和上面一样一样的 CSS，每一个 div 都从它上一级父元素继承了字体大小，并且逐渐得增加。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        Test <span class="comment">&lt;!-- 14 * 1.2 = 16.8px --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            Test <span class="comment">&lt;!-- 16.8 * 1.2 = 20.16px --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">                Test <span class="comment">&lt;!-- 20.16 * 1.2 = 24.192px --&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>虽然在某些地方这正是我们想要的，但是通常情况下我们还是希望就依赖单一的相对度量单位就好。这时候嘛，我们就可以使用 rem 了。 ‘r’是“root”的缩写，意思就是 1rem 等于根元素的字体大小；大部分情况下，根元素就是<html>元素了。</html></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.2rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样在上面的那三个嵌套的 div 娃们的字体大小都是 1.2*14px = 16.8px 了。</p>
+<h4 id="适用于网格布局"><a href="#适用于网格布局" class="headerlink" title="适用于网格布局"></a>适用于网格布局</h4><p>Rems 不仅仅只是在设置字体大小上很方便。再炒个栗子，你可以用基于 html 根元素字体大小的 rem 作为整个网格布局或者 UI 库的大小单位，然后在其他特定的地方用 em 单位。这样将会给你带来更多的字体大小和伸缩的可控性，</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  width: 70rem; // 70 * 14px = 980px</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>概念上来说，这个方法的思想就是让你的界面根据你的内容进行缩放。但是，这样做并不是对所有的情况都有意义。</p>
+<h4 id="vh-and-vw"><a href="#vh-and-vw" class="headerlink" title="vh and vw"></a>vh and vw</h4><p>响应式 web 设计离不开百分比。但是，CSS 百分比并不是所有的问题的最佳解决方案。CSS 的宽度是相对于包含它的最近的父元素的宽度的。但是如果你就想用视口（viewpoint）的宽度或者高度，而不是父元素的，那该肿么办？ 这就是 vh 和 vw 单位为我们提供的。</p>
+<p>1vh 等于 1/100 的视口高度。栗子：浏览器高度 900px, 1 vh = 900px/100 = 9 px。同理，如果视口宽度为 750， 1vw = 750px/100 = 7.5 px。</p>
+<p>可以想象到的，他们有很多很多的用途。比如，我们用很简单的方法只用一行 CSS 代码就实现同屏幕等高的框。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.slide</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>; <span class="comment">/* viewpointHeight/100 = 100vh */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设你要来一个和屏幕同宽的标题，你只要设置这个标题的 font-size 的单位为 vw，那标题的字体大小就会自动根据浏览器的宽度进行缩放，以达到字体和 viewport 大小同步的效果，有木有？！</p>
+<h4 id="vmin-and-vmax"><a href="#vmin-and-vmax" class="headerlink" title="vmin and vmax"></a>vmin and vmax</h4><p>vh 和 vw 依据于视口的高度和宽度，相对的，vmin 和 vmax 则关于视口高度和宽度两者的最小或者最大值。比如，浏览器的宽度设置为 1100px，高度设置为 700px， 1vmin = 7px， 1vmax = 11px。如果宽度设置为 800px,高度设置为 1080px, 1vmin 就等于 8px, 1vmax 则未 10.8px。<br>那么问题来了，我们应该在什么场景下使用这两个单位呢？<br>假设有一个元素，你需要让它始终在屏幕上可见。只要对其高度和宽度使用 vmin 单位，并赋予其低于 100 的值就可以做到了。再来个栗子，可以这样定义一个至少有两个边触摸到屏幕的方形：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vmin</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100vmin</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/6f6549ba-6b3a-11e4-8a20-ed18bc2c045c.png" alt=""><br>如果你要让这个方形框框始终铺满整个视口的可见区域（四边始终触摸到屏幕的四边）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vmax</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100vmax</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/73bab7d4-6b3a-11e4-8bbd-263380e2f789.png" alt=""><br>结合使用这些单位可以为我们提供一个新颖有意思的方式来灵活地利用我们视口的大小。</p>
+<h4 id="ex-and-ch"><a href="#ex-and-ch" class="headerlink" title="ex and ch"></a>ex and ch</h4><p>ex 和 ch 单位，类似于 em 和 rem, 依赖于当前的字体和字体大小。 但是，不同的是，这两货是基于字体的度量单位，依赖于设定的字体。</p>
+<p>ch 单位通常被定义为数字 0 的宽度。你可以在 Eric Meyers 的博客里找到关于它的一些有意思的讨论，例如将一个等宽字体的字母”N”的宽度设置为 40ch，那么在另一种类型的字体里它却可以包含 40 个字母。这个单位的传统用途主要是盲文的排版，但是除此之外，肯定还有可以应用他的地方。</p>
+<p>ex 定义为当前字体的小写 x 字母的高度或者 1/2 的 1em。 很多时候，它是字体的中间标志。</p>
+<p><img src="/../images/890205a2-6b3a-11e4-852d-e239d3bf2475.png" alt=""><br>x-height; the height of the lower case x</p>
+<p>这些单位有很多用途，大部分用于版式的微调。比方说，sup 元素（上角文字标），可以通过 position:relative;bottom: 1ex;实现 。类似的方法，你可以实现一个下角文字标。浏览器默认的方式是利用<br>上标和下标特定垂直对齐规则，但是如果你想更细粒度更精确得控制，你可以像下面这样做：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">sup</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">1ex</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">sub</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">bottom</span>: -<span class="number">1ex</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h4><p>vh 与 flexbox 结合起来做 Sticky footer(如果页面内容不够长的时候，页脚块粘贴在视窗底部；如果内容足够长时，页脚块会被内容向下推送。)原文: <a href="https://www.w3cplus.com/css3/css-secrets/sticky-footers.html" target="_blank" rel="noopener">https://www.w3cplus.com/css3/css-secrets/sticky-footers.html</a> © w3cplus.com</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'main'</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'footer'</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/62362/">http://www.tiankai.party/posts/62362/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/css/">css</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/35836/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">CSS之Grid布局笔记</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/4953/">
+        <span class="next-text nav-default">为什么++[[]][+[]]+[+[]]=10?</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

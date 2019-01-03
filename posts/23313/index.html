@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Nodejs之全局对象">
+
+
+
+
+  <meta name="keywords" content="nodejs, Tiankai's Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/23313/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> Nodejs之全局对象 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Nodejs之全局对象
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-04-11
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nodejs/">nodejs</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/23313/" data-title="Nodejs之全局对象">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#filename"><span class="toc-text">__filename</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dirname"><span class="toc-text">__dirname</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#module"><span class="toc-text">module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#process"><span class="toc-text">process</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setTimeout-cb-ms"><span class="toc-text">setTimeout(cb, ms)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clearTimeout-t"><span class="toc-text">clearTimeout(t)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setInterval-cb-ms"><span class="toc-text">setInterval(cb, ms)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#console"><span class="toc-text">console</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h3 id="filename"><a href="#filename" class="headerlink" title="__filename"></a>__filename</h3><p>当前文件被解析过后的绝对路径，该属性其实并非是全局的，而是模块作用域下的</p>
+<a id="more"></a>
+<h3 id="dirname"><a href="#dirname" class="headerlink" title="__dirname"></a>__dirname</h3><p>返回当前模块文件所在目录解析后的绝对路径，该属性也不是全局的</p>
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a>module</h3><ul>
+<li>保存提供和当前模块有关的一些信息</li>
+<li>在 module 对象，有一个子对象： exports 对象 我们可以通过这个对象把一个模块中的局部变量对象进行提供访问</li>
+</ul>
+<h3 id="process"><a href="#process" class="headerlink" title="process"></a>process</h3><ul>
+<li>node 中的全局对象为<strong>global</strong>而不是 window</li>
+<li>process 就是 global 对象的属性</li>
+<li>描述了当前 nodejs 进程状态的对象</li>
+</ul>
+<p>下面列举几个常用的 process 属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stdout</td>
+<td>标准的输出流</td>
+</tr>
+<tr>
+<td>stdin</td>
+<td>标准输入流</td>
+</tr>
+<tr>
+<td>env</td>
+<td>返回一个对象，成员为当前 shell 的环境变量</td>
+</tr>
+<tr>
+<td>pid</td>
+<td>当前进程的进程号</td>
+</tr>
+<tr>
+<td>title</td>
+<td>进程名，默认值为”node”，可以自定义该值。</td>
+</tr>
+<tr>
+<td>arch</td>
+<td>当前 CPU 的架构：’arm’、’ia32’ 或者 ‘x64’</td>
+</tr>
+<tr>
+<td>platform</td>
+<td>运行程序所在的平台系统 ‘darwin’, ‘freebsd’, ‘linux’, ‘sunos’ 或 ‘win32’</td>
+</tr>
+<tr>
+<td>cwd()</td>
+<td>返回当前进程的工作目录</td>
+</tr>
+</tbody>
+</table>
+<p>例如：返回 a+b 的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认情况下输入流是关闭的，要监听处理输入流数据，首先要开启输入流</span></span><br><span class="line">process.stdin.resume();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a, b;</span><br><span class="line"></span><br><span class="line">process.stdout.write(<span class="string">"请输入a的值： "</span>);</span><br><span class="line"></span><br><span class="line">process.stdin.on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!a) &#123;</span><br><span class="line">    a = <span class="built_in">Number</span>(chunk);</span><br><span class="line">    process.stdout.write(<span class="string">"请输入b的值： "</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    b = <span class="built_in">Number</span>(chunk);</span><br><span class="line"></span><br><span class="line">    process.stdout.write(<span class="string">"a+b= "</span> + (a + b));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="setTimeout-cb-ms"><a href="#setTimeout-cb-ms" class="headerlink" title="setTimeout(cb, ms)"></a>setTimeout(cb, ms)</h3><h3 id="clearTimeout-t"><a href="#clearTimeout-t" class="headerlink" title="clearTimeout(t)"></a>clearTimeout(t)</h3><h3 id="setInterval-cb-ms"><a href="#setInterval-cb-ms" class="headerlink" title="setInterval(cb, ms)"></a>setInterval(cb, ms)</h3><h3 id="console"><a href="#console" class="headerlink" title="console"></a>console</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>console.log()</td>
+</tr>
+<tr>
+<td>console.info()</td>
+<td>该命令的作用是返回信息性消息</td>
+</tr>
+<tr>
+<td>console.error()</td>
+<td>输出错误消息的</td>
+</tr>
+<tr>
+<td>console.warn()</td>
+<td>输出警告消息</td>
+</tr>
+<tr>
+<td>console.dir()</td>
+<td>用来对一个对象进行检查</td>
+</tr>
+<tr>
+<td>console.time()</td>
+<td>输出时间，表示计时开始。</td>
+</tr>
+<tr>
+<td>console.timeEnd()</td>
+<td>结束时间，表示计时结束。</td>
+</tr>
+<tr>
+<td>console.trace()</td>
+<td>当前执行的代码在堆栈中的调用路径</td>
+</tr>
+<tr>
+<td>console.assert()</td>
+<td>用于判断某个表达式或变量是否为真</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.trace();</span><br><span class="line"><span class="comment">//当前执行的代码在堆栈中的调用路径，</span></span><br><span class="line"><span class="comment">//这个测试函数运行很有帮助，只要给想测试的函数里面加入 console.trace 就行了。</span></span><br><span class="line"><span class="built_in">console</span>.assert();</span><br><span class="line"><span class="comment">//接收两个参数，第一个参数是表达式，第二个参数是字符串。</span></span><br><span class="line"><span class="comment">//只有当第一个参数为false，才会输出第二个参数，否则不会有任何结果。</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/23313/">http://www.tiankai.party/posts/23313/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/nodejs/">nodejs</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/2746/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Nodejs之URL</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/27167/">
+        <span class="next-text nav-default">异步编程值async-await</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

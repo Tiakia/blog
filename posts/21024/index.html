@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="hexo进阶之自定义material主题添加赞赏功能，版权信息，Gitment评论模块">
+
+
+
+
+  <meta name="keywords" content="gitment,hexo, Tiankai's Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/21024/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> hexo进阶之自定义material主题添加赞赏功能，版权信息，Gitment评论模块 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          hexo进阶之自定义material主题添加赞赏功能，版权信息，Gitment评论模块
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-28
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/hexo/">hexo</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/posts/21024/" data-title="hexo进阶之自定义material主题添加赞赏功能，版权信息，Gitment评论模块">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Donate-赞赏功能"><span class="toc-text">Donate 赞赏功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Copyright-版权信息"><span class="toc-text">Copyright 版权信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gitment-评论模块"><span class="toc-text">Gitment 评论模块</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>折腾 hexo 有一段时间了，差不多基本的功能都有了，现在分享一下如何给自己的博客添加赞赏功能，版权信息，评论模块。前俩个功能都差不多，都是在模板文件里添加代码，第三个评论使用的 gitment,作者使用的是 github 的<code>issue</code>页面,比较坑的是每次加载 js 都要耗费很多时间，css 可以本地加载，js 的话我找了一个简便办法，在 gitment 部分会细说。</p>
+<a id="more"></a>
+<h2 id="Donate-赞赏功能"><a href="#Donate-赞赏功能" class="headerlink" title="Donate 赞赏功能"></a>Donate 赞赏功能</h2><ol>
+<li>既然是要自定义，肯定也要在主题配置文件里设置，打开<code>matetial - _config.yml</code>,在末尾添加一下代码：</li>
+</ol>
+<figure class="highlight yaml"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#打赏</span></span><br><span class="line"><span class="attr">donate:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  text:</span> <span class="string">Enjoy</span> <span class="string">it</span> <span class="string">?</span> <span class="string">Donate</span> <span class="string">me</span> <span class="string">!</span>  <span class="string">欣赏此文？求鼓励，求支持！</span> <span class="comment">#描述信息</span></span><br><span class="line"><span class="attr">  wechat:</span> <span class="string">"http://pkafgcch8.bkt.clouddn.com/donate/ali.jpg"</span> <span class="comment">#微信二维码图片</span></span><br><span class="line"><span class="attr">  alipay:</span> <span class="string">"http://pkafgcch8.bkt.clouddn.com/donate/wechat.jpg"</span> <span class="comment">#支付宝二维码图片</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>赞赏功能和版权信息都是在每篇博文的底部的，首先就要先找到博文的模板文件，material 主题的模板文件就在<code>material - layout - _partial - post-content.ejs</code>,打开然后粘贴一下代码：</li>
+</ol>
+<figure class="highlight html"><figcaption><span>post-content.ejs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">theme.donate</span>) &#123; %&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- css --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">     <span class="selector-class">.center</span> &#123;</span></span><br><span class="line"><span class="undefined">         text-align: center;</span></span><br><span class="line"><span class="undefined">     &#125;</span></span><br><span class="line"><span class="css">     <span class="selector-id">#donate_guide</span><span class="selector-class">.noActive</span>,<span class="selector-id">#donate_board</span><span class="selector-class">.noActive</span>  &#123;</span></span><br><span class="line"><span class="css">         <span class="comment">/*display: none;*/</span></span></span><br><span class="line"><span class="css">         <span class="selector-tag">height</span><span class="selector-pseudo">:0</span>;</span></span><br><span class="line"><span class="css">         <span class="selector-tag">opacity</span><span class="selector-pseudo">:0</span>;</span></span><br><span class="line"><span class="undefined">         visibility: hidden;</span></span><br><span class="line"><span class="undefined">     &#125;</span></span><br><span class="line"><span class="css">   <span class="selector-class">.donate_bar</span> <span class="selector-tag">a</span><span class="selector-class">.btn_donate</span>&#123;</span></span><br><span class="line"><span class="undefined">     display: inline-block;</span></span><br><span class="line"><span class="undefined">     width: 82px;</span></span><br><span class="line"><span class="undefined">     height: 82px;</span></span><br><span class="line"><span class="undefined">     background: url("/img/btn_reward.gif") no-repeat;</span></span><br><span class="line"><span class="undefined">     _background: url("/img/btn_reward.gif") no-repeat;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">     -webkit-transition: background 0s;</span></span><br><span class="line"><span class="undefined">     -moz-transition: background 0s;</span></span><br><span class="line"><span class="undefined">     -o-transition: background 0s;</span></span><br><span class="line"><span class="undefined">     -ms-transition: background 0s;</span></span><br><span class="line"><span class="undefined">     transition: background 0s;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">   &#125;</span></span><br><span class="line"><span class="css">   <span class="selector-id">#donate_guide</span>&#123;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">opacity</span><span class="selector-pseudo">:1</span>;</span></span><br><span class="line"><span class="undefined">     visibility: visible;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">-webkit-transition</span>: <span class="selector-tag">all</span> <span class="selector-class">.3s</span> <span class="selector-tag">linear</span>;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">-moz-transition</span>: <span class="selector-tag">all</span> <span class="selector-class">.3s</span> <span class="selector-tag">linear</span>;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">-o-transition</span>: <span class="selector-tag">all</span> <span class="selector-class">.3s</span> <span class="selector-tag">linear</span>;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">-ms-transition</span>: <span class="selector-tag">all</span> <span class="selector-class">.3s</span> <span class="selector-tag">linear</span>;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">transition</span>: <span class="selector-tag">all</span> <span class="selector-class">.3s</span> <span class="selector-tag">linear</span>;</span></span><br><span class="line"><span class="undefined">   &#125;</span></span><br><span class="line"><span class="css">   <span class="selector-class">.donate_bar</span> <span class="selector-tag">a</span><span class="selector-class">.btn_donate</span><span class="selector-pseudo">:hover</span>&#123; <span class="attribute">background-position</span>: <span class="number">0px</span> -<span class="number">82px</span>;&#125;</span></span><br><span class="line"><span class="css">   <span class="selector-class">.donate_bar</span> <span class="selector-class">.donate_txt</span> &#123;</span></span><br><span class="line"><span class="undefined">     display: block;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">color</span>: <span class="selector-id">#9d9d9d</span>;</span></span><br><span class="line"><span class="undefined">     font: 14px/2 "Microsoft Yahei";</span></span><br><span class="line"><span class="css">     <span class="selector-tag">margin-top</span><span class="selector-pseudo">:10px</span>;</span></span><br><span class="line"><span class="undefined">   &#125;</span></span><br><span class="line"><span class="css">   <span class="selector-class">.bold</span>&#123; <span class="attribute">font-weight</span>: bold; &#125;</span></span><br><span class="line"><span class="css">   @<span class="keyword">media</span> screen and (max-width:<span class="number">500px</span>) &#123;</span></span><br><span class="line"><span class="css">     <span class="selector-id">#donate_guide</span>&gt;<span class="selector-tag">a</span>&#123;</span></span><br><span class="line"><span class="css">       <span class="selector-tag">display</span><span class="selector-pseudo">:block</span>;</span></span><br><span class="line"><span class="undefined">     &#125;</span></span><br><span class="line"><span class="undefined">   &#125;</span></span><br><span class="line"><span class="undefined"> </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- /css --&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Donate Module --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"donate_module"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- btn_donate &amp; tips --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"donate_board"</span> <span class="attr">class</span>=<span class="string">"donate_bar center"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">       ------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line">       <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"btn_donate"</span> <span class="attr">class</span>=<span class="string">"btn_donate"</span> <span class="attr">target</span>=<span class="string">"_self"</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span> <span class="attr">title</span>=<span class="string">"Donate 打赏"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"donate_txt"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">%=</span> <span class="attr">theme.donate.text</span> %&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- /btn_donate &amp; tips --&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- donate guide --&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"donate_guide"</span> <span class="attr">class</span>=<span class="string">"donate_bar center noActive"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">       ------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line">       <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%= theme.donate.wechat %&gt;"</span> <span class="attr">title</span>=<span class="string">"用微信扫一扫哦~"</span> <span class="attr">class</span>=<span class="string">"fancybox"</span> <span class="attr">rel</span>=<span class="string">"article0"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&lt;%= theme.donate.wechat %&gt;"</span> <span class="attr">title</span>=<span class="string">"微信打赏 Colin"</span> <span class="attr">height</span>=<span class="string">"190px"</span> <span class="attr">width</span>=<span class="string">"200px"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">         &amp;nbsp;&amp;nbsp;</span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%= theme.donate.alipay %&gt;"</span> <span class="attr">title</span>=<span class="string">"用支付宝扫一扫即可~"</span> <span class="attr">class</span>=<span class="string">"fancybox"</span> <span class="attr">rel</span>=<span class="string">"article0"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&lt;%= theme.donate.alipay %&gt;"</span> <span class="attr">title</span>=<span class="string">"支付宝打赏 Colin"</span> <span class="attr">height</span>=<span class="string">"190px"</span> <span class="attr">width</span>=<span class="string">"200px"</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"donate_txt"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">%=</span> <span class="attr">theme.donate.text</span> %&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- /donate guide --&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- donate script --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">     <span class="built_in">document</span>.getElementById(<span class="string">'btn_donate'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">       $(<span class="string">'#donate_board'</span>).addClass(<span class="string">'noActive'</span>);</span></span><br><span class="line"><span class="javascript">       $(<span class="string">'#donate_guide'</span>).removeClass(<span class="string">'noActive'</span>);</span></span><br><span class="line"><span class="undefined">     &#125;</span></span><br><span class="line"><span class="undefined">   </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- /donate script --&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- /Donate Module --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br></pre></td></tr></table></figure>
+<p>恩，如果有不合适的请自行调整，文章参考自大神，但是自己做了修改，增加了过渡效果和手机端适配，原文链接在末尾会给出。</p>
+<h2 id="Copyright-版权信息"><a href="#Copyright-版权信息" class="headerlink" title="Copyright 版权信息"></a>Copyright 版权信息</h2><p>1.打开<code>matetial - _config.yml</code>,在末尾添加一下代码</p>
+<figure class="highlight yaml"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#版权信息</span></span><br><span class="line"><span class="attr">copyright:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  img:</span> <span class="attr">http://pkafgcch8.bkt.clouddn.com/copyright/copyright.png</span> <span class="comment">#版权信息图片</span></span><br><span class="line"><span class="attr">  site:</span> <span class="attr">http://www.tiankai.party</span> <span class="comment">#版权信息所属网址</span></span><br><span class="line"><span class="attr">  siteName:</span> <span class="string">tiakia's</span> <span class="string">blog</span> <span class="comment">#版权信息网站名字</span></span><br><span class="line"><span class="attr">  siteAuthor:</span> <span class="string">"田凯"</span> <span class="comment">#版权归属人</span></span><br></pre></td></tr></table></figure>
+<p>2.打开<code>material - layout - _partial - post-content.ejs</code>，在赞赏代码的上面插入以下内容：</p>
+<figure class="highlight html"><figcaption><span>post-content.ejs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span>(<span class="attr">theme.copyright.enable</span>) &#123; %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.linkColor</span>&#123;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">color</span>:<span class="selector-id">#258FC6</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.copyrightFont</span>&#123;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">padding-left</span><span class="selector-pseudo">:10px</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.copyrightTitle</span>&#123;</span></span><br><span class="line"><span class="css">          <span class="selector-tag">font-weight</span><span class="selector-pseudo">:bold</span>;</span></span><br><span class="line"><span class="css">          <span class="selector-tag">font-size</span><span class="selector-pseudo">:15px</span>;</span></span><br><span class="line"><span class="css">          <span class="selector-tag">display</span><span class="selector-pseudo">:block</span>;</span></span><br><span class="line"><span class="css">          <span class="selector-tag">padding-left</span><span class="selector-pseudo">:10px</span>;</span></span><br><span class="line"><span class="css">          <span class="selector-tag">margin-top</span><span class="selector-pseudo">:5px</span>;</span></span><br><span class="line"><span class="css">          <span class="selector-tag">margin-bottom</span><span class="selector-pseudo">:5px</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">      </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"border: 1px solid black"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">'copyrightTitle'</span>&gt;</span>版权声明<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&lt;%= theme.copyright.img %&gt;"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">'copyrightFont'</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%= theme.copyright.site %&gt;"</span> <span class="attr">class</span>=<span class="string">'linkColor'</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">theme.copyright.siteName</span> %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              by</span><br><span class="line">              <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%= theme.copyright.site %&gt;"</span>  <span class="attr">class</span>=<span class="string">'linkColor'</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">config.author</span> %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              is licensed under a</span><br><span class="line">              <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://creativecommons.org/licenses/by-nc-nd/4.0/"</span>  <span class="attr">class</span>=<span class="string">'linkColor'</span>&gt;</span>Creative Commons BY-NC-ND 4.0 International License<span class="tag">&lt;/<span class="name">a</span>&gt;</span>.</span><br><span class="line">              <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">              由</span><br><span class="line">              <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%= theme.copyright.site %&gt;"</span>  <span class="attr">class</span>=<span class="string">'linkColor'</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">theme.copyright.siteAuthor</span>%&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              创作并维护的</span><br><span class="line">              <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%= theme.copyright.site %&gt;"</span>  <span class="attr">class</span>=<span class="string">'linkColor'</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">theme.copyright.siteName</span> %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              采用</span><br><span class="line">              <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://creativecommons.org/licenses/by-nc-nd/4.0/"</span>  <span class="attr">class</span>=<span class="string">'linkColor'</span>&gt;</span>创作共用保留署名-非商业-禁止演绎4.0国际许可证<span class="tag">&lt;/<span class="name">a</span>&gt;</span>。</span><br><span class="line">              <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">              本文首发于</span><br><span class="line">              <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%= theme.copyright.site %&gt;"</span>  <span class="attr">class</span>=<span class="string">'linkColor'</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">theme.copyright.siteName</span> %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              （ <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%= theme.copyright.site %&gt;"</span>  <span class="attr">class</span>=<span class="string">'linkColor'</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">theme.copyright.site</span> %&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span> ）</span><br><span class="line">              ，版权所有，侵权必究。</span><br><span class="line">            <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br></pre></td></tr></table></figure>
+<p>版本信息，也是参考自大神，但自己做了一定的修改，链接会放在文章底部。</p>
+<h2 id="Gitment-评论模块"><a href="#Gitment-评论模块" class="headerlink" title="Gitment 评论模块"></a>Gitment 评论模块</h2><ol>
+<li>Gitment 是作者实现的一款基于 GitHub Issues 的评论系统。支持在前端直接引入，不需要任何后端代码，我把作者的 css 拷贝到了本地，要不每次都去访问网上的话会影响博客的加载速度，css 我改了点，适配了手机端的评论,js 还没优化，等过段时间会把 js 弄一下，加快博客的加载速度。</li>
+<li><p>首先要在 github 上注册 <a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">OAuth Application</a>，如下图所示，填入自己的信息，注意这里的<code>Authorization callback URL</code>要填入你注册的域名，注册成功后会拿到<code>client_id</code>和<code>client_secret</code>,后面的配置文件需要写。<br><img src="/../images/registerOauthApplication.png" alt="enter description here" title="registerOauthApplication"></p>
+</li>
+<li><p>在 github 上新建一个 repo 仓库,用来专门存放 blog 的评论，登录 github 账户，点击<code>New repository</code>，输入仓库名，我的是<code>tiakiaBlogComment</code>（这个后面的配置文件要填写）。</p>
+</li>
+<li><p>修改主题配置文件<code>thems - material - source - _config.yml</code>，</p>
+</li>
+</ol>
+<figure class="highlight yaml"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line"><span class="attr">  use:</span> <span class="string">gitment</span></span><br><span class="line"><span class="attr">  owner:</span> <span class="string">tiakia</span> <span class="comment">#你的github账号 自己增加的选项</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">tiakiaBlogComment</span> <span class="comment">#github评论的repo 自己增加的选项</span></span><br><span class="line"><span class="attr">  client_id:</span> <span class="comment">#github client_id 位置见图中 自己增加的选项</span></span><br><span class="line"><span class="attr">  client_secret:</span> <span class="comment">#github client_secret 位置见图中 自己增加的选项</span></span><br></pre></td></tr></table></figure>
+<p><img src="/../images/clientIDSecret.png" alt="enter description here" title="clientIDSecret"></p>
+<ol start="5">
+<li><p>因为主题也带有评论框架，所以我找了一下他自带的评论框架的代码。首先找到的是<code>material - layout - _partial - comment.ejs</code>,这里显示他引用的代码源自<code>material - layout - _widget - comment</code>然后根据主题配置文件中<code>theme.comment.use</code>填写的字段选择加载对应的文件夹</p>
+</li>
+<li><p>首先，我在<code>_widget - comment</code>下新建一个文件夹<code>gitment</code>，在里面新建了一个<code>enter.ejs</code></p>
+</li>
+<li>然后，贴入以下代码：<a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">更多配置请查看官网</a></li>
+</ol>
+<figure class="highlight html"><figcaption><span>enter.ejs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">css</span>('<span class="attr">css</span>/<span class="attr">gitmentDefault</span>') %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">js</span>('<span class="attr">js</span>/<span class="attr">gitment.browser.js</span>') %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">	<span class="selector-id">#container</span>&#123;</span></span><br><span class="line"><span class="undefined">		padding-left: 30px;</span></span><br><span class="line"><span class="undefined">		padding-right: 30px;</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">	<span class="keyword">const</span> myTheme = &#123;</span></span><br><span class="line"><span class="undefined">	  render(state, instance) &#123;</span></span><br><span class="line"><span class="javascript">	    <span class="keyword">const</span> container = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span></span><br><span class="line"><span class="javascript">	    container.lang = <span class="string">"en-US"</span></span></span><br><span class="line"><span class="javascript">	    container.className = <span class="string">'gitment-container gitment-root-container'</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">	     <span class="comment">// your custom component</span></span></span><br><span class="line"><span class="undefined">	    container.appendChild(instance.renderSomething(state, instance))</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">	    container.appendChild(instance.renderHeader(state, instance))</span></span><br><span class="line"><span class="undefined">	    container.appendChild(instance.renderEditor(state, instance))</span></span><br><span class="line"><span class="undefined">	    container.appendChild(instance.renderComments(state, instance))</span></span><br><span class="line"><span class="undefined">	    container.appendChild(instance.renderFooter(state, instance))</span></span><br><span class="line"><span class="javascript">	    <span class="keyword">return</span> container</span></span><br><span class="line"><span class="undefined">	  &#125;,</span></span><br><span class="line"><span class="undefined">	  renderSomething(state, instance) &#123;</span></span><br><span class="line"><span class="javascript">	    <span class="keyword">const</span> container = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span></span><br><span class="line"><span class="javascript">	    container.lang = <span class="string">"en-US"</span></span></span><br><span class="line"><span class="javascript">	    <span class="keyword">if</span> (state.user.login) &#123;</span></span><br><span class="line"><span class="javascript">	      container.innerText = <span class="string">`Hello, <span class="subst">$&#123;state.user.login&#125;</span>`</span></span></span><br><span class="line"><span class="undefined">	    &#125;</span></span><br><span class="line"><span class="javascript">	    <span class="keyword">return</span> container</span></span><br><span class="line"><span class="undefined">	  &#125;</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">const</span> gitment = <span class="keyword">new</span> Gitment(&#123;</span></span><br><span class="line"><span class="javascript">	 <span class="comment">// id: 'window.location.pathname', // optional</span></span></span><br><span class="line"><span class="javascript">	  owner: <span class="string">'&lt;%- theme.comment.owner %&gt;'</span>,</span></span><br><span class="line"><span class="javascript">	  repo: <span class="string">'&lt;%- theme.comment.repo %&gt;'</span>,</span></span><br><span class="line"><span class="undefined">	  oauth: &#123;</span></span><br><span class="line"><span class="javascript">	    client_id: <span class="string">'&lt;%- theme.comment.client_id %&gt;'</span>,</span></span><br><span class="line"><span class="javascript">	    client_secret: <span class="string">'&lt;%- theme.comment.client_secret %&gt;'</span>,</span></span><br><span class="line"><span class="undefined">	  &#125;,</span></span><br><span class="line"><span class="javascript">	 <span class="comment">// title: "document.title",</span></span></span><br><span class="line"><span class="undefined">	  theme: myTheme,</span></span><br><span class="line"><span class="javascript">	  <span class="comment">// ...</span></span></span><br><span class="line"><span class="javascript">	  <span class="comment">// For more available options, check out the documentation below</span></span></span><br><span class="line"><span class="undefined">	&#125;)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">	gitment.render(<span class="string">'container'</span>)</span></span><br><span class="line"><span class="javascript">	<span class="comment">// or</span></span></span><br><span class="line"><span class="javascript">	<span class="comment">// gitment.render(document.getElementById('comments'))</span></span></span><br><span class="line"><span class="javascript">	<span class="comment">// or</span></span></span><br><span class="line"><span class="javascript">	<span class="comment">// document.body.appendChild(gitment.render())</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li><code>gitmentDefault.css</code>文件我创建在了<code>theme - source - css - gitmentDefault.css</code><br>内容是<a href="https://github.com/imsun/gitment/blob/master/style/default.css" target="_blank" rel="noopener">作者的 github 上拷贝下来的</a>，增加了手机端适配代码如下：</li>
+</ol>
+<figure class="highlight css"><figcaption><span>gitmentDefault.css</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*...其他部分是从作者的github上拷贝下来的，*/</span></span><br><span class="line">@<span class="keyword">media</span> screen and (max-width: <span class="number">400px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">a</span><span class="selector-class">.gitment-header-issue-link</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">media</span> screen and (max-width: <span class="number">415px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.gitment-editor-login</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">    <span class="attribute">margin-top</span>: -<span class="number">70px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">15px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>js 获取方式，去作者的 git 上把项目克隆下来，然后在文件夹内运行<code>npm install</code>，安装完依赖后，运行<code>wepback</code>,在该文件夹内就会出现一个 dist 文件夹，里面的<code>gitment.browser.js</code>,就是 js 文件。 文件放在和 css 文件同目录的 js 文件夹内即可。</li>
+</ul>
+<ol start="9">
+<li>初始化评论页面编译发布后，你需要访问你发布的页面并使用你的 GitHub 账号登录（请确保你的账号是你在主题配置文件里的 repo 的 owner），点击初始化<code>initialize comments</code>按钮,之后其他用户才可在该页面发表评论。</li>
+</ol>
+<hr>
+<blockquote>
+<p>参考链接</p>
+</blockquote>
+<ol>
+<li>打赏功能参考自: <a href="http://colin1994.github.io/2016/06/02/hexo-copyright-and-donate/" target="_blank" rel="noopener">Colin’s Net</a></li>
+<li>版本信息参考自: <a href="http://tc9011.com/2017/02/02/hexo%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E%E5%8F%8A%E4%B8%80%E4%BA%9B%E7%89%B9%E6%95%88/" target="_blank" rel="noopener">tc9011’s Notes</a></li>
+<li><a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">Gitment</a></li>
+</ol>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/21024/">http://www.tiankai.party/posts/21024/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/gitment-hexo/">gitment,hexo</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/51441/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Emacs使用第一篇</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/55105/">
+        <span class="next-text nav-default">hexo进阶之SEO 让博客增加曝光率</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
