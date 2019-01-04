@@ -267,12 +267,149 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#微任务-amp-amp-宏任务"><span class="toc-text">微任务 &amp;&amp; 宏任务</span></a></li></ol>
+    </div>
+  </div>
+
 
 
     <div class="post-content">
       
-        <p>占坑，先贴出参考链接</p>
+        <p>以前理解的事件只有同步任务和异步任务，后来知道我看到了一篇文章。。。<br>我们常见到的是这样的给你一段代码，说出执行顺序，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"异步任务setTimeout"</span>);</span><br><span class="line">&#125;, <span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"同步任务"</span>);</span><br></pre></td></tr></table></figure>
+<p>按照同步优先，异步靠后的规则，先执行完所有的同步任务后，再开始执行异步任务，很快的得出结论</p>
 <a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">同步任务</span><br><span class="line">异步任务setTimeout</span><br></pre></td></tr></table></figure>
+<p>然后有一天你看到了这样的代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"setTimeout"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"同步任务"</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"promise"</span>);</span><br><span class="line">  resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">"promise-then"</span>));</span><br></pre></td></tr></table></figure>
+<p><strong>黑人问号脸.jpg</strong><br>这就有点触及到我的知识盲区了。。。</p>
+<p>先上答案</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">同步任务;</span><br><span class="line">promise;</span><br><span class="line">promise - then;</span><br><span class="line">setTimeout;</span><br></pre></td></tr></table></figure>
+<h3 id="微任务-amp-amp-宏任务"><a href="#微任务-amp-amp-宏任务" class="headerlink" title="微任务 &amp;&amp; 宏任务"></a>微任务 &amp;&amp; 宏任务</h3><p>这里其实有个概念我们没认识就是微任务和宏任务，javascript 是一门单线程的语言，除了广义的同步任务和异步任务，我们对任务有更精细的定义：</p>
+<ul>
+<li>macro-task(宏任务)：包括整体代码 script，setTimeout，setInterval</li>
+<li>micro-task(微任务)：Promise，process.nextTick(nodejs)</li>
+</ul>
+<p>js 的事件循环是这样的，进入后，进行宏任务事件循环，遇到宏任务异步代码，压入宏任务异步任务栈等待执行，遇到微任务异步压入微任务的异步任务栈等待执行，在完成第一次宏任务循环后，先查看微任务异步栈中有没有任务，如果有先执行所有的异步微任务，然后再开始第二次的宏任务循环，开始执行宏任务的异步任务。<br>我们跟着文章开始的代码来走一遍：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"setTimeout"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"同步任务"</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"promise"</span>);</span><br><span class="line">  resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">"promise-then"</span>));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一次宏任务循环，遇到<code>setTimeout</code>，压入宏任务的异步栈，等待执行</li>
+<li>继续遇到 <code>console.log</code> 执行 输出 <code>同步任务</code></li>
+<li>遇到<code>Promise</code>，并且<code>resolve</code>直接输出<code>promise</code></li>
+<li><code>Promise</code>的<code>then</code>压入微任务的异步栈等待执行</li>
+<li>第一次宏任务循环结束，查看是否有微任务，执行<code>then</code>操作，输出<code>promise-then</code></li>
+<li>开始第二次宏任务循环，在异步栈中发现了<code>setTimeout</code>，输出<code>setTimeout</code></li>
+</ul>
+<p>总结来说就是，先进行同步宏任务，宏任务完成后先查看一下是否有<code>prmise</code>之类的微任务，执行完微任务后再执行宏任务的异步任务。<br>我们一起来走一下这个例子看看是否已经搞懂了事件执行机制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"1"</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"2"</span>);</span><br><span class="line">  process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"3"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"4"</span>);</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"5"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"6"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"7"</span>);</span><br><span class="line">  resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"8"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"9"</span>);</span><br><span class="line">  process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"10"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"11"</span>);</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"12"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>事件开始执行，遇到 <code>console.log</code> 直接输出<code>1</code></li>
+<li>遇到 <code>setTimeout</code> 压入宏任务异步栈等待执行</li>
+<li>遇到<code>process.nextTick</code>压入微任务异步栈等待执行</li>
+<li>遇到<code>Promise</code>,直接输出<code>7</code>，并且已经<code>resolve</code>，那么对应的<code>then</code>压入微任务异步栈等待执行</li>
+<li>遇到<code>setTimeout</code>压入宏任务异步栈，这里标记为<code>setTimeout2</code></li>
+<li>第一次宏任务事件结束，我们来查看一下事件栈，是否有微任务，如果有先执行</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>宏任务异步栈</th>
+<th>微任务异步栈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setTimeout</td>
+<td>process.nextTick</td>
+</tr>
+<tr>
+<td>setTimeout2</td>
+<td>promise.then</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>执行微任务异步栈，执行<code>process.nextTick</code>输出<code>6</code>,然后再执行 <code>promise.then</code>，输入<code>8</code></p>
+</li>
+<li><p>这样在第一次事件循环结束后，输出了<code>1</code>/<code>7</code>/<code>6</code>/<code>8</code></p>
+</li>
+<li><p>开始第二次的事件循环</p>
+</li>
+<li><p>执行<code>setTimeout</code>遇到<code>console</code>直接执行，输出<code>2</code>,遇到<code>process.nextTick</code>压入微任务异步栈</p>
+</li>
+<li><p>遇到<code>promise</code>,执行<code>console</code>输出<code>4</code>,并且已经<code>resolve</code>执行，将<code>then</code>压入微任务异步栈</p>
+</li>
+<li><p>这一次的宏任务事件执行结束查看一下是否微任务异步栈，是否有微任务等待执行</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>宏任务异步栈</th>
+<th>微任务异步栈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setTimeout2</td>
+<td>process.nextTick</td>
+</tr>
+<tr>
+<td>空</td>
+<td>promise.then</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>执行微任务异步栈，<code>process.nextTick</code>输出<code>3</code>,执行<code>promise.then</code>输出<code>5</code></p>
+</li>
+<li><p>第二次事件循环结束后，输出了<code>2</code>/<code>4</code>/<code>3</code>/<code>5</code></p>
+</li>
+<li><p>开始第三次宏任务事件</p>
+</li>
+<li><p><code>setTimeout2</code>中遇到<code>console</code>直接输出<code>9</code>,<code>process.nextTick</code>压入微任务异步栈等待执行</p>
+</li>
+<li><p>遇到<code>Promise</code>直接执行，输出<code>11</code>,已经<code>resolve</code>了把<code>then</code>代码压入微任务异步栈等待执行</p>
+</li>
+<li><p>这一次的宏任务事件执行结束查看一下是否微任务异步栈，是否有微任务等待执行</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>宏任务异步栈</th>
+<th>微任务异步栈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空</td>
+<td>process.nextTick</td>
+</tr>
+<tr>
+<td>空</td>
+<td>promise.then</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>执行<code>process.nextTick</code>输出<code>10</code>,执行<code>promise.then</code>输出<code>12</code></p>
+</li>
+<li><p>这一次事件循环结束后，输出<code>9</code>/<code>11</code>/<code>10</code>/<code>12</code></p>
+</li>
+<li>这样三次事件循环下来，依次输出了<code>1</code>/<code>7</code>/<code>6</code>/<code>8</code>/<code>2</code>/<code>4</code>/<code>3</code>/<code>5</code>/<code>9</code>/<code>11</code>/<code>10</code>/<code>12</code></li>
+</ul>
+<p>值得深思：</p>
+<ol>
+<li><code>setInterval(fn,ms)</code>来说，我们已经知道不是每过<code>ms</code>秒会执行一次<code>fn</code>，而是每过<code>m</code>s 秒，会有<code>fn</code>进入<code>Event Queue</code>。一旦<code>setInterval</code>的回调函数<code>fn</code>执行时间超过了延迟时间<code>ms</code>，那么就完全看不出来有时间间隔了</li>
+<li><code>setTimeout(fn,0)</code>的含义是，指定某个任务在主线程最早可得的空闲时间执行，意思就是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行</li>
+</ol>
+<blockquote>
+<p>参考链接</p>
+</blockquote>
 <p><a href="https://juejin.im/post/59e85eebf265da430d571f89" target="_blank" rel="noopener">这一次彻底弄懂 JavaScript 执行机制</a></p>
 
       

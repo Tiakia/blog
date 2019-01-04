@@ -328,9 +328,14 @@
       
         
         
+          
+        
 
         
-          
+          <p>react 中可以通过路由来控制用户权限访问，主要使用的 <code>react-router</code> 的 <code>switch</code> 这里有个实用的例子</p>
+          <div class="read-more">
+            <a href="/posts/45622/" class="read-more-link">阅读更多</a>
+          </div>
         
       
     </div>
@@ -427,10 +432,14 @@
       
         
         
+          
+        
 
         
-          <p>占坑</p>
-
+          <p><code>umi</code>和<code>dva</code>都是阿里出的简化<code>react</code>开发的架构，以前都是直接开发的没使用这套，后来接触下来以后发现，开发感觉挺舒适的，刚开始使用的<code>dva</code>，有一个缺陷就是基于<code>roadhog</code>搭建的<code>webpack</code>架子，给我们自定义的接口实在有限,后来<code>umi</code>加入了<code>webpack-chain</code>可以自己添加、修改<code>webpack</code>的配置，值得一试。</p>
+          <div class="read-more">
+            <a href="/posts/59635/" class="read-more-link">阅读更多</a>
+          </div>
         
       
     </div>
@@ -482,7 +491,9 @@
         
 
         
-          <p>占坑，先贴出参考链接</p>
+          <p>以前理解的事件只有同步任务和异步任务，后来知道我看到了一篇文章。。。<br>我们常见到的是这样的给你一段代码，说出执行顺序，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"异步任务setTimeout"</span>);</span><br><span class="line">&#125;, <span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"同步任务"</span>);</span><br></pre></td></tr></table></figure>
+<p>按照同步优先，异步靠后的规则，先执行完所有的同步任务后，再开始执行异步任务，很快的得出结论</p>
           <div class="read-more">
             <a href="/posts/37168/" class="read-more-link">阅读更多</a>
           </div>
