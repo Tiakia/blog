@@ -289,7 +289,7 @@
 <li>安装 <code>eslint</code>/<code>prettier</code> 插件</li>
 <li>打开 <code>文件 --- 首选项 --- 设置 --- 在 settings.json 中 编辑</code></li>
 </ul>
-<figure class="highlight javascript"><figcaption><span>settings.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="string">"editor.formatOnSave"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">"prettier.eslintIntegration"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">"eslint.autoFixOnSave"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">"eslint.options"</span>: &#123;<span class="comment">//路径指向自定义的 eslint 规则</span></span><br><span class="line"><span class="string">"eslintConfig"</span>: <span class="string">"c:/Users/TK/.eslintrc.js"</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">"javascript.format.enable"</span>: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><figcaption><span>settings.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"editor.formatOnSave"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">"prettier.eslintIntegration"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">"eslint.autoFixOnSave"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">"eslint.options"</span>: &#123;<span class="comment">//路径指向自定义的 eslint 规则</span></span><br><span class="line"><span class="string">"eslintConfig"</span>: <span class="string">"c:/Users/TK/.eslintrc.js"</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">"javascript.format.enable"</span>: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>tips： 在编辑 react 文件的时候 vscode 需要把右下角的解析器 <code>Javascript(Babel)</code> 改为 <code>JavaScript React</code>,这样在保存的时候格式才不会乱</p>
 </blockquote>
@@ -299,7 +299,9 @@
 <li>WebStorm 2018.1 和以上的版本</li>
 <li>Webstorm 2017.3 和更早的版本</li>
 </ul>
-<h4 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h4><p>1.WebStorm 2018.1 和以上的版本</p>
+<h4 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h4><ol>
+<li>WebStorm 2018.1 和以上的版本</li>
+</ol>
 <ul>
 <li>官方已经默认支持了 <code>prettier</code>,可以在<code>File --- settings --- Languages &amp; Frameworks --- JavaScript --- Prettier</code> 中找到，找到后需要配置一下。</li>
 <li><code>Node interpreter</code> — 找到你安装的 <code>node.exe</code> 的目录。<ul>
@@ -308,13 +310,15 @@
 </li>
 <li><p><code>Prettier package</code> — 找到你全局安装的 prettier 目录</p>
 <ul>
-<li><p>eg: <code>~\AppData\Roaming\npm\node_modules\prettier</code></p>
-<p>2.Webstorm 2017.3 和更早的版本这个没跟着配过，我的版本是 2018 的，这个是从官网扒下来的，文末有链接。</p>
-</li>
+<li>eg: <code>~\AppData\Roaming\npm\node_modules\prettier</code></li>
 </ul>
 </li>
-<li><p>转到<code>首选项 | 工具 | 外部工具</code>,</p>
-</li>
+</ul>
+<ol start="2">
+<li>Webstorm 2017.3 和更早的版本这个没跟着配过，我的版本是 2018 的，这个是从官网扒下来的，文末有链接。</li>
+</ol>
+<ul>
+<li>转到<code>首选项 | 工具 | 外部工具</code>,</li>
 <li>然后单击<code>+</code>添加新工具。<code>Name</code>填写为 Prettier,</li>
 <li><code>Programs</code> 填写全局安装的 <code>prettier.cmd</code><ul>
 <li>eg： <code>C:\Users\user_name\AppData\Roaming\npm\prettier.cmd</code></li>
