@@ -240,12 +240,12 @@
   <article class="post">
     <div class="post-content">
       <p><img src="../images/about.gif" style="width:100%;height:auto" alt="封面图"><br>
-        <div id="aplayer-mEmHidBV" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-ZOyvpJTU" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-mEmHidBV"),
+            element: document.getElementById("aplayer-ZOyvpJTU"),
             narrow: false,
             autoplay: false,
             showlrc: false,
@@ -372,34 +372,6 @@
 
   
   
-  <script>
-     (function() {
-         function render() {
-             new Gitalk({
-                 clientID: "d45abc7a6db571b50af9",
-                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
-                 owner: 'tiakia',
-                 repo: 'tiakiaBlogComment',
-                 admin: ['tiakia'],
-                 id: decodeURI(location.pathname)
-             }).render('gitalk-container')
-         }
-         var gc = document.createElement('script');
-         gc.type = 'text/javascript';
-         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
-         gc.charset = 'UTF-8';
-         gc.onload = render;
-         gc.async = true;
-         document.querySelector('body').appendChild(gc);
-         var gcs = document.createElement('link');
-         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
-         gcs.type = 'text/css';
-         gcs.rel = 'stylesheet';
-         gcs.media = 'screen,print';
-         document.querySelector('head').appendChild(gcs);
-     })();
-    </script>
-
   
     <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
     <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
@@ -408,10 +380,10 @@
                  el: '#vcomments',
                  appId: 'mHpxyV0xcQyMrB2dHk2QFSLw-gzGzoHsz',
                  appKey: 'bbMgs8TWUCnI0qmOYXY0hyGA',
-                 notify: false,
                  placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
-                 avatar: 'identicon',
-                 verify: false
+                 avatar: 'monsterid',
+                 notify: 'false',
+                 verify: 'false'
              })
     </script>
 
