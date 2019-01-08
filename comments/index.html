@@ -17,6 +17,8 @@
 
 
 
+  <meta name="description" content="comments">
+
 
 
 
@@ -38,7 +40,7 @@
 
 
 
-<link rel="canonical" href="http://www.tiankai.party/tags/小程序/">
+<link rel="canonical" href="http://www.tiankai.party/comments/">
 
 
 
@@ -88,14 +90,6 @@
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
-  <script id="leancloud">
-    AV.init({
-      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
-      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
-    });
-  </script>
-
 
 
 
@@ -104,12 +98,10 @@
   window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
 </script>
 
-    <title>
-  
-    小程序 · Tiankai's Blog
-  
-</title>
-  </head>
+    <title> comments - Tiankai's Blog </title>
+  <link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+</head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -255,48 +247,39 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  
-  
-  
-  
-  <section id="archive" class="archive">
-    
+  <article class="post">
+    <div class="post-content">
       
-        <div class="archive-title tag">
-          <h2 class="archive-name">小程序</h2>
+        <div id="aplayer-aqlKzRdP" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
         </div>
-      
-    
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-aqlKzRdP"),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            music: {
+              title: "一生所爱",
+              author: "卢冠廷/莫文蔚",
+              url: "/../mp3/一生所爱.mp3",
+              pic: "/../images/18740076184895390.jpg",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
 
-    
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2018-06-26
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/posts/55893/" class="archive-post-link">
-            微信小程序支付流程梳理
-          </a>
-        </span>
-      </div>
-      
-    
-  </section>
-
-  
-  <nav class="pagination">
-    
-    
-  </nav>
-
-  
-
+    </div>
+  </article>
 
           </div>
           
+  <div class="comments" id="comments">
+    <div id="vcomments"></div>
+  </div>
+
 
         </div>
       </main>
@@ -376,34 +359,6 @@
 
   
   
-  <script>
-     (function() {
-         function render() {
-             new Gitalk({
-                 clientID: "d45abc7a6db571b50af9",
-                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
-                 owner: 'tiakia',
-                 repo: 'tiakiaBlogComment',
-                 admin: ['tiakia'],
-                 id: decodeURI(location.pathname)
-             }).render('gitalk-container')
-         }
-         var gc = document.createElement('script');
-         gc.type = 'text/javascript';
-         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
-         gc.charset = 'UTF-8';
-         gc.onload = render;
-         gc.async = true;
-         document.querySelector('body').appendChild(gc);
-         var gcs = document.createElement('link');
-         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
-         gcs.type = 'text/css';
-         gcs.rel = 'stylesheet';
-         gcs.media = 'screen,print';
-         document.querySelector('head').appendChild(gcs);
-     })();
-    </script>
-
   
     <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
     <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
