@@ -260,6 +260,195 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/posts/55534/">mongoDB中的条件查询</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-22
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/数据库/">数据库</a>
+            
+          </span>
+        
+        <span class="post-visits">
+          1.3k 字
+        </span>
+        <span class="post-visits">
+          6 分钟
+        </span>
+        
+        <span class="post-visits" data-url="/posts/55534/" data-title="mongoDB中的条件查询">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>mongodb 的查找有<code>find</code>和<code>findOne</code>俩种，<code>find</code>是查找数据库中所有的记录，以数组的形式展示出来，<code>findOne</code>是只查找符合条件的一条数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//findOne() 查找contentId的文章</span><br><span class="line">Content.findOne(&#123;</span><br><span class="line">    _id: contentId</span><br><span class="line">&#125;).<span class="keyword">then</span>(content=&gt;&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line">//find() 查找所有的文章</span><br><span class="line">Content.find().<span class="keyword">then</span>(contentArray=&gt;&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/posts/55534/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/35574/">js如何清除cookie</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-11
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/javascript/">javascript</a>
+            
+          </span>
+        
+        <span class="post-visits">
+          201 字
+        </span>
+        <span class="post-visits">
+          1 分钟
+        </span>
+        
+        <span class="post-visits" data-url="/posts/35574/" data-title="js如何清除cookie">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>js如何清除cookie</p>
+          <div class="read-more">
+            <a href="/posts/35574/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/5774/">响应消息中set-cookie不成功的问题</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-27
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nodejs/">nodejs</a>
+            
+          </span>
+        
+        <span class="post-visits">
+          748 字
+        </span>
+        <span class="post-visits">
+          3 分钟
+        </span>
+        
+        <span class="post-visits" data-url="/posts/5774/" data-title="响应消息中set-cookie不成功的问题">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>说一下背景，最近在使用 nodejs 的 express 框架开发一个博客，同时学习一些 nodejs 后台的功能，实现了登录注册前后台验证的时候，准备把用户的登录信息保存到 cookie 里，这样下次用户刷新页面的时候，就可以从 cookie 里判断是否有登录信息，然后直接登录，就是在 cookie 设置这里出现问题。</p>
+<h4 id="nodejs-操作-cookie-的方式"><a href="#nodejs-操作-cookie-的方式" class="headerlink" title="nodejs 操作 cookie 的方式"></a>nodejs 操作 cookie 的方式</h4><ul>
+<li><code>cookie</code>一般是由后台操作响应消息的头部返回一个<code>Set-Cookie</code>的响应头</li>
+<li>浏览器在接收到这个响应头以后会自动的设置<code>cookie</code></li>
+</ul>
+<h4 id="nodejs-操作响应头的实例"><a href="#nodejs-操作响应头的实例" class="headerlink" title="nodejs 操作响应头的实例"></a>nodejs 操作响应头的实例</h4>
+          <div class="read-more">
+            <a href="/posts/5774/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/posts/60323/">随笔之学习java一段时间后</a>
         
       </h1>
@@ -698,237 +887,6 @@
           <div class="read-more">
             <a href="/posts/30440/" class="read-more-link">阅读更多</a>
           </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/52013/">java中的访问修饰符 && java中的内部类</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-11-13
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/java/">java</a>
-            
-          </span>
-        
-        <span class="post-visits">
-          1.5k 字
-        </span>
-        <span class="post-visits">
-          5 分钟
-        </span>
-        
-        <span class="post-visits" data-url="/posts/52013/" data-title="java中的访问修饰符 && java中的内部类">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <blockquote>
-<p>访问修饰符 — 可以修饰属性和方法的访问范围</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>访问修饰符</th>
-<th>本类</th>
-<th>同包</th>
-<th>子类</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>private</td>
-<td>√</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>默认</td>
-<td>√</td>
-<td>√</td>
-<td></td>
-</tr>
-<tr>
-<td>protected</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>public</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-</tr>
-</tbody>
-</table>
-          <div class="read-more">
-            <a href="/posts/52013/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/57625/">java中static的使用</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-11-13
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/java/">java</a>
-            
-          </span>
-        
-        <span class="post-visits">
-          1.3k 字
-        </span>
-        <span class="post-visits">
-          5 分钟
-        </span>
-        
-        <span class="post-visits" data-url="/posts/57625/" data-title="java中static的使用">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h4 id="static-的使用之变量"><a href="#static-的使用之变量" class="headerlink" title="static 的使用之变量"></a>static 的使用之变量</h4><p>java 中被 static 修饰的成员称为静态成员或类成员。它属于整个类所有，而不是某个对象所有，即被类的所有对象所共享。静态成员可以使用类名直接访问，也可以使用对象名进行访问。推荐使用类名访问。</p>
-<blockquote>
-<p>使用 static 可以修饰变量、方法和代码块</p>
-</blockquote>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="comment">//static 修饰的变量是静态变量，所有HelloWorld类的对象共享hobby</span></span><br><span class="line">    <span class="keyword">static</span> String hobby = <span class="string">"imooc"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//静态变量可以直接使用类名来访问，无需创建类的对象</span></span><br><span class="line">        System.out.println(<span class="string">"通过类名访问hobby:"</span>+ HelloWorld.hobby);</span><br><span class="line">        <span class="comment">//创建类的对象</span></span><br><span class="line">        HelloWorld hello = <span class="keyword">new</span> HelloWorld();</span><br><span class="line">        <span class="comment">//使用对象名来访问静态变量</span></span><br><span class="line">        System.out.println(<span class="string">"通过对象名来访问hobby: "</span>+ hello.hobby);</span><br><span class="line">        <span class="comment">//使用对象名的形式修改静态变量的值</span></span><br><span class="line">        hello.hobby = <span class="string">"爱慕课"</span>;</span><br><span class="line">        <span class="comment">//再次使用类名访问静态变量，值已被修改</span></span><br><span class="line">        System.out.println(<span class="string">"通过类名访问hobby: "</span>+ HelloWorld.hobby);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/posts/57625/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/25617/">java中的forEach和for循环遍历数组的区别</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-11-13
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/java/">java</a>
-            
-          </span>
-        
-        <span class="post-visits">
-          253 字
-        </span>
-        <span class="post-visits">
-          1 分钟
-        </span>
-        
-        <span class="post-visits" data-url="/posts/25617/" data-title="java中的forEach和for循环遍历数组的区别">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <p>今天在慕课网做练习的时候遇到一个问题。要求生成一个 1-100 的随机数组。我用了 forEach 循环。运行结果都是 0。后来改成了 for 循环结果正常了。上网查到这句话茅塞顿开。</p>
-<blockquote>
-<p>forEach 虽然能遍历数组或者集合，但是只能用来遍历，无法在遍历的过程中对数组或者集合进行修改，而 for 循环可以在遍历的过程中对源数组或者集合进行修改。</p>
-</blockquote>
-<h4 id="forEach-循环"><a href="#forEach-循环" class="headerlink" title="forEach 循环"></a>forEach 循环</h4><p>语法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(数据类型 循环变量 : 循环数组)&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例如：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] scores = &#123;<span class="number">88</span>,<span class="number">95</span>,<span class="number">62</span>,<span class="number">58</span>,<span class="number">77</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> socre : scores)&#123;</span><br><span class="line">    System.out.println(<span class="string">"学生的成绩分别为："</span>+score);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>换句话说。forEach 循环只能遍历数组，不能对数组中的项进行赋值等操作。</strong><br>所以如果你新建了一个空数组，然后给数组每一项赋值的时候，只能用 for 循环，而不能使用 forEach 循环。</p>
-
         
       
     </div>

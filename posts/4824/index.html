@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="前端导出Excel文件">
+
+
+
+
+  <meta name="keywords" content="javascript, Tiankai's Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/4824/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
+      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 前端导出Excel文件 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+      <a href="/comments">
+        <li class="mobile-menu-item">
+          
+          
+            留言板
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/comments">
+            
+            
+              留言板
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          前端导出Excel文件
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-01-30
+        </span>
+        
+        <span class="post-visits">
+          1.3k 字
+        </span>
+        <span class="post-visits">
+          5 分钟
+        </span>
+        
+        <span class="post-visits" data-url="/posts/4824/" data-title="前端导出Excel文件">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#xlsx-utils"><span class="toc-text">xlsx.utils</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xlsx-read-读取表格"><span class="toc-text">xlsx.read 读取表格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WorkBook对象"><span class="toc-text">WorkBook对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xlsx-write-导出表格"><span class="toc-text">xlsx.write 导出表格</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>在做项目的过程中遇到一个需求，需要把前端页面的表格导出到本地生成<code>Excel</code>文件，一直以为需要靠后端的协助，后来发现了一个非常棒的工具库<code>js-xlsx</code>，可以在不依靠后端的情况下，前端自己来生成<code>Excel</code>文件，后端只要返回前端表格需要的数据就可以，不需要在进行一次请求，在这里记录一下这个库的使用过程。</p>
+<a id="more"></a>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install xlsx</span><br></pre></td></tr></table></figure>
+<p><code>js-xlsx</code>库很强大，既能导出 EXCEL 文件，也可以将数据导出为 EXCEL，就是官方文档不太友好，这里推荐阅读文末的参考链接</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xlsx <span class="keyword">from</span> <span class="string">"xlsx"</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="xlsx-utils"><a href="#xlsx-utils" class="headerlink" title="xlsx.utils"></a>xlsx.utils</h4><p><code>xlsx.utils</code>提供的工具函数</p>
+<ul>
+<li><code>json_to_sheet</code>: 把一个 JSON 数据转换为<code>sheet</code>数据</li>
+<li><code>table_to_sheet</code>: 把表格 DOM 元素转换成可导出的<code>sheet</code>数据</li>
+<li><code>aoa_to_sheet</code>: 这个工具类最强大也最实用了，将一个二维数组转成 <code>sheet</code>，会自动处理 <code>number</code>、<code>string</code>、<code>boolean</code>、<code>date</code> 等类型数据；</li>
+<li><code>sheet_add_aoa</code>: 将一个二维数组添加到已经存在的工作表中</li>
+<li><code>sheet_add_json</code>: 将 JSON 数据添加到已经存在的工作表中</li>
+</ul>
+<p>后俩种很少用到，本文的实例中使用的是<code>json_to_sheet</code>，同样的还有将表格文件导出为数据的，<code>sheet_to_json</code>/<code>sheet_to_csv</code>/<code>sheet_to_txt</code>/<code>sheet_to_html</code>/<code>sheet_to_formulae</code>这些见名知意，就不详细的描述了</p>
+<h4 id="xlsx-read-读取表格"><a href="#xlsx-read-读取表格" class="headerlink" title="xlsx.read 读取表格"></a><code>xlsx.read</code> 读取表格</h4><p><code>xlsx.read(data,{type:type})</code>,返回一个叫 WorkBook 的对象，type 主要取值如下：</p>
+<blockquote>
+<ul>
+<li><code>base64</code>: 以 base64 方式读取</li>
+<li><code>binary</code>: BinaryString 格式(byte n is data.charCodeAt(n))</li>
+<li><code>string</code>: UTF8 编码的字符串</li>
+<li><code>buffer</code>: nodejs Buffer</li>
+<li><code>array</code>: Uint8Array，8 位无符号数组</li>
+<li><code>file</code>: 文件的路径（仅 nodejs 下支持）；</li>
+</ul>
+</blockquote>
+<h4 id="WorkBook对象"><a href="#WorkBook对象" class="headerlink" title="WorkBook对象"></a><code>WorkBook</code>对象</h4><p>返回的 workBook 对象我们只需关注俩个重要的属性<code>SheetName</code>和<code>Sheets</code></p>
+<ul>
+<li><code>SheetName</code> 里存放的是表格的名字，例如：sheet1,sheet2</li>
+<li><code>Sheets</code> 数组存放的是对应 <code>SheetName</code> 中每个表格的数据，也就是我们要获取的表格数据,表格数据的具体表现形式请参考文末的参考链接，这里就不赘述了，因为工具库<code>xlsx.utils</code>已经给我们封装好了处理函数，获取到表格数据后我们就可以转换为我们需要的数据形式，比如<code>sheet_to_json</code>,直接就可以获得我们需要的 JSON 数据</li>
+</ul>
+<h4 id="xlsx-write-导出表格"><a href="#xlsx-write-导出表格" class="headerlink" title="xlsx.write 导出表格"></a><code>xlsx.write</code> 导出表格</h4><p>这里是本文的重点,划重点—使用<code>json_to_sheet</code>将后端返回的 JSON 数据转换成我们需要的表格数据，然后生成<code>Blob</code>格式的文件，下载，实现导出表格数据功能。</p>
+<p>封装了一个工具函数</p>
+<figure class="highlight javascript"><figcaption><span>src/utils/exportExcel.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xlsx <span class="keyword">from</span> <span class="string">"xlsx"</span>;</span><br><span class="line"><span class="keyword">const</span> jsonToSheet = xlsx.utils.json_to_sheet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">exportExcel</span>(<span class="params">sheetData, saveName, sheetName = <span class="string">"sheet1"</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sheet = jsonToSheet(sheetData, &#123;</span><br><span class="line">    skipHeader: <span class="literal">true</span> <span class="comment">//忽略第一行，表格导出的时候不会显示第一行的数据</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//可以在这里处理单元格合并</span></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    sheet['!merge'] = [</span></span><br><span class="line"><span class="comment">        // 设置A1-C1的单元格合并</span></span><br><span class="line"><span class="comment">        // s表示开始， e表示结束</span></span><br><span class="line"><span class="comment">        // r表示行， c表示列</span></span><br><span class="line"><span class="comment">        &#123;s: &#123;r: 0, c: 0&#125;, e: &#123;r: 0, c: 2&#125;&#125;</span></span><br><span class="line"><span class="comment">    ]</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">let</span> workbook = &#123;</span><br><span class="line">    SheetNames: [sheetName], <span class="comment">//表格的名字</span></span><br><span class="line">    Sheets: &#123;&#125; <span class="comment">//表格数据</span></span><br><span class="line">  &#125;;</span><br><span class="line">  workbook.Sheets[sheetName] = sheet;</span><br><span class="line">  <span class="comment">//第一种方法：</span></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  // 生成excel的配置项</span></span><br><span class="line"><span class="comment">  let wopts = &#123;</span></span><br><span class="line"><span class="comment">    bookType: 'xlsx', // 要生成的文件类型</span></span><br><span class="line"><span class="comment">    bookSST: false, // 是否生成Shared String Table，官方解释是，如果开启生成速度会下降，但在低版本IOS设备上有更好的兼容性</span></span><br><span class="line"><span class="comment">    type: 'binary',</span></span><br><span class="line"><span class="comment">  &#125;;</span></span><br><span class="line"><span class="comment">  let wbout = xlsx.write(workbook, wopts);</span></span><br><span class="line"><span class="comment">  let blob = new Blob([s2ab(wbout)], &#123; type: 'application/octet-stream' &#125;);</span></span><br><span class="line"><span class="comment">  // 字符串转ArrayBuffer</span></span><br><span class="line"><span class="comment">  function s2ab(s) &#123;</span></span><br><span class="line"><span class="comment">    let buf = new ArrayBuffer(s.length);</span></span><br><span class="line"><span class="comment">    let view = new Uint8Array(buf);</span></span><br><span class="line"><span class="comment">    for (let i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) &amp; 0xff;</span></span><br><span class="line"><span class="comment">    return buf;</span></span><br><span class="line"><span class="comment">  &#125;*/</span></span><br><span class="line">  <span class="comment">//第二种方法：</span></span><br><span class="line">  <span class="comment">// 生成excel的配置项</span></span><br><span class="line">  <span class="keyword">let</span> wopts = &#123;</span><br><span class="line">    bookType: <span class="string">"xlsx"</span>, <span class="comment">// 要生成的文件类型</span></span><br><span class="line">    bookSST: <span class="literal">false</span>, <span class="comment">// 是否生成Shared String Table，官方解释是，如果开启生成速度会下降，但在低版本IOS设备上有更好的兼容性</span></span><br><span class="line">    type: <span class="string">"array"</span> <span class="comment">// 返回一个ArrayBuffer</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">let</span> wbout = xlsx.write(workbook, wopts);</span><br><span class="line">  <span class="keyword">let</span> blob = <span class="keyword">new</span> Blob([wbout], &#123;</span><br><span class="line">    type: <span class="string">"text/plain"</span> <span class="comment">//创建一个装填ArrayBuffer对象的Blob对象</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//第二种方法比较方便，直接创建一个ArrayBuffer的Blob对象</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> blob == <span class="string">"object"</span> &amp;&amp; blob <span class="keyword">instanceof</span> Blob) &#123;</span><br><span class="line">    blob = URL.createObjectURL(blob); <span class="comment">// 创建blob地址</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> aLink = <span class="built_in">document</span>.createElement(<span class="string">"a"</span>);</span><br><span class="line">  aLink.href = blob;</span><br><span class="line">  <span class="comment">// HTML5新增的属性，指定保存文件名，可以不要后缀，注意，file:///模式下不会生效</span></span><br><span class="line">  aLink.download = saveName || <span class="string">"导出.xlsx"</span>;</span><br><span class="line">  <span class="comment">//可以在这里给aLink增加点击事件</span></span><br><span class="line">  <span class="comment">/* aLink.click(); */</span></span><br><span class="line">  <span class="keyword">let</span> event;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.MouseEvent) &#123;</span><br><span class="line">    event = <span class="keyword">new</span> MouseEvent(<span class="string">"click"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    event = <span class="built_in">document</span>.createEvent(<span class="string">"MouseEvents"</span>);</span><br><span class="line">    event.initMouseEvent(</span><br><span class="line">      <span class="string">"click"</span>,</span><br><span class="line">      <span class="literal">true</span>,</span><br><span class="line">      <span class="literal">false</span>,</span><br><span class="line">      <span class="built_in">window</span>,</span><br><span class="line">      <span class="number">0</span>,</span><br><span class="line">      <span class="number">0</span>,</span><br><span class="line">      <span class="number">0</span>,</span><br><span class="line">      <span class="number">0</span>,</span><br><span class="line">      <span class="number">0</span>,</span><br><span class="line">      <span class="literal">false</span>,</span><br><span class="line">      <span class="literal">false</span>,</span><br><span class="line">      <span class="literal">false</span>,</span><br><span class="line">      <span class="literal">false</span>,</span><br><span class="line">      <span class="number">0</span>,</span><br><span class="line">      <span class="literal">null</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//自定义事件的触发dispatchEvent</span></span><br><span class="line">  <span class="comment">//也可以直接给aLink添加点击事件</span></span><br><span class="line">  aLink.dispatchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用封装的工具函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">exportSheet = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;</span><br><span class="line">    speedMarket: &#123; archiveDetail &#125;</span><br><span class="line">  &#125; = <span class="keyword">this</span>.props;</span><br><span class="line">  <span class="keyword">let</span> sheetData = [</span><br><span class="line">    &#123;</span><br><span class="line">      id: <span class="string">"序号"</span>,</span><br><span class="line">      cust_name: <span class="string">"客户姓名"</span>,</span><br><span class="line">      certificate_type: <span class="string">"证件类型"</span>,</span><br><span class="line">      certificate_no: <span class="string">"证件号码"</span>,</span><br><span class="line">      cust_sex: <span class="string">"性别"</span>,</span><br><span class="line">      credit_no: <span class="string">"卡号"</span>,</span><br><span class="line">      teller_no: <span class="string">"柜员号"</span>,</span><br><span class="line">      teller_name: <span class="string">"柜员姓名"</span>,</span><br><span class="line">      ab_user: <span class="string">"客户经理号"</span>,</span><br><span class="line">      ab_name: <span class="string">"客户经理姓名"</span>,</span><br><span class="line">      card_status: <span class="string">"卡片状态"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    ...archiveDetail.map(<span class="function">(<span class="params">val, idx</span>) =&gt;</span> &#123;</span><br><span class="line">      val.id = idx + <span class="number">1</span>; <span class="comment">//原始数据中增加序号一列</span></span><br><span class="line">      <span class="keyword">return</span> val;</span><br><span class="line">    &#125;)</span><br><span class="line">  ];</span><br><span class="line">  <span class="keyword">await</span> exportExcel(sheetData, <span class="string">"快速营销-绩效详情表.xlsx"</span>);</span><br><span class="line">  message.info(<span class="string">"导出成功"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考链接</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/SheetJS/js-xlsx" target="_blank" rel="noopener">js-xlsx</a></li>
+<li><a href="https://www.cnblogs.com/liuxianan/p/js-excel.html#%E5%AF%BC%E5%87%BAexcel" target="_blank" rel="noopener">如何使用 JavaScript 实现纯前端读取和导出 excel 文件</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/4824/">http://www.tiankai.party/posts/4824/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/javascript/">javascript</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/posts/48591/">
+        <span class="next-text nav-default">axios封装笔记</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+  
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
