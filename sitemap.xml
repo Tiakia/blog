@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.tiankai.party/comments/index.html</loc>
+    
+    <lastmod>2019-02-14T02:55:46.308Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.tiankai.party/tags/index.html</loc>
+    
+    <lastmod>2019-02-14T02:20:34.614Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.tiankai.party/posts/48591/</loc>
     
     <lastmod>2019-02-14T02:02:21.940Z</lastmod>
@@ -33,13 +47,6 @@
     <loc>http://www.tiankai.party/about/index.html</loc>
     
     <lastmod>2019-01-21T08:04:19.752Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.tiankai.party/comments/index.html</loc>
-    
-    <lastmod>2019-01-08T06:46:35.775Z</lastmod>
     
   </url>
   
@@ -544,13 +551,6 @@
     <loc>http://www.tiankai.party/posts/21683/</loc>
     
     <lastmod>2019-01-02T02:33:01.126Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.tiankai.party/tags/index.html</loc>
-    
-    <lastmod>2018-12-27T08:31:55.475Z</lastmod>
     
   </url>
   

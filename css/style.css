@@ -577,11 +577,15 @@ h6 {
           color: #8a8a8a !important; }
         .post .post-header .post-meta .post-category a:hover {
           color: #c05b4d; }
-    .post .post-header .post-meta .post-visits {
+    .post .post-header .post-meta .post-visits,
+    .post .post-header .post-meta .post-times,
+    .post .post-header .post-meta .post-counts {
       display: inline-block;
       font-size: 14px;
       color: #8a8a8a; }
-      .post .post-header .post-meta .post-visits::before {
+      .post .post-header .post-meta .post-visits::before,
+      .post .post-header .post-meta .post-times::before,
+      .post .post-header .post-meta .post-counts::before {
         content: '·'; }
   .post .post-toc {
     position: absolute;

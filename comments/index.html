@@ -90,20 +90,12 @@
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
-  <script id="leancloud">
-    AV.init({
-      appId: "APUSn00FXLoznLkguOHkVcM5-gzGzoHsz",
-      appKey: "CgbpSHg5AJ62DOSsKHts1uph"
-    });
-  </script>
-
 
 
 
 
 <script>
-  window.config = {"leancloud":{"app_id":"APUSn00FXLoznLkguOHkVcM5-gzGzoHsz","app_key":"CgbpSHg5AJ62DOSsKHts1uph"},"toc":true,"fancybox":true,"pjax":true};
+  window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
 </script>
 
     <title> comments - Tiankai's Blog </title>
@@ -258,12 +250,12 @@
   <article class="post">
     <div class="post-content">
       
-        <div id="aplayer-dKqOlZLs" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-yWHfaTmG" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-dKqOlZLs"),
+            element: document.getElementById("aplayer-yWHfaTmG"),
             narrow: false,
             autoplay: false,
             showlrc: false,
@@ -372,13 +364,15 @@
     <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   <script>
      new Valine({
+                 av: AV,
                  el: '#vcomments',
-                 appId: 'mHpxyV0xcQyMrB2dHk2QFSLw-gzGzoHsz',
+                 appId: 'mHpxyV0xcQyMrB2dHk2QFSLw-gzGzoHsz,
                  appKey: 'bbMgs8TWUCnI0qmOYXY0hyGA',
                  placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
                  avatar: 'monsterid',
-                 notify: 'false',
-                 verify: 'false'
+                 notify: false,
+                 verify: false,
+                 visitor: true
              })
     </script>
 
