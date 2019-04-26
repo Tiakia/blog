@@ -17,8 +17,12 @@
 
 
 
+  <meta name="description" content="记录总结自己学习过程中的难题，帮助自己总结记忆。">
 
 
+
+
+  <meta name="keywords" content="React,React Native,微信小程序,Webpack,Javascript">
 
 
 
@@ -236,6 +240,8 @@
     </ul>
   
 </nav>
+<a href="https://github.com/tiakia"><img style="position:fixed;top:0;right:0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
 
       </header>
 
@@ -246,6 +252,598 @@
   
   <section id="posts" class="posts">
     
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/57625/">java中static的使用</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-13
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          1.3k 字
+        </span>
+        <span class="post-times">
+          阅读用时
+          5 分钟
+        </span>
+        <span class="post-visits leancloud-visitors" data-url="/posts/57625/" data-title="java中static的使用" id="/posts/57625/" data-flag-title="java中static的使用">
+          阅读次数 0
+           <i class="leancloud-visitors-count"></i>
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h4 id="static-的使用之变量"><a href="#static-的使用之变量" class="headerlink" title="static 的使用之变量"></a>static 的使用之变量</h4><p>java 中被 static 修饰的成员称为静态成员或类成员。它属于整个类所有，而不是某个对象所有，即被类的所有对象所共享。静态成员可以使用类名直接访问，也可以使用对象名进行访问。推荐使用类名访问。</p>
+<blockquote>
+<p>使用 static 可以修饰变量、方法和代码块</p>
+</blockquote>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="comment">//static 修饰的变量是静态变量，所有HelloWorld类的对象共享hobby</span></span><br><span class="line">    <span class="keyword">static</span> String hobby = <span class="string">"imooc"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//静态变量可以直接使用类名来访问，无需创建类的对象</span></span><br><span class="line">        System.out.println(<span class="string">"通过类名访问hobby:"</span>+ HelloWorld.hobby);</span><br><span class="line">        <span class="comment">//创建类的对象</span></span><br><span class="line">        HelloWorld hello = <span class="keyword">new</span> HelloWorld();</span><br><span class="line">        <span class="comment">//使用对象名来访问静态变量</span></span><br><span class="line">        System.out.println(<span class="string">"通过对象名来访问hobby: "</span>+ hello.hobby);</span><br><span class="line">        <span class="comment">//使用对象名的形式修改静态变量的值</span></span><br><span class="line">        hello.hobby = <span class="string">"爱慕课"</span>;</span><br><span class="line">        <span class="comment">//再次使用类名访问静态变量，值已被修改</span></span><br><span class="line">        System.out.println(<span class="string">"通过类名访问hobby: "</span>+ HelloWorld.hobby);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/posts/57625/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/25617/">java中的forEach和for循环遍历数组的区别</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-13
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          253 字
+        </span>
+        <span class="post-times">
+          阅读用时
+          1 分钟
+        </span>
+        <span class="post-visits leancloud-visitors" data-url="/posts/25617/" data-title="java中的forEach和for循环遍历数组的区别" id="/posts/25617/" data-flag-title="java中的forEach和for循环遍历数组的区别">
+          阅读次数 0
+           <i class="leancloud-visitors-count"></i>
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>今天在慕课网做练习的时候遇到一个问题。要求生成一个 1-100 的随机数组。我用了 forEach 循环。运行结果都是 0。后来改成了 for 循环结果正常了。上网查到这句话茅塞顿开。</p>
+<blockquote>
+<p>forEach 虽然能遍历数组或者集合，但是只能用来遍历，无法在遍历的过程中对数组或者集合进行修改，而 for 循环可以在遍历的过程中对源数组或者集合进行修改。</p>
+</blockquote>
+<h4 id="forEach-循环"><a href="#forEach-循环" class="headerlink" title="forEach 循环"></a>forEach 循环</h4><p>语法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(数据类型 循环变量 : 循环数组)&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] scores = &#123;<span class="number">88</span>,<span class="number">95</span>,<span class="number">62</span>,<span class="number">58</span>,<span class="number">77</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> socre : scores)&#123;</span><br><span class="line">    System.out.println(<span class="string">"学生的成绩分别为："</span>+score);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>换句话说。forEach 循环只能遍历数组，不能对数组中的项进行赋值等操作。</strong><br>所以如果你新建了一个空数组，然后给数组每一项赋值的时候，只能用 for 循环，而不能使用 forEach 循环。</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/38126/">java中的自动类型转换和强制类型转换</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-13
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          397 字
+        </span>
+        <span class="post-times">
+          阅读用时
+          1 分钟
+        </span>
+        <span class="post-visits leancloud-visitors" data-url="/posts/38126/" data-title="java中的自动类型转换和强制类型转换" id="/posts/38126/" data-flag-title="java中的自动类型转换和强制类型转换">
+          阅读次数 0
+           <i class="leancloud-visitors-count"></i>
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>在 Java 程序中，不同的基本数据类型的数据之间经常需要进行相互转换。例如：</p>
+<h3 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h3><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> score1 = <span class="number">82</span>;</span><br><span class="line"><span class="keyword">double</span> score2 = score1;</span><br><span class="line">System.out.println(score2);</span><br></pre></td></tr></table></figure>
+<p>代码中 <code>int</code> 型变量 score1 可以直接为 <code>double</code> 型变量 score2 完成赋值操作，运行结果为： <code>82.0</code></p>
+<p>这种转换称为<code>自动类型转换</code>。<br> 当然自动类型转换是需要满足特定的条件的：</p>
+          <div class="read-more">
+            <a href="/posts/38126/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/15627/">Nodejs中read和readFile以及write和writefile的区别</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-13
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nodejs/">nodejs</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          1.2k 字
+        </span>
+        <span class="post-times">
+          阅读用时
+          4 分钟
+        </span>
+        <span class="post-visits leancloud-visitors" data-url="/posts/15627/" data-title="Nodejs中read和readFile以及write和writefile的区别" id="/posts/15627/" data-flag-title="Nodejs中read和readFile以及write和writefile的区别">
+          阅读次数 0
+           <i class="leancloud-visitors-count"></i>
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>今天在看 nodejs 的时候有个疑惑的事情，前面看到了 <code>read</code> 和 <code>write</code>，后面又看到了 <code>readeFile</code> 和 <code>writeFile</code> 俩个 API，有点疑惑这俩个到底有什么区别。上网查了一下才知道。在这里记录一下它们的区别</p>
+<h4 id="readFile-和-writeFile"><a href="#readFile-和-writeFile" class="headerlink" title="readFile 和 writeFile"></a>readFile 和 writeFile</h4><p>1、readFile 方法是将要读取的文件内容完整读入缓存区，再从该缓存区中读取文件内容，具体操作如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line">fs.readFile(<span class="string">"./test.txt"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"文件读取失败"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data.toString());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/posts/15627/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/17330/">java中定义一个类的步骤</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-31
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          698 字
+        </span>
+        <span class="post-times">
+          阅读用时
+          2 分钟
+        </span>
+        <span class="post-visits leancloud-visitors" data-url="/posts/17330/" data-title="java中定义一个类的步骤" id="/posts/17330/" data-flag-title="java中定义一个类的步骤">
+          阅读次数 0
+           <i class="leancloud-visitors-count"></i>
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h3 id="类是定义对象拥有的属性和方法"><a href="#类是定义对象拥有的属性和方法" class="headerlink" title="类是定义对象拥有的属性和方法"></a>类是定义对象拥有的属性和方法</h3><p>类的组成： 属性和方法</p>
+<h4 id="a-定义类名"><a href="#a-定义类名" class="headerlink" title="a. 定义类名"></a>a. 定义类名</h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/posts/17330/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/56302/">java中的方法</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-26
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          1.7k 字
+        </span>
+        <span class="post-times">
+          阅读用时
+          6 分钟
+        </span>
+        <span class="post-visits leancloud-visitors" data-url="/posts/56302/" data-title="java中的方法" id="/posts/56302/" data-flag-title="java中的方法">
+          阅读次数 0
+           <i class="leancloud-visitors-count"></i>
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>所谓方法，就是用来解决一类问题的代码的有序组合，是一个功能模块。</p>
+<p>一般情况下，定义一个方法的语法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">访问修饰符 返回值类型 方法名(参数列表)&#123;</span><br><span class="line">    方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+          <div class="read-more">
+            <a href="/posts/56302/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/3393/">java中数组的使用</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-26
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          1.1k 字
+        </span>
+        <span class="post-times">
+          阅读用时
+          4 分钟
+        </span>
+        <span class="post-visits leancloud-visitors" data-url="/posts/3393/" data-title="java中数组的使用" id="/posts/3393/" data-flag-title="java中数组的使用">
+          阅读次数 0
+           <i class="leancloud-visitors-count"></i>
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h3 id="java-中操作数组需要四步"><a href="#java-中操作数组需要四步" class="headerlink" title="java 中操作数组需要四步"></a>java 中操作数组需要四步</h3><h4 id="1-声明数组"><a href="#1-声明数组" class="headerlink" title="1.声明数组"></a>1.声明数组</h4><p>语法：<br> <strong>数据类型[] 数组名</strong><br> <strong>数据类型 数组名[]</strong></p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] score; <span class="comment">//存储学生成绩 类型为整型</span></span><br><span class="line"><span class="keyword">double</span> height[]; <span class="comment">//存储学生身高 类型为浮点型</span></span><br><span class="line">String[] names; <span class="comment">//存储学生姓名 类型为字符串</span></span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/posts/3393/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/37652/">java中float和double的区别，char和string的区别</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-24
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          280 字
+        </span>
+        <span class="post-times">
+          阅读用时
+          1 分钟
+        </span>
+        <span class="post-visits leancloud-visitors" data-url="/posts/37652/" data-title="java中float和double的区别，char和string的区别" id="/posts/37652/" data-flag-title="java中float和double的区别，char和string的区别">
+          阅读次数 0
+           <i class="leancloud-visitors-count"></i>
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>在慕课网学习 java 的时候，遇到一个问题，于是搜了一些相关资料。在这里记录一下。</p>
+<h4 id="float-和-double-的区别"><a href="#float-和-double-的区别" class="headerlink" title="float 和 double 的区别"></a>float 和 double 的区别</h4><table>
+<thead>
+<tr>
+<th>float</th>
+<th>double</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单精度浮点数</td>
+<td>双精度浮点数</td>
+</tr>
+<tr>
+<td>内存分配 4 个字节</td>
+<td>内存分配 8 个字节</td>
+</tr>
+<tr>
+<td>有效小数位 6-7 位</td>
+<td>有效小数位 15 位</td>
+</tr>
+</tbody>
+</table>
+          <div class="read-more">
+            <a href="/posts/37652/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/posts/11339/">js中的深拷贝和浅拷贝</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-17
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/javascript/">javascript</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          923 字
+        </span>
+        <span class="post-times">
+          阅读用时
+          4 分钟
+        </span>
+        <span class="post-visits leancloud-visitors" data-url="/posts/11339/" data-title="js中的深拷贝和浅拷贝" id="/posts/11339/" data-flag-title="js中的深拷贝和浅拷贝">
+          阅读次数 0
+           <i class="leancloud-visitors-count"></i>
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>面试的时候一个老生常谈的话题，什么是浅拷贝，什么是深拷贝，优缺点，写一个函数实现深拷贝。</p>
+<blockquote>
+<p>首先深复制和浅复制只针对像 Object, Array 这样的复杂对象的。简单来说，浅复制只复制一层对象的属性，而深复制则递归复制了所有层级。</p>
+</blockquote>
+          <div class="read-more">
+            <a href="/posts/11339/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
       
         
   <article class="post">
@@ -296,693 +894,6 @@
           <p>css的grid布局初探</p>
           <div class="read-more">
             <a href="/posts/35836/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/62362/">7个你可能不认识的css单位</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-09-28
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/css/">css</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          1.8k 字
-        </span>
-        <span class="post-times">
-          阅读用时
-          7 分钟
-        </span>
-        <span class="post-visits leancloud-visitors" data-url="/posts/62362/" data-title="7个你可能不认识的css单位" id="/posts/62362/" data-flag-title="7个你可能不认识的css单位">
-          阅读次数 0
-           <i class="leancloud-visitors-count"></i>
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>解密css单位</p>
-          <div class="read-more">
-            <a href="/posts/62362/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/4953/">为什么++[[]][+[]]+[+[]]=10?</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-09-28
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/javascript/">javascript</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          1.1k 字
-        </span>
-        <span class="post-times">
-          阅读用时
-          4 分钟
-        </span>
-        <span class="post-visits leancloud-visitors" data-url="/posts/4953/" data-title="为什么++[[]][+[]]+[+[]]=10?" id="/posts/4953/" data-flag-title="为什么++[[]][+[]]+[+[]]=10?">
-          阅读次数 0
-           <i class="leancloud-visitors-count"></i>
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>理解javaScript的隐式转换</p>
-          <div class="read-more">
-            <a href="/posts/4953/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/54278/">webpack-dev-server报错解决</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-09-09
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/webpack/">webpack</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          104 字
-        </span>
-        <span class="post-times">
-          阅读用时
-          1 分钟
-        </span>
-        <span class="post-visits leancloud-visitors" data-url="/posts/54278/" data-title="webpack-dev-server报错解决" id="/posts/54278/" data-flag-title="webpack-dev-server报错解决">
-          阅读次数 0
-           <i class="leancloud-visitors-count"></i>
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>webpack-dev-server</p>
-          <div class="read-more">
-            <a href="/posts/54278/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/8586/">git操作之拉取指定分支</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-09-08
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/git/">git</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          266 字
-        </span>
-        <span class="post-times">
-          阅读用时
-          1 分钟
-        </span>
-        <span class="post-visits leancloud-visitors" data-url="/posts/8586/" data-title="git操作之拉取指定分支" id="/posts/8586/" data-flag-title="git操作之拉取指定分支">
-          阅读次数 0
-           <i class="leancloud-visitors-count"></i>
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>这俩天工作总是遇到要拉取指定分支，或者需要提交代码到指定分支上，但是你本地有没有这个分支，这里记录一下加深一下记忆。</p>
-          <div class="read-more">
-            <a href="/posts/8586/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/18205/">webpack搭建react开发环境</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-09-06
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/webpack/">webpack</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          1.6k 字
-        </span>
-        <span class="post-times">
-          阅读用时
-          7 分钟
-        </span>
-        <span class="post-visits leancloud-visitors" data-url="/posts/18205/" data-title="webpack搭建react开发环境" id="/posts/18205/" data-flag-title="webpack搭建react开发环境">
-          阅读次数 0
-           <i class="leancloud-visitors-count"></i>
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>前俩天刚刚搭建了一个 react 的开发环境，记录一下踩坑之路。</p>
-<h3 id="主要实现的功能有"><a href="#主要实现的功能有" class="headerlink" title="主要实现的功能有:"></a>主要实现的功能有:</h3><p>1、支持 es6 的语法<br>2、支持 sass,css<br>3、支持 css 自动加浏览器前缀，eg:display:flex 会自动加上各个浏览器前缀<br>4、自动生成 html 模板，然后把编译好的 js 文件自动引入<br>5、 react 的热更新<br>6、 压缩 js<br>7、 把嵌入 js 代码中的 css 提取出来<br>8、 提取公共模块的代码<br>———-待验证的，不确定的—————————–<br>9、 压缩图片和字体文件</p>
-          <div class="read-more">
-            <a href="/posts/18205/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/21683/">Emacs快捷键记录</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-08-30
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/emacs/">emacs</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          270 字
-        </span>
-        <span class="post-times">
-          阅读用时
-          1 分钟
-        </span>
-        <span class="post-visits leancloud-visitors" data-url="/posts/21683/" data-title="Emacs快捷键记录" id="/posts/21683/" data-flag-title="Emacs快捷键记录">
-          阅读次数 0
-           <i class="leancloud-visitors-count"></i>
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <p>emacs使用笔记进阶，一步步的进阶教程</p>
-<p><strong>emacs 的迷人之处就在于你会越用越喜欢它,一步步定制自己的编辑器,相信我你会着迷的</strong></p>
-<table>
-<thead>
-<tr>
-<th>描述</th>
-<th>快捷键</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>退出</td>
-<td>C-x C-c</td>
-</tr>
-<tr>
-<td>保存</td>
-<td>C-x C-s</td>
-</tr>
-<tr>
-<td>上一行</td>
-<td>C-p</td>
-</tr>
-<tr>
-<td>下一行</td>
-<td>C-n</td>
-</tr>
-<tr>
-<td>后移一个字符</td>
-<td>C-b</td>
-</tr>
-<tr>
-<td>前移一个字符</td>
-<td>C-f</td>
-</tr>
-<tr>
-<td>后移一个字符串</td>
-<td>M-b</td>
-</tr>
-<tr>
-<td>前移一个字符串</td>
-<td>M-f</td>
-</tr>
-<tr>
-<td>下一页</td>
-<td>C-v</td>
-</tr>
-<tr>
-<td>上一页</td>
-<td>M-v</td>
-</tr>
-<tr>
-<td>行首</td>
-<td>C-a</td>
-</tr>
-<tr>
-<td>行位</td>
-<td>C-e</td>
-</tr>
-<tr>
-<td>撤销</td>
-<td>C-/</td>
-</tr>
-<tr>
-<td>删除光标后的一行内容存到缓存区</td>
-<td>C-k</td>
-</tr>
-<tr>
-<td>删除</td>
-<td>C-d</td>
-</tr>
-<tr>
-<td>复制</td>
-<td>C-<spc>或C-.</spc></td>
-</tr>
-<tr>
-<td>粘贴</td>
-<td>M-w</td>
-</tr>
-<tr>
-<td>剪切</td>
-<td>C-w</td>
-</tr>
-<tr>
-<td>搜索</td>
-<td>C-s</td>
-</tr>
-<tr>
-<td>全选</td>
-<td>C-x h</td>
-</tr>
-<tr>
-<td>格式化对齐</td>
-<td>C-M \</td>
-</tr>
-<tr>
-<td>打开新文件</td>
-<td>C-x C-f</td>
-</tr>
-<tr>
-<td>文件末尾</td>
-<td>M-&gt;</td>
-</tr>
-<tr>
-<td>文件开头</td>
-<td>M-&lt;</td>
-</tr>
-<tr>
-<td>撤回</td>
-<td>C-x u 上下控制</td>
-</tr>
-<tr>
-<td>注释一行</td>
-<td>C-;</td>
-</tr>
-<tr>
-<td>多行注释</td>
-<td>先标记选中,M-;</td>
-</tr>
-<tr>
-<td>替换</td>
-<td>M-% (query-replace)</td>
-</tr>
-<tr>
-<td>新建emacs窗口</td>
-<td>C-x 5 2</td>
-</tr>
-<tr>
-<td>多个窗口切换</td>
-<td>C-x 5 o</td>
-</tr>
-<tr>
-<td>关闭当前窗口</td>
-<td>C-x 5 0</td>
-</tr>
-<tr>
-<td>打开命令行</td>
-<td>M-x shell</td>
-</tr>
-</tbody>
-</table>
-
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/2282/">学习清单</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-08-19
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/todo/">todo</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          350 字
-        </span>
-        <span class="post-times">
-          阅读用时
-          1 分钟
-        </span>
-        <span class="post-visits leancloud-visitors" data-url="/posts/2282/" data-title="学习清单" id="/posts/2282/" data-flag-title="学习清单">
-          阅读次数 0
-           <i class="leancloud-visitors-count"></i>
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>今天看了别人的博客，备受打击，别人一年的经验能达到的水平，够自己钻研好久了，折腾这个博客的时候看了好多人的博客，写的大多是阿里面试经验，网易面试经验，各种大公司，别人晒出来的面试题，分分钟钟把自己憋死，这里列个学习清单，整理一下接下来的时间要去学习的东西。</p>
-          <div class="read-more">
-            <a href="/posts/2282/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/26666/">webpack初探</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-08-18
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/webpack/">webpack</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          447 字
-        </span>
-        <span class="post-times">
-          阅读用时
-          1 分钟
-        </span>
-        <span class="post-visits leancloud-visitors" data-url="/posts/26666/" data-title="webpack初探" id="/posts/26666/" data-flag-title="webpack初探">
-          阅读次数 0
-           <i class="leancloud-visitors-count"></i>
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>初次接触 webpack 是在构建 react 的时候，那个时候要用到 es6 的语法，浏览器不支持，官网推荐 babel,去了 babel 官网看的也是一脸懵*，在网上就搜到了 webpack,可以集合 babel,从而支持 es6,现在只要<code>create-react-app</code>,就可以构建一个 react 项目了，真是越来越方便了，这里推荐一个<a href="http://zhaoda.net/webpack-handbook/configuration.html" target="_blank" rel="noopener">webpack 的简明教程</a>。</p>
-          <div class="read-more">
-            <a href="/posts/26666/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/31842/">浏览器缓存机制剖析</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-08-09
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/浏览器缓存/">浏览器缓存</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          742 字
-        </span>
-        <span class="post-times">
-          阅读用时
-          2 分钟
-        </span>
-        <span class="post-visits leancloud-visitors" data-url="/posts/31842/" data-title="浏览器缓存机制剖析" id="/posts/31842/" data-flag-title="浏览器缓存机制剖析">
-          阅读次数 0
-           <i class="leancloud-visitors-count"></i>
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>我们要学会利用浏览器的缓存机制来减少对服务器的访问来，加快我们网页的加载速度，首先我们要先了解一下，关于浏览器缓存的一些基本概念。</p>
-<p>以前，面试的时候被问到这样一道题，你认为天猫的首页是静态的还是动态的？</p>
-<p>这里，其实就问的是，浏览器缓存。</p>
-          <div class="read-more">
-            <a href="/posts/31842/" class="read-more-link">阅读更多</a>
           </div>
         
       

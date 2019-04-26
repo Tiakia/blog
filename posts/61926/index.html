@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="手动安装AndroidStudio">
+
+
+
+
+  <meta name="keywords" content="React,React Native,微信小程序,Webpack,Javascript">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/61926/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 手动安装AndroidStudio - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+      <a href="/comments">
+        <li class="mobile-menu-item">
+          
+          
+            留言板
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/comments">
+            
+            
+              留言板
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+<a href="https://github.com/tiakia"><img style="position:fixed;top:0;right:0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          手动安装AndroidStudio
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-02-18
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/工具/">工具</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          616 字
+        </span>
+        <span class="post-times">
+          阅读用时
+          2 分钟
+        </span>
+        <span class="post-visits leancloud-visitors" data-url="/posts/61926/" data-title="手动安装AndroidStudio" id="/posts/61926/" data-flag-title="手动安装AndroidStudio">
+          阅读次数 0
+           <i class="leancloud-visitors-count"></i>
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#手动安装-Android-Studio"><span class="toc-text">手动安装 Android Studio</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>因为不知名的原因会导致我们在安装<code>Android Studio</code>的时候，下载文件特别慢，我们可以在它下载过程中，获取到它的下载链接，然后用迅雷下载速度会快很多，所以这里写了手动安装<code>Android Studio</code>的过程,部分过程可能会有差异，需要灵活运用，时时关注<code>Android Studio</code>在下载过程中的日志进行调整。</p>
+<a id="more"></a>
+<h3 id="手动安装-Android-Studio"><a href="#手动安装-Android-Studio" class="headerlink" title="手动安装 Android Studio"></a>手动安装 Android Studio</h3><p>手动通过迅雷下载如下安装包：</p>
+<p><a href="https://dl.google.com/android/repository/platform-tools_r28.0.0-windows.zip" target="_blank" rel="noopener">https://dl.google.com/android/repository/platform-tools_r28.0.0-windows.zip</a></p>
+<p><a href="https://dl.google.com/android/repository/platform-28_r04.zip" target="_blank" rel="noopener">https://dl.google.com/android/repository/platform-28_r04.zip</a></p>
+<p><a href="https://dl.google.com/android/repository/build-tools_r28.0.1-windows.zip" target="_blank" rel="noopener">https://dl.google.com/android/repository/build-tools_r28.0.1-windows.zip</a></p>
+<p><a href="https://dl.google.com/android/repository/google_m2repository_gms_v11_3_rc05_wear_2_0_5.zip" target="_blank" rel="noopener">https://dl.google.com/android/repository/google_m2repository_gms_v11_3_rc05_wear_2_0_5.zip</a></p>
+<p><a href="https://dl.google.com/android/repository/emulator-windows-4848055.zip" target="_blank" rel="noopener">https://dl.google.com/android/repository/emulator-windows-4848055.zip</a></p>
+<p><a href="https://dl.google.com/android/repository/3534162-studio.sdk-patcher.zip.bak" target="_blank" rel="noopener">https://dl.google.com/android/repository/3534162-studio.sdk-patcher.zip.bak</a></p>
+<p><a href="https://dl.google.com/android/repository/sdk-tools-windows-4333796.zip" target="_blank" rel="noopener">https://dl.google.com/android/repository/sdk-tools-windows-4333796.zip</a></p>
+<p><a href="https://dl.google.com/android/repository/android_m2repository_r47.zip" target="_blank" rel="noopener">https://dl.google.com/android/repository/android_m2repository_r47.zip</a></p>
+<p><a href="https://dl.google.com/android/repository/sources-28_r01.zip" target="_blank" rel="noopener">https://dl.google.com/android/repository/sources-28_r01.zip</a></p>
+<p><a href="https://dl.google.com/android/repository/extras/intel/haxm-windows_v7_3_2.zip" target="_blank" rel="noopener">https://dl.google.com/android/repository/extras/intel/haxm-windows_v7_3_2.zip</a></p>
+<p><a href="https://dl.google.com/android/repository/sys-img/google_apis/x86-28_r08.zip" target="_blank" rel="noopener">https://dl.google.com/android/repository/sys-img/google_apis/x86-28_r08.zip</a></p>
+<p>下载完成后逐个解压缩放入 SDK 目录，如下：</p>
+<p>1、创建 <code>SDK</code> 目录，并 copy 上述文件到 <code>SDK</code> 目录</p>
+<p>2、<code>platform-tools_r28.0.0-windows.zip</code> 直接接受压缩到本地目录：<code>SDK\platform-tools</code></p>
+<p>3、<code>platform-28_r04.zip</code> 解压缩后得到 <code>android-9</code> 文件夹，把 <code>android-9</code> 修改为 <code>android-28</code>，放到本地目录：<code>SDK\platforms\android-28</code></p>
+<p>4、<code>build-tools_r28.0.1-windows.zip</code> 解压缩后得到 <code>android-9</code> 文件夹，把 <code>android-9</code> 修改为 <code>28.0.1</code>，放到本地目录：<code>SDK\build-tools\28.0.1</code></p>
+<p>5、<code>google_m2repository_gms_v11_3_rc05_wear_2_0_5.zip</code> 解压缩后得到 <code>m2repository</code> 文件夹，放到本地目录：<code>SDK\extras\google\m2repository</code></p>
+<p>6、<code>emulator-windows-4848055.zip</code> 解压缩后得到 <code>emulator</code> 文件夹，放到本地目录：<code>SDK\emulator</code></p>
+<p>7、<code>3534162-studio.sdk-patcher.zip.bak</code> 修改名称为 <code>3534162-studio.sdk-patcher.zip</code>，解压缩后得到 <code>sdk-patcher</code>，修改名称为 <code>patcher</code> 放到本地目录：<code>SDK\patcher\v4</code></p>
+<p>8、<code>sdk-tools-windows-4333796.zip</code> 解压缩后得到 <code>tools</code> 文件夹，放到本地目录：<code>SDK\tools</code></p>
+<p>9、<code>android_m2repository_r47.zip</code> 解压缩后得到 <code>m2repository</code>，放到本地目录：<code>SDK\extras\android\m2repository</code></p>
+<p>10、 <code>sources-28_r01.zip</code> 解压缩后得到 <code>src</code> 文件夹重命名为 <code>android-28</code>，放到本地目录 <code>SDK\sources\android-28</code></p>
+<p>11、<code>haxm-windows_v7_3_2.zip</code> 解压到本地目录 <code>SDK\extras\intel\Hardware_Accelerated_Execution_Manager</code>,没有的目录新建目录</p>
+<p>12、<code>google_apis/x86-28_r08.zip</code> 解压放到本地目录 <code>SDK\system-images\android-28\google_apis\x86</code></p>
+<p>上述完成后重新启动 <code>Android Studio</code>，创建项目时选择 <code>sdk</code> 指定到本地 <code>SDK</code> 目录。<code>Android Studio</code> 检查 <code>SDK</code> 目录的文件并显示成功。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/61926/">http://www.tiankai.party/posts/61926/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/android-studio/">android-studio</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/22361/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">ios-h5页面焦点错位问题</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/51347/">
+        <span class="next-text nav-default">记一次项目上线遇到的坑</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+  
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
