@@ -259,9 +259,9 @@
       </h1>
 
       <div class="post-meta">
-        <span class="post-time">
-          2018-12-25
-        </span>
+        <!-- <span class="post-time"> -->
+        <!--   2018-12-25 -->
+        <!-- </span> -->
         
           <span class="post-category">
             
@@ -270,16 +270,19 @@
           </span>
         
         <span class="post-counts">
-          243 字
+          Count: 245 字
         </span>
         <span class="post-times">
-          阅读用时
-          1 分钟
+          Time: 1 分钟
         </span>
-        <span class="post-visits leancloud-visitors" data-url="/posts/32506/" data-title="金额的表达正则" id="/posts/32506/" data-flag-title="金额的表达正则">
-          阅读次数 0
-           <i class="leancloud-visitors-count"></i>
-        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/32506/" -->
+        <!--      data-title="金额的表达正则" -->
+        <!--      id="/posts/32506/" -->
+        <!--      data-flag-title="金额的表达正则"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
       </div>
     </header>
 
@@ -292,7 +295,7 @@
         <p>这个真的是有点意思，这里记录一下，大体的意思就是给你一串数字，然后你用三个一逗号的形式把数字表达出来，比如： <code>50153855514.7667</code> 表达出来就是 <code>50,153,855,514.7667</code></p>
 <a id="more"></a>
 <p>第一想法都是使用正则来匹配，我以为使用一个正则就能出来了，后来发现想的太简单了，头疼了好一会，又是正向肯定匹配又是反向否定匹配的弄了半天，后来想了个法子，从小数点分割开，然后再用俩次正则来达到效果。</p>
-<figure class="highlight javascript"><figcaption><span>formateMoney.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formateMoney</span>(<span class="params">money</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (money &amp;&amp; money &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> moneyFormate = (money + <span class="string">""</span>).split(<span class="string">"."</span>);</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      moneyFormate[<span class="number">0</span>].replace(<span class="regexp">/(\d&#123;3&#125;)+$/gi</span>, (match, $<span class="number">1</span>, $<span class="number">2</span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> result = match.replace(<span class="regexp">/(\d&#123;3&#125;)/gi</span>, (_match, _$<span class="number">1</span>) =&gt; <span class="string">","</span> + _$<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> $<span class="number">2</span> !== <span class="number">0</span></span><br><span class="line">          ? result</span><br><span class="line">          : result.replace(<span class="regexp">/,([,|\d]+)/gi</span>, (__match, $<span class="number">11</span>) =&gt; $<span class="number">11</span>);</span><br><span class="line">      &#125;) +</span><br><span class="line">      <span class="string">"."</span> +</span><br><span class="line">      moneyFormate[<span class="number">1</span>]</span><br><span class="line">    );</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> money;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><figcaption><span>formateMoney.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formateMoney</span>(<span class="params">money</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (money &amp;&amp; money &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> moneyFormate = (money + <span class="string">""</span>).split(<span class="string">"."</span>);</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      moneyFormate[<span class="number">0</span>].replace(<span class="regexp">/(\d&#123;3&#125;)+$/gi</span>, (match, $<span class="number">1</span>, $<span class="number">2</span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> result = match.replace(<span class="regexp">/(\d&#123;3&#125;)/gi</span>, (_match, _$<span class="number">1</span>) =&gt; <span class="string">","</span> + _$<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> $<span class="number">2</span> !== <span class="number">0</span></span><br><span class="line">          ? result</span><br><span class="line">          : result.replace(<span class="regexp">/,([,|\d]+)/gi</span>, (__match, $<span class="number">11</span>) =&gt; $<span class="number">11</span>);</span><br><span class="line">      &#125;) +</span><br><span class="line">      (moneyFormate[<span class="number">1</span>]</span><br><span class="line">      ? <span class="string">"."</span> + moneyFormate[<span class="number">1</span>]</span><br><span class="line">      : <span class="string">''</span>)</span><br><span class="line">    );</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> money;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><figcaption><span>result</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> money1 = <span class="number">12942222.22</span>;</span><br><span class="line"><span class="built_in">console</span>.log(formateMoney(money1)); <span class="comment">//12,942,222.22</span></span><br><span class="line"><span class="keyword">let</span> money2 = <span class="number">914874.2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(formateMoney(money2)); <span class="comment">//914,874.20</span></span><br></pre></td></tr></table></figure>
 
       
@@ -304,9 +307,26 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
+      <span>文章标题: </span>
+      <a href="http://www.tiankai.party/posts/32506/">金额的表达正则</a>
+    </p>
+    <p class="copyright-item">
       <span>原文作者: </span>
       <a href="http://www.tiankai.party">tiankai</a>
     </p>
+    <p class="copyright-item">
+      <span>发表时间: </span>
+      <span>
+        2018-12-25, 14:12:12
+      </span>
+    </p>
+    <p class="copyright-item">
+      <span>最后更新: </span>
+      <span>
+        2019-05-22, 15:05:02
+      </span>
+    </p>
+
     <p class="copyright-item">
       <span>原文链接: </span>
       <a href="http://www.tiankai.party/posts/32506/">http://www.tiankai.party/posts/32506/</a>
@@ -317,6 +337,7 @@
       <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
     </p>
   </div>
+
 
       
       
