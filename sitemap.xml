@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.tiankai.party/about/index.html</loc>
+    
+    <lastmod>2019-07-04T08:10:19.261Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.tiankai.party/posts/62362/</loc>
     
     <lastmod>2019-07-04T07:57:22.772Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>http://www.tiankai.party/posts/5777/</loc>
     
     <lastmod>2019-05-31T02:19:01.284Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.tiankai.party/about/index.html</loc>
-    
-    <lastmod>2019-05-31T01:44:04.083Z</lastmod>
     
   </url>
   
