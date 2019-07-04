@@ -403,11 +403,16 @@
 <blockquote>
 <p>componentDidCatch</p>
 </blockquote>
-<p>`componentDidCatch(error, info)</p>
+<p><code>componentDidCatch(error, info)</code></p>
 <blockquote>
 <p>getDerivedStateFromError</p>
 </blockquote>
+<p><code>static getDerivedStateFromError(error)</code></p>
 <p>为解决上述问题，react 在 16.6 版本新增了一个生命周期函数<br>这个方法跟<code>getDerivedStateFromProps</code>类似，唯一的区别是他只有在出现错误的时候才触发，他相对于<code>componentDidCatch</code>的优势是在当前的渲染周期中就可以修改<code>state</code>，以在当前渲染就可以出现错误的 UI，而不需要一个 null 的中间态。<br>而这个方法的出现，也意味着以后出现错误的时候，修改<code>state</code>展现错误时界面的状态应该放在这里去做，而后续收集错误信息之类的放到<code>componentDidCatch</code>里面。</p>
+<blockquote>
+<p>一个关于 <code>componentDidCatch</code> 和 <code>static getDerivedStateFromError</code> 的例子</p>
+</blockquote>
+<iframe id="cp_embed_MdzmWJ?editors=0010" src="//codepen.io/tiakia/embed/MdzmWJ?editors=0010?height=465&theme-id=light&slug-hash=MdzmWJ?editors=0010&default-tab=html,css,js,result" scrolling="no" frameborder="no" height="465" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
 
       
     </div>
@@ -434,7 +439,7 @@
     <p class="copyright-item">
       <span>最后更新: </span>
       <span>
-        2019-01-02, 11:01:38
+        2019-05-31, 10:05:19
       </span>
     </p>
 

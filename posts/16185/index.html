@@ -270,7 +270,7 @@
           </span>
         
         <span class="post-counts">
-          Count: 407 字
+          Count: 408 字
         </span>
         <span class="post-times">
           Time: 1 分钟
@@ -299,7 +299,7 @@
 
     <div class="post-content">
       
-        <p>﻿总结几种平时不常见的js中的计算方式</p>
+        <p>总结几种平时不常见的 js 中的计算方式</p>
 <ul>
 <li>按位与</li>
 <li>异或</li>
@@ -307,12 +307,13 @@
 <li>清除标志位</li>
 </ul>
 <a id="more"></a>
-<h3 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h3><p><strong>十进制转换二进制：</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'5'</span>.charCodeAt().toString(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5 的二进制为 0101</span></span><br><span class="line"><span class="comment">// 1 的二进制为 0001</span></span><br><span class="line"><span class="comment">// 2 的二进制为 0010</span></span><br><span class="line"><span class="comment">// 3 的二进制为 0011</span></span><br><span class="line"><span class="comment">// 4 的二进制为 0100</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>二进制转换十进制：</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0100'</span>, <span class="number">2</span>) = <span class="number">4</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h3><p><strong>十进制转换二进制：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"5"</span>.charCodeAt().toString(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5 的二进制为 0101</span></span><br><span class="line"><span class="comment">// 1 的二进制为 0001</span></span><br><span class="line"><span class="comment">// 2 的二进制为 0010</span></span><br><span class="line"><span class="comment">// 3 的二进制为 0011</span></span><br><span class="line"><span class="comment">// 4 的二进制为 0100</span></span><br></pre></td></tr></table></figure>
+<p><strong>二进制转换十进制：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0100'</span>, <span class="number">2</span>) = <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
 <h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> &amp; <span class="number">1</span> -&gt; <span class="number">1</span></span><br><span class="line"><span class="number">5</span> &amp; <span class="number">2</span> -&gt; <span class="number">0</span></span><br><span class="line"><span class="number">5</span> &amp; <span class="number">3</span> -&gt; <span class="number">1</span></span><br><span class="line"><span class="number">5</span> &amp; <span class="number">4</span> -&gt; <span class="number">4</span></span><br></pre></td></tr></table></figure>
-<p><strong>按位与的计算规则：</strong></p>
-<pre><code>只有在相同位置都为 1 时 结果才是 1,其他则为 0
-</code></pre><hr>
+<p><strong>按位与的计算规则：</strong><br>只有在相同位置都为 1 时 结果才是 1,其他则为 0</p>
+<hr>
 <table>
 <thead>
 <tr>
@@ -361,9 +362,8 @@
 </tr>
 </tbody>
 </table>
-<h3 id="异或"><a href="#异或" class="headerlink" title="异或"></a>异或</h3><p><strong>计算规则</strong></p>
-<pre><code>相同则为0 不同则为1
-</code></pre><hr>
+<h3 id="异或"><a href="#异或" class="headerlink" title="异或"></a>异或</h3><p><strong>计算规则</strong><br>相同则为 0 不同则为 1</p>
+<hr>
 <table>
 <thead>
 <tr>
@@ -413,9 +413,8 @@
 </tbody>
 </table>
 <h3 id="添加标志位"><a href="#添加标志位" class="headerlink" title="添加标志位"></a>添加标志位</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> | <span class="number">1</span> =&gt; <span class="number">0101</span> =&gt; <span class="number">5</span></span><br></pre></td></tr></table></figure>
-<p><strong>计算规则</strong></p>
-<pre><code>只要有1就为1
-</code></pre><hr>
+<p><strong>计算规则</strong><br>只要有 1 就为 1</p>
+<hr>
 <table>
 <thead>
 <tr>
@@ -465,9 +464,8 @@
 </tbody>
 </table>
 <h3 id="清除标志位"><a href="#清除标志位" class="headerlink" title="清除标志位"></a>清除标志位</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> &amp; ~<span class="number">1</span> =&gt; <span class="number">0100</span> =&gt; <span class="number">4</span></span><br></pre></td></tr></table></figure>
-<p><strong>计算规则</strong></p>
-<pre><code>相同则为0,不同则前面的为准，覆盖
-</code></pre><hr>
+<p><strong>计算规则</strong><br>相同则为 0,不同则前面的为准，覆盖</p>
+<hr>
 <table>
 <thead>
 <tr>
@@ -542,7 +540,7 @@
     <p class="copyright-item">
       <span>最后更新: </span>
       <span>
-        2019-05-23, 18:05:23
+        2019-07-04, 15:07:28
       </span>
     </p>
 
@@ -585,13 +583,19 @@
         
           <div class="post-tags">
             
-              <a href="/tags/javascript/">javascript</a>
+              <a href="/tags/js/">js</a>
             
           </div>
         
         
         
   <nav class="post-nav">
+    
+      <a class="prev" href="/posts/24326/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">如何开启win10的linux子系统</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
     
     
       <a class="next" href="/posts/40543/">

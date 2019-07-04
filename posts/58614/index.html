@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="如何写出漂亮的js代码">
+
+
+
+
+  <meta name="keywords" content="React,React Native,微信小程序,Webpack,Javascript">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/58614/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 如何写出漂亮的js代码 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+      <a href="/comments">
+        <li class="mobile-menu-item">
+          
+          
+            留言板
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/comments">
+            
+            
+              留言板
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+<a href="https://github.com/tiakia"><img style="position:fixed;top:0;right:0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          如何写出漂亮的js代码
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+        2019-06-26
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/javascript/">javascript</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          Count: 1.5k 字
+        </span>
+        <span class="post-times">
+          Time: 7 分钟
+        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/58614/" -->
+        <!--      data-title="如何写出漂亮的js代码" -->
+        <!--      id="/posts/58614/" -->
+        <!--      data-flag-title="如何写出漂亮的js代码"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、变量"><span class="toc-text">一、变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用有意义且常用的单词命名"><span class="toc-text">用有意义且常用的单词命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保持统一"><span class="toc-text">保持统一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#每个常量-全大写-都该命名"><span class="toc-text">每个常量(全大写)都该命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#避免无意义的命名"><span class="toc-text">避免无意义的命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传参使用默认值"><span class="toc-text">传参使用默认值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、函数"><span class="toc-text">二、函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数参数-最好-2-个或更少"><span class="toc-text">函数参数( 最好 2 个或更少 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一个方法只做一件事情"><span class="toc-text">一个方法只做一件事情</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数名上体现它的作用"><span class="toc-text">函数名上体现它的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除重复代码，合并相似函数"><span class="toc-text">删除重复代码，合并相似函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-Object-assign-设置默认属性"><span class="toc-text">使用 Object.assign 设置默认属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尽量不要写全局方法"><span class="toc-text">尽量不要写全局方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尽量别用“非”条件句"><span class="toc-text">尽量别用“非”条件句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不要过度优化"><span class="toc-text">不要过度优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除弃用代码"><span class="toc-text">删除弃用代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、类"><span class="toc-text">三、类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-ES6-的-class"><span class="toc-text">使用 ES6 的 class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用链式调用"><span class="toc-text">使用链式调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、异步"><span class="toc-text">四、异步</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>如何提高代码的可读性、复用性、扩展性。我们将从以下四个方面讨论：</p>
+<ul>
+<li>变量</li>
+<li>函数</li>
+<li>类</li>
+<li>异步</li>
+</ul>
+<a id="more"></a>
+<h2 id="一、变量"><a href="#一、变量" class="headerlink" title="一、变量"></a>一、变量</h2><h3 id="用有意义且常用的单词命名"><a href="#用有意义且常用的单词命名" class="headerlink" title="用有意义且常用的单词命名"></a>用有意义且常用的单词命名</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="keyword">const</span> yyyymmdstr = moment().format(<span class="string">"YYYY/MM/DD"</span>);</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="keyword">const</span> currentDate = moment().format(<span class="string">"YYYY/MM/DD"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="保持统一"><a href="#保持统一" class="headerlink" title="保持统一"></a>保持统一</h3><p>对同一类型的变量使用相同的命名保持统一：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line">getUserInfo();</span><br><span class="line">getClientData();</span><br><span class="line">getCustomerRecord();</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line">getUser();</span><br></pre></td></tr></table></figure>
+<h3 id="每个常量-全大写-都该命名"><a href="#每个常量-全大写-都该命名" class="headerlink" title="每个常量(全大写)都该命名"></a>每个常量(全大写)都该命名</h3><p>可以用 ESLint 检测代码中未命名的常量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="comment">// 其他人知道 86400000 的意思吗？</span></span><br><span class="line">setTimeout(blastOff, <span class="number">86400000</span>);</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="keyword">const</span> MILLISECOND_IN_A_DAY = <span class="number">86400000</span>;</span><br><span class="line">setTimeout(blastOff, MILLISECOND_IN_A_DAY);</span><br></pre></td></tr></table></figure>
+<h3 id="避免无意义的命名"><a href="#避免无意义的命名" class="headerlink" title="避免无意义的命名"></a>避免无意义的命名</h3><p>既然创建了一个 car 对象，就没有必要把它的颜色命名为 carColor。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="keyword">const</span> car = &#123;</span><br><span class="line">  carMake: <span class="string">"Honda"</span>,</span><br><span class="line">  carModel: <span class="string">"Accord"</span>,</span><br><span class="line">  carColor: <span class="string">"Blue"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">paintCar</span>(<span class="params">car</span>) </span>&#123;</span><br><span class="line">  car.carColor = <span class="string">"Red"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="keyword">const</span> car = &#123;</span><br><span class="line">  make: <span class="string">"Honda"</span>,</span><br><span class="line">  model: <span class="string">"Accord"</span>,</span><br><span class="line">  color: <span class="string">"Blue"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">paintCar</span>(<span class="params">car</span>) </span>&#123;</span><br><span class="line">  car.color = <span class="string">"Red"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="传参使用默认值"><a href="#传参使用默认值" class="headerlink" title="传参使用默认值"></a>传参使用默认值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createMicrobrewery</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> breweryName = name || <span class="string">"Hipster Brew Co."</span>;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createMicrobrewery</span>(<span class="params">name = <span class="string">"Hipster Brew Co."</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二、函数"><a href="#二、函数" class="headerlink" title="二、函数"></a>二、函数</h2><h3 id="函数参数-最好-2-个或更少"><a href="#函数参数-最好-2-个或更少" class="headerlink" title="函数参数( 最好 2 个或更少 )"></a>函数参数( 最好 2 个或更少 )</h3><p>如果参数超过两个，建议使用 ES6 的解构语法，不用考虑参数的顺序。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createMenu</span>(<span class="params">title, body, buttonText, cancellable</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createMenu</span>(<span class="params">&#123; title, body, buttonText, cancellable &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line">createMenu(&#123;</span><br><span class="line">  title: <span class="string">"Foo"</span>,</span><br><span class="line">  body: <span class="string">"Bar"</span>,</span><br><span class="line">  buttonText: <span class="string">"Baz"</span>,</span><br><span class="line">  cancellable: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="一个方法只做一件事情"><a href="#一个方法只做一件事情" class="headerlink" title="一个方法只做一件事情"></a>一个方法只做一件事情</h3><p>这是一条在软件工程领域流传久远的规则。严格遵守这条规则会让你的代码可读性更好，也更容易重构。如果违反这个规则，那么代码会很难被测试或者重用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">emailClients</span>(<span class="params">clients</span>) </span>&#123;</span><br><span class="line">  clients.forEach(<span class="function"><span class="params">client</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> clientRecord = database.lookup(client);</span><br><span class="line">    <span class="keyword">if</span> (clientRecord.isActive()) &#123;</span><br><span class="line">      email(client);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">emailActiveClients</span>(<span class="params">clients</span>) </span>&#123;</span><br><span class="line">  clients.filter(isActiveClient).forEach(email);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isActiveClient</span>(<span class="params">client</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> clientRecord = database.lookup(client);</span><br><span class="line">  <span class="keyword">return</span> clientRecord.isActive();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数名上体现它的作用"><a href="#函数名上体现它的作用" class="headerlink" title="函数名上体现它的作用"></a>函数名上体现它的作用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addToDate</span>(<span class="params">date, month</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="comment">// 很难知道是把什么加到日期中</span></span><br><span class="line">addToDate(date, <span class="number">1</span>);</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addMonthToDate</span>(<span class="params">month, date</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">addMonthToDate(<span class="number">1</span>, date);</span><br></pre></td></tr></table></figure>
+<h3 id="删除重复代码，合并相似函数"><a href="#删除重复代码，合并相似函数" class="headerlink" title="删除重复代码，合并相似函数"></a>删除重复代码，合并相似函数</h3><p>很多时候虽然是同一个功能，但由于一两个不同点，让你不得不写两个几乎相同的函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showDeveloperList</span>(<span class="params">developers</span>) </span>&#123;</span><br><span class="line">  developers.forEach(<span class="function"><span class="params">developer</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> expectedSalary = developer.calculateExpectedSalary();</span><br><span class="line">    <span class="keyword">const</span> experience = developer.getExperience();</span><br><span class="line">    <span class="keyword">const</span> githubLink = developer.getGithubLink();</span><br><span class="line">    <span class="keyword">const</span> data = &#123;</span><br><span class="line">      expectedSalary,</span><br><span class="line">      experience,</span><br><span class="line">      githubLink</span><br><span class="line">    &#125;;</span><br><span class="line">    render(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showManagerList</span>(<span class="params">managers</span>) </span>&#123;</span><br><span class="line">  managers.forEach(<span class="function"><span class="params">manager</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> expectedSalary = manager.calculateExpectedSalary();</span><br><span class="line">    <span class="keyword">const</span> experience = manager.getExperience();</span><br><span class="line">    <span class="keyword">const</span> portfolio = manager.getMBAProjects();</span><br><span class="line">    <span class="keyword">const</span> data = &#123;</span><br><span class="line">      expectedSalary,</span><br><span class="line">      experience,</span><br><span class="line">      portfolio</span><br><span class="line">    &#125;;</span><br><span class="line">    render(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showEmployeeList</span>(<span class="params">employees</span>) </span>&#123;</span><br><span class="line">  employees.forEach(<span class="function"><span class="params">employee</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> expectedSalary = employee.calculateExpectedSalary();</span><br><span class="line">    <span class="keyword">const</span> experience = employee.getExperience();</span><br><span class="line">    <span class="keyword">const</span> data = &#123;</span><br><span class="line">      expectedSalary,</span><br><span class="line">      experience</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">switch</span> (employee.type) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">"develop"</span>:</span><br><span class="line">        data.githubLink = employee.getGithubLink();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">"manager"</span>:</span><br><span class="line">        data.portfolio = employee.getMBAProjects();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    render(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用-Object-assign-设置默认属性"><a href="#使用-Object-assign-设置默认属性" class="headerlink" title="使用 Object.assign 设置默认属性"></a>使用 Object.assign 设置默认属性</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="keyword">const</span> menuConfig = &#123;</span><br><span class="line">  title: <span class="literal">null</span>,</span><br><span class="line">  body: <span class="string">"Bar"</span>,</span><br><span class="line">  buttonText: <span class="literal">null</span>,</span><br><span class="line">  cancellable: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createMenu</span>(<span class="params">config</span>) </span>&#123;</span><br><span class="line">  config.title = config.title || <span class="string">"Foo"</span>;</span><br><span class="line">  config.body = config.body || <span class="string">"Bar"</span>;</span><br><span class="line">  config.buttonText = config.buttonText || <span class="string">"Baz"</span>;</span><br><span class="line">  config.cancellable =</span><br><span class="line">    config.cancellable !== <span class="literal">undefined</span> ? config.cancellable : <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">createMenu(menuConfig);</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="keyword">const</span> menuConfig = &#123;</span><br><span class="line">  title: <span class="string">"Order"</span>,</span><br><span class="line">  <span class="comment">// 不包含 body</span></span><br><span class="line">  buttonText: <span class="string">"Send"</span>,</span><br><span class="line">  cancellable: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createMenu</span>(<span class="params">config</span>) </span>&#123;</span><br><span class="line">  config = <span class="built_in">Object</span>.assign(</span><br><span class="line">    &#123;</span><br><span class="line">      title: <span class="string">"Foo"</span>,</span><br><span class="line">      body: <span class="string">"Bar"</span>,</span><br><span class="line">      buttonText: <span class="string">"Baz"</span>,</span><br><span class="line">      cancellable: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    config</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">// config : &#123;title: "Order", body: "Bar", buttonText: "Send", cancellable: true&#125;</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line">createMenu(menuConfig);</span><br></pre></td></tr></table></figure>
+<h3 id="尽量不要写全局方法"><a href="#尽量不要写全局方法" class="headerlink" title="尽量不要写全局方法"></a>尽量不要写全局方法</h3><p>在 JavaScript 中，永远不要污染全局，会在生产环境中产生难以预料的 bug。举个例子，比如你在 Array.prototype 上新增一个 diff 方法来判断两个数组的不同。而你同事也打算做类似的事情，不过他的 diff 方法是用来判断两个数组首位元素的不同。很明显你们方法会产生冲突，遇到这类问题我们可以用 ES2015/ES6 的语法来对 Array 进行扩展。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.diff = <span class="function"><span class="keyword">function</span> <span class="title">diff</span>(<span class="params">comparisonArray</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> hash = <span class="keyword">new</span> <span class="built_in">Set</span>(comparisonArray);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.filter(<span class="function"><span class="params">elem</span> =&gt;</span> !hash.has(elem));</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperArray</span> <span class="keyword">extends</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line">  diff(comparisonArray) &#123;</span><br><span class="line">    <span class="keyword">const</span> hash = <span class="keyword">new</span> <span class="built_in">Set</span>(comparisonArray);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.filter(<span class="function"><span class="params">elem</span> =&gt;</span> !hash.has(elem));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="尽量别用“非”条件句"><a href="#尽量别用“非”条件句" class="headerlink" title="尽量别用“非”条件句"></a>尽量别用“非”条件句</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isDOMNodeNotPresent</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (!isDOMNodeNotPresent(node)) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isDOMNodePresent</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (isDOMNodePresent(node)) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="不要过度优化"><a href="#不要过度优化" class="headerlink" title="不要过度优化"></a>不要过度优化</h3><p>现代浏览器已经在底层做了很多优化，过去的很多优化方案都是无效的，会浪费你的时间。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="comment">// 现代浏览器已对此( 缓存 list.length )做了优化。</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, len = list.length; i &lt; len; i++) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; list.length; i++) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="删除弃用代码"><a href="#删除弃用代码" class="headerlink" title="删除弃用代码"></a>删除弃用代码</h3><p>这里没有实例代码，删除就对了</p>
+<h2 id="三、类"><a href="#三、类" class="headerlink" title="三、类"></a>三、类</h2><h3 id="使用-ES6-的-class"><a href="#使用-ES6-的-class" class="headerlink" title="使用 ES6 的 class"></a>使用 ES6 的 class</h3><p>在 ES6 之前，没有类的语法，只能用构造函数的方式模拟类，可读性非常差。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="comment">// 动物</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">  move() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 哺乳动物</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mammal</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(age, furColor) &#123;</span><br><span class="line">    <span class="keyword">super</span>(age);</span><br><span class="line">    <span class="keyword">this</span>.furColor = furColor;</span><br><span class="line">  &#125;</span><br><span class="line">  liveBirth() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 人类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Human</span> <span class="keyword">extends</span> <span class="title">Mammal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(age, furColor, languageSpoken) &#123;</span><br><span class="line">    <span class="keyword">super</span>(age, furColor);</span><br><span class="line">    <span class="keyword">this</span>.languageSpoken = languageSpoken;</span><br><span class="line">  &#125;</span><br><span class="line">  speak() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用链式调用"><a href="#使用链式调用" class="headerlink" title="使用链式调用"></a>使用链式调用</h3><p>这种模式相当有用，可以在很多库中都有使用。它让你的代码简洁优雅。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(make, model, color) &#123;</span><br><span class="line">    <span class="keyword">this</span>.make = make;</span><br><span class="line">    <span class="keyword">this</span>.model = model;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setMake(make) &#123;</span><br><span class="line">    <span class="keyword">this</span>.make = make;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setModel(model) &#123;</span><br><span class="line">    <span class="keyword">this</span>.model = model;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setColor(color) &#123;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  save() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.make, <span class="keyword">this</span>.model, <span class="keyword">this</span>.color);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Bad:</span></span><br><span class="line"><span class="keyword">const</span> car = <span class="keyword">new</span> Car(<span class="string">"Ford"</span>, <span class="string">"F-150"</span>, <span class="string">"red"</span>);</span><br><span class="line">car.setColor(<span class="string">"pink"</span>);</span><br><span class="line">car.save();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(make, model, color) &#123;</span><br><span class="line">    <span class="keyword">this</span>.make = make;</span><br><span class="line">    <span class="keyword">this</span>.model = model;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setMake(make) &#123;</span><br><span class="line">    <span class="keyword">this</span>.make = make;</span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Returning this for chaining</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setModel(model) &#123;</span><br><span class="line">    <span class="keyword">this</span>.model = model;</span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Returning this for chaining</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setColor(color) &#123;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Returning this for chaining</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  save() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.make, <span class="keyword">this</span>.model, <span class="keyword">this</span>.color);</span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Returning this for chaining</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> car = <span class="keyword">new</span> Car(<span class="string">"Ford"</span>, <span class="string">"F-150"</span>, <span class="string">"red"</span>).setColor(<span class="string">"pink"</span>).save();</span><br></pre></td></tr></table></figure>
+<h2 id="四、异步"><a href="#四、异步" class="headerlink" title="四、异步"></a>四、异步</h2><p>使用 promise 或者 Async/Await 代替回调</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad:</span></span><br><span class="line">get(</span><br><span class="line">  <span class="string">"https://en.wikipedia.org/wiki/Robert_Cecil_Martin"</span>,</span><br><span class="line">  (requestErr, response) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (requestErr) &#123;</span><br><span class="line">      <span class="built_in">console</span>.error(requestErr);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      writeFile(<span class="string">"article.html"</span>, response.body, writeErr =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (writeErr) &#123;</span><br><span class="line">          <span class="built_in">console</span>.error(writeErr);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">"File written"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"><span class="comment">// Good:</span></span><br><span class="line">get(<span class="string">"https://en.wikipedia.org/wiki/Robert_Cecil_Martin"</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> writeFile(<span class="string">"article.html"</span>, response);</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"File written"</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(err);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// perfect:</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getCleanCodeArticle</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> get(</span><br><span class="line">      <span class="string">"https://en.wikipedia.org/wiki/Robert_Cecil_Martin"</span></span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">await</span> writeFile(<span class="string">"article.html"</span>, response);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"File written"</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考链接</p>
+</blockquote>
+<p><a href="https://juejin.im/post/5d0e11196fb9a07eee5ed6d2#heading-15" target="_blank" rel="noopener">掘金</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>文章标题: </span>
+      <a href="http://www.tiankai.party/posts/58614/">如何写出漂亮的js代码</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>发表时间: </span>
+      <span>
+        2019-06-26, 10:06:42
+      </span>
+    </p>
+    <p class="copyright-item">
+      <span>最后更新: </span>
+      <span>
+        2019-07-04, 15:07:26
+      </span>
+    </p>
+
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/58614/">http://www.tiankai.party/posts/58614/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/js/">js</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/posts/12906/">
+        <span class="next-text nav-default">webpack调试react代码</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+  
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
