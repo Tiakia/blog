@@ -258,6 +258,74 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/posts/24488/">java中的接口</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+        2017-11-13
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          Count: 1.3k 字
+        </span>
+        <span class="post-times">
+          Time: 5 分钟
+        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/24488/" -->
+        <!--      data-title="java中的接口" -->
+        <!--      id="/posts/24488/" -->
+        <!--      data-flag-title="java中的接口"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <blockquote>
+<p>通过接口描述俩个不同类型类之间的共同特性（PSP 和 SmartPhone）</p>
+</blockquote>
+<h4 id="1-接口的概念"><a href="#1-接口的概念" class="headerlink" title="1. 接口的概念"></a>1. 接口的概念</h4><p>接口可以理解为一种特殊的类，由全局常量和公共的抽象方法组成。</p>
+<p>类是一种具体实现体，而接口定义了某一批类所需要遵守的规范，接口不关心这些类的内部数据，也不关心这些类里方法的实现细节，他只规定这些类里必须提供的某些方法</p>
+          <div class="read-more">
+            <a href="/posts/24488/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/posts/38540/">java中的抽象类</a>
         
       </h1>
@@ -895,72 +963,6 @@
 <p>这种转换称为<code>自动类型转换</code>。<br> 当然自动类型转换是需要满足特定的条件的：</p>
           <div class="read-more">
             <a href="/posts/38126/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/15627/">Nodejs中read和readFile以及write和writefile的区别</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-        2017-11-13
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/nodejs/">nodejs</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          Count: 1.2k 字
-        </span>
-        <span class="post-times">
-          Time: 4 分钟
-        </span>
-        <!-- <span class="post-visits leancloud-visitors" -->
-        <!--      data-url="/posts/15627/" -->
-        <!--      data-title="Nodejs中read和readFile以及write和writefile的区别" -->
-        <!--      id="/posts/15627/" -->
-        <!--      data-flag-title="Nodejs中read和readFile以及write和writefile的区别"> -->
-        <!--   阅读次数 0 -->
-        <!--    <i class="leancloud-visitors-count"></i> -->
-        <!-- </span> -->
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>今天在看 nodejs 的时候有个疑惑的事情，前面看到了 <code>read</code> 和 <code>write</code>，后面又看到了 <code>readeFile</code> 和 <code>writeFile</code> 俩个 API，有点疑惑这俩个到底有什么区别。上网查了一下才知道。在这里记录一下它们的区别</p>
-<h4 id="readFile-和-writeFile"><a href="#readFile-和-writeFile" class="headerlink" title="readFile 和 writeFile"></a>readFile 和 writeFile</h4><p>1、readFile 方法是将要读取的文件内容完整读入缓存区，再从该缓存区中读取文件内容，具体操作如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line">fs.readFile(<span class="string">"./test.txt"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"文件读取失败"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data.toString());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/posts/15627/" class="read-more-link">阅读更多</a>
           </div>
         
       

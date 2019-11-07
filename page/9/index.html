@@ -258,6 +258,72 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/posts/15627/">Nodejs中read和readFile以及write和writefile的区别</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+        2017-11-13
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nodejs/">nodejs</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          Count: 1.2k 字
+        </span>
+        <span class="post-times">
+          Time: 4 分钟
+        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/15627/" -->
+        <!--      data-title="Nodejs中read和readFile以及write和writefile的区别" -->
+        <!--      id="/posts/15627/" -->
+        <!--      data-flag-title="Nodejs中read和readFile以及write和writefile的区别"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>今天在看 nodejs 的时候有个疑惑的事情，前面看到了 <code>read</code> 和 <code>write</code>，后面又看到了 <code>readeFile</code> 和 <code>writeFile</code> 俩个 API，有点疑惑这俩个到底有什么区别。上网查了一下才知道。在这里记录一下它们的区别</p>
+<h4 id="readFile-和-writeFile"><a href="#readFile-和-writeFile" class="headerlink" title="readFile 和 writeFile"></a>readFile 和 writeFile</h4><p>1、readFile 方法是将要读取的文件内容完整读入缓存区，再从该缓存区中读取文件内容，具体操作如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line">fs.readFile(<span class="string">"./test.txt"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"文件读取失败"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data.toString());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/posts/15627/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/posts/17330/">java中定义一个类的步骤</a>
         
       </h1>
@@ -848,70 +914,6 @@
           <p>webpack-dev-server</p>
           <div class="read-more">
             <a href="/posts/54278/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/8586/">git操作之拉取指定分支</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-        2017-09-08
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/git/">git</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          Count: 266 字
-        </span>
-        <span class="post-times">
-          Time: 1 分钟
-        </span>
-        <!-- <span class="post-visits leancloud-visitors" -->
-        <!--      data-url="/posts/8586/" -->
-        <!--      data-title="git操作之拉取指定分支" -->
-        <!--      id="/posts/8586/" -->
-        <!--      data-flag-title="git操作之拉取指定分支"> -->
-        <!--   阅读次数 0 -->
-        <!--    <i class="leancloud-visitors-count"></i> -->
-        <!-- </span> -->
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>这俩天工作总是遇到要拉取指定分支，或者需要提交代码到指定分支上，但是你本地有没有这个分支，这里记录一下加深一下记忆。</p>
-          <div class="read-more">
-            <a href="/posts/8586/" class="read-more-link">阅读更多</a>
           </div>
         
       
