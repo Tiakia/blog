@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="TypeScript中的声明文件">
+
+
+
+
+  <meta name="keywords" content="React,React Native,微信小程序,Webpack,Javascript">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/61798/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> TypeScript中的声明文件 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+      <a href="/comments">
+        <li class="mobile-menu-item">
+          
+          
+            留言板
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/comments">
+            
+            
+              留言板
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+<a href="https://github.com/tiakia"><img style="position:fixed;top:0;right:0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          TypeScript中的声明文件
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+        2019-09-25
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/typescrit/">typescrit</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          Count: 948 字
+        </span>
+        <span class="post-times">
+          Time: 3 分钟
+        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/61798/" -->
+        <!--      data-title="TypeScript中的声明文件" -->
+        <!--      id="/posts/61798/" -->
+        <!--      data-flag-title="TypeScript中的声明文件"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#声明文件-x-d-ts"><span class="toc-text">声明文件(x.d.ts)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#declare"><span class="toc-text">declare</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack-别名"><span class="toc-text">webpack 别名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Window-X"><span class="toc-text">Window.X</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>在写<code>Typescript</code>的时候老是会碰到这样的错误：<br><code>Could not find a declaration file for module &#39;./hello&#39;. &#39;src/hello.js&#39; implicitly has an &#39;any&#39; type.</code></p>
+<ul>
+<li>[ts] 无法找到模块“./hello”的声明文件</li>
+</ul>
+<a id="more"></a>
+<p>这里是缺少了<code>hello.ts</code>的声明文件，这篇文章记录一下关于<code>TS</code>的声明文件。</p>
+<h2 id="声明文件-x-d-ts"><a href="#声明文件-x-d-ts" class="headerlink" title="声明文件(x.d.ts)"></a>声明文件(x.d.ts)</h2><p><u>TypeScript 作为 JavaScript 的超集，在开发过程中不可避免要引用其他第三方的 JavaScript 的库。虽然通过直接引用可以调用库的类和方法，但是却无法使用 TypeScript 诸如类型检查等特性功能。为了解决这个问题，需要将这些库里的函数和方法体去掉后只保留导出类型声明，而产生了一个描述 JavaScript 库和模块信息的声明文件。通过引用这个声明文件，就可以借用 TypeScript 的各种特性来使用库文件了。</u></p>
+<p>在开始描述各种问题之前，列举一下我所知道的声明文件存放的方式（常规配置下）：</p>
+<ul>
+<li><code>src/@types/</code>，在 <code>src</code> 目录新建<code>@types</code> 目录，在其中编写<code>.d.ts</code> 声明文件，声明文件会自动被识别，可以在此为一些没有声明文件的模块编写自己的声明文件；<br>实际上在 <code>tsconfig</code> <code>include</code> 字段包含的范围内编写 <code>.d.ts</code>，都将被自动识别。</li>
+<li>在 <code>x.js</code> 相同目录创建同名声明文件 <code>x.d.ts</code>，这样也会被自动识别；</li>
+<li><code>node_modules/@types/</code>下存放各个第三方模块的声明文件，通过 <code>yarn add @types/react</code> 自动下载到此处，自己编写的声明文件不要放在这里；</li>
+<li>作为 <code>npm</code> 模块发布时，声明文件可捆绑发布，需在 <code>package.json</code> 中指明<code>&quot;types&quot;: &quot;./types/index.d.ts&quot;</code>；</li>
+</ul>
+<blockquote>
+<p>隐式 any 类型（implicitly has an ‘any’ type）</p>
+</blockquote>
+<p>当 <code>tsconfig.json</code> 中关闭<code>&quot;noImplicitAny&quot;: false</code> 时，可以直接在 <code>TypeScript</code> 中引用 <code>JavaScript</code>（无声明文件）的库，所有的引入都会被默认为 <code>any</code> 类型。但为了规范编码，总是打开<code>&quot;noImplicitAny&quot;: true</code>，这样当发生上述情况时，编译器会阻止编译，提示我们去加上类型规范。</p>
+<h2 id="declare"><a href="#declare" class="headerlink" title="declare"></a>declare</h2><ul>
+<li>导入自己写的工具类函数<br>在工具<code>utils.js</code>同级编写<code>utils.d.ts</code></li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// util.d.ts</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">declare</span> <span class="keyword">const</span> getAllType: (</span><br><span class="line">  sourceType: <span class="built_in">any</span>,</span><br><span class="line">  targetType: <span class="built_in">any</span>,</span><br><span class="line">  filter?: <span class="built_in">any</span></span><br><span class="line">) =&gt; <span class="built_in">any</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>导入图片/css/json 模块<br>在<code>tsconfig</code> <code>include</code> 字段包含的范围内编写<code>index.d.ts</code></li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.d.ts</span></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">module</span> "*.png";</span><br><span class="line">declare <span class="keyword">module</span> "*.json";</span><br><span class="line">declare <span class="keyword">module</span> "*.css";</span><br><span class="line">declare <span class="keyword">module</span> "*.less";</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装第三方插件的时候提示找不到模块<br>一般使用第三方不是 <code>TypeScript</code> 编写的模块时，我们可以直接下载对应的声明文件：<code>yarn add @types/{模块名}</code>。然而有些模块是没有对应的声明文件的，这时候就需要我们自己编写声明文件，以 <code>rc-form</code> 为例：<br>在<code>tsconfig</code>的<code>include</code> 字段包含的范围内编写<code>{任意名称}.d.ts</code></li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">module</span> "rc-form" &#123;</span><br><span class="line">  <span class="comment">// 在此只是简单地进行类型描述</span></span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">const</span> createForm: <span class="built_in">any</span>;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">const</span> createFormField: <span class="built_in">any</span>;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">const</span> formShape: <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="webpack-别名"><a href="#webpack-别名" class="headerlink" title="webpack 别名"></a>webpack 别名</h2><p>有时候会遇到设置了<code>webpack</code>别名，但是在导入的时候会遇到找不到模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  alias: &#123;</span><br><span class="line">    utils: path.resolve(__dirname, <span class="string">"src/utils"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; ua &#125; <span class="keyword">from</span> <span class="string">"utils/broswer"</span>;</span><br><span class="line"><span class="comment">// Cannot find module 'utils/browser'</span></span><br></pre></td></tr></table></figure>
+<p>只需在 <code>tsconfig.json</code> 添加 <code>baseUrl</code> 和<code>paths</code> 的配置即可：</p>
+<ul>
+<li>tsconfig.json</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">    <span class="attr">"noImplicitAny"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"baseUrl"</span>: <span class="string">"."</span>,</span><br><span class="line">    <span class="attr">"paths"</span>: &#123;</span><br><span class="line">      <span class="attr">"utils/*"</span>: [<span class="string">"/src/utils/*"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"include"</span>: [<span class="string">"./src/*"</span>, <span class="string">"./src/**/*"</span>],</span><br><span class="line">  <span class="attr">"exclude"</span>: [<span class="string">"node_modules"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Window-X"><a href="#Window-X" class="headerlink" title="Window.X"></a>Window.X</h2><p>有时需要在<code>window</code>上挂载一个属性的时候会遇到<code>The property ‘X’ does not exist on value of type ‘window’</code><br>这时需要对<code>window</code>进行扩展：<br>在<code>tsconfig</code>的<code>include</code> 字段包含的范围内编写<code>{任意名称}.d.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.d.ts</span></span><br><span class="line"><span class="keyword">interface</span> Window &#123;</span><br><span class="line">  X: <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考链接</p>
+</blockquote>
+<p><a href="https://daief.tech/2018-09-04/declaration-files-of-typescript.html" target="_blank" rel="noopener">TypeScript 中的声明文件</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>文章标题: </span>
+      <a href="http://www.tiankai.party/posts/61798/">TypeScript中的声明文件</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>发表时间: </span>
+      <span>
+        2019-09-25, 19:09:03
+      </span>
+    </p>
+    <p class="copyright-item">
+      <span>最后更新: </span>
+      <span>
+        2019-10-28, 14:10:12
+      </span>
+    </p>
+
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/61798/">http://www.tiankai.party/posts/61798/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/ts/">ts</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/60639/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">使用高德地图API</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/3386/">
+        <span class="next-text nav-default">React-Hooks异步操作二三事</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+  
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

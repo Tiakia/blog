@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="使用高德地图API">
+
+
+
+
+  <meta name="keywords" content="React,React Native,微信小程序,Webpack,Javascript">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/60639/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 使用高德地图API - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+      <a href="/comments">
+        <li class="mobile-menu-item">
+          
+          
+            留言板
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/comments">
+            
+            
+              留言板
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+<a href="https://github.com/tiakia"><img style="position:fixed;top:0;right:0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          使用高德地图API
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+        2019-10-24
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/javascript/">javascript</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          Count: 1.4k 字
+        </span>
+        <span class="post-times">
+          Time: 7 分钟
+        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/60639/" -->
+        <!--      data-title="使用高德地图API" -->
+        <!--      id="/posts/60639/" -->
+        <!--      data-flag-title="使用高德地图API"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#地图的创建"><span class="toc-text">地图的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置遮罩"><span class="toc-text">设置遮罩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置可视范围"><span class="toc-text">设置可视范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置分管片区"><span class="toc-text">设置分管片区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加坐标点"><span class="toc-text">添加坐标点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义显示窗体"><span class="toc-text">自定义显示窗体</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>以前一直使用的都是百度地图的 API，这次换了高德地图尝试了一下，真香。高德地图它的 API 种类很全，文档例子也很清楚，相比较于百度地图感觉百度好像不常更新维护了。</p>
+<a id="more"></a>
+<p>列举一下用到的功能：</p>
+<ol>
+<li>地图展示，设置中心点、缩放级别</li>
+<li>设置地图遮罩</li>
+<li>设置可视范围</li>
+<li>获取 geoJson 数据画图</li>
+<li>自定义信息展示窗体</li>
+</ol>
+<h3 id="地图的创建"><a href="#地图的创建" class="headerlink" title="地图的创建"></a>地图的创建</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map;</span><br><span class="line">map = <span class="keyword">new</span> AMap.Map(<span class="string">"container"</span>, &#123;</span><br><span class="line">  resizeEnable: <span class="literal">true</span>, <span class="comment">// 是否监控地图容器尺寸变化</span></span><br><span class="line">  zoom: <span class="number">6</span>,</span><br><span class="line">  zooms: [<span class="number">6</span>, <span class="number">16</span>], <span class="comment">// 初始化地图层级</span></span><br><span class="line">  center: [<span class="number">112.565972</span>, <span class="number">37.865858</span>] <span class="comment">// 初始化地图中心点</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="设置遮罩"><a href="#设置遮罩" class="headerlink" title="设置遮罩"></a>设置遮罩</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置遮罩</span></span><br><span class="line"><span class="keyword">new</span> AMap.DistrictSearch(&#123;</span><br><span class="line">  extensions: <span class="string">"all"</span>,</span><br><span class="line">  subdistrict: <span class="number">0</span></span><br><span class="line">&#125;).search(<span class="string">"山西省"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">status, result</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 外多边形坐标数组和内多边形坐标数组</span></span><br><span class="line">  <span class="keyword">let</span> outer = [</span><br><span class="line">    <span class="keyword">new</span> AMap.LngLat(<span class="number">-360</span>, <span class="number">90</span>, <span class="literal">true</span>),</span><br><span class="line">    <span class="keyword">new</span> AMap.LngLat(<span class="number">-360</span>, <span class="number">-90</span>, <span class="literal">true</span>),</span><br><span class="line">    <span class="keyword">new</span> AMap.LngLat(<span class="number">360</span>, <span class="number">-90</span>, <span class="literal">true</span>),</span><br><span class="line">    <span class="keyword">new</span> AMap.LngLat(<span class="number">360</span>, <span class="number">90</span>, <span class="literal">true</span>)</span><br><span class="line">  ];</span><br><span class="line">  <span class="keyword">let</span> holes = result.districtList[<span class="number">0</span>].boundaries;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> pathArray = [outer];</span><br><span class="line">  pathArray.push.apply(pathArray, holes);</span><br><span class="line">  <span class="keyword">let</span> polygon = <span class="keyword">new</span> AMap.Polygon(&#123;</span><br><span class="line">    pathL: pathArray,</span><br><span class="line">    strokeColor: <span class="string">"#00eeff"</span>,</span><br><span class="line">    strokeWeight: <span class="number">1</span>,</span><br><span class="line">    fillColor: <span class="string">"#ddd"</span>,</span><br><span class="line">    fillOpacity: <span class="number">0.5</span></span><br><span class="line">  &#125;);</span><br><span class="line">  polygon.setPath(pathArray);</span><br><span class="line">  map.add(polygon);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/amap-react-5.png" alt="amap-react-5"></p>
+<h3 id="设置可视范围"><a href="#设置可视范围" class="headerlink" title="设置可视范围"></a>设置可视范围</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置可视范围</span></span><br><span class="line"><span class="comment">//通过 new AMap.Bounds(southWest:LngLat, northEast:LngLat) 或者 map.getBounds() 获得地图Bounds信息</span></span><br><span class="line"><span class="keyword">let</span> bounds = map.getBounds();</span><br><span class="line">map.setLimitBounds(bounds);</span><br></pre></td></tr></table></figure>
+<h3 id="设置分管片区"><a href="#设置分管片区" class="headerlink" title="设置分管片区"></a>设置分管片区</h3><p><code>mapJson</code>为<code>GeoJSON</code>地图数据，这里提供几个网站：</p>
+<ul>
+<li><a href="http://geojson.io/" target="_blank" rel="noopener">获取需要的 GeoJSON 数据</a></li>
+<li><a href="https://geojson-maps.ash.ms/" target="_blank" rel="noopener">获取世界、国家的地图 GeoJSON 数据</a></li>
+<li><a href="https://mapshaper.org/" target="_blank" rel="noopener">GeoJSON 数据精简</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置分管片区</span></span><br><span class="line"><span class="keyword">let</span> geojson = <span class="keyword">new</span> AMap.GeoJSON(&#123;</span><br><span class="line">  geoJSON: mapJson,</span><br><span class="line">  <span class="comment">// 还可以自定义getMarker和getPolyline</span></span><br><span class="line">  getPolygon: <span class="function"><span class="keyword">function</span>(<span class="params">geojson, lnglats</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 计算面积</span></span><br><span class="line">    <span class="keyword">let</span> &#123;</span><br><span class="line">      properties: &#123; color &#125;</span><br><span class="line">    &#125; = geojson;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> AMap.Polygon(&#123;</span><br><span class="line">      path: lnglats,</span><br><span class="line">      fillOpacity: <span class="number">0.1</span>, <span class="comment">// 面积越大透明度越高</span></span><br><span class="line">      strokeColor: <span class="string">"white"</span>,</span><br><span class="line">      fillColor: color</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">geojson.setMap(map);</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/amap-react-2.png" alt="amap-react-2"></p>
+<h3 id="添加坐标点"><a href="#添加坐标点" class="headerlink" title="添加坐标点"></a>添加坐标点</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加点坐标</span></span><br><span class="line"><span class="comment">// marker 为每个坐标点的信息</span></span><br><span class="line">addMarker = <span class="function"><span class="params">marker</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> &#123; areaName, longitude, latitude, branchName &#125; = marker;</span><br><span class="line">  <span class="keyword">let</span> icon;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">Number</span>(longitude) || !<span class="built_in">Number</span>(latitude)) &#123;</span><br><span class="line">    message.warn(</span><br><span class="line">      <span class="string">`<span class="subst">$&#123;branchName&#125;</span>: 坐标错误 - longitude: <span class="subst">$&#123;longitude&#125;</span>,latitude: <span class="subst">$&#123;latitude&#125;</span>`</span></span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 百度坐标转换为高德坐标</span></span><br><span class="line">  AMap.convertFrom(</span><br><span class="line">    [<span class="built_in">Number</span>(longitude), <span class="built_in">Number</span>(latitude)],</span><br><span class="line">    <span class="string">"baidu"</span>,</span><br><span class="line">    (status, result) =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (status === <span class="string">"complete"</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> _marker = <span class="keyword">new</span> AMap.Marker(&#123;</span><br><span class="line">          position: [result.locations[<span class="number">0</span>].lng, result.locations[<span class="number">0</span>].lat], <span class="comment">// [Number(longitude), Number(latitude)],</span></span><br><span class="line">          icon: <span class="string">`<span class="subst">$&#123;<span class="built_in">require</span>(<span class="string">"./../../../assets/default.png"</span>)&#125;</span>`</span></span><br><span class="line">        &#125;);</span><br><span class="line">        _marker.setTitle(branchName + <span class="string">"-"</span> + areaName);</span><br><span class="line">        <span class="comment">// 根据不同的分区设置不同的坐标点</span></span><br><span class="line">        <span class="keyword">switch</span> (areaName) &#123;</span><br><span class="line">          <span class="keyword">case</span> <span class="string">"并州分管区"</span>:</span><br><span class="line">            icon = <span class="built_in">require</span>(<span class="string">"src/assets/area1.png"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> <span class="string">"晋阳分管区"</span>:</span><br><span class="line">            icon = <span class="built_in">require</span>(<span class="string">"src/assets/area2.png"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> <span class="string">"龙城分管区"</span>:</span><br><span class="line">            icon = <span class="built_in">require</span>(<span class="string">"src/assets/area3.png"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> <span class="string">"综改分管区"</span>:</span><br><span class="line">            icon = <span class="built_in">require</span>(<span class="string">"src/assets/area4.png"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">default</span>:</span><br><span class="line">            icon = <span class="built_in">require</span>(<span class="string">"src/assets/default.png"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        _marker.setIcon(icon);</span><br><span class="line">        _marker.setMap(map);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 鼠标点击marker弹出自定义的信息窗体</span></span><br><span class="line">        <span class="keyword">let</span> that = <span class="keyword">this</span>;</span><br><span class="line">        AMap.event.addListener(_marker, <span class="string">"click"</span>, () =&gt; &#123;</span><br><span class="line">          that.showInfo(marker).open(map, _marker.getPosition());</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/amap-react-1.png" alt="amap-react-1"></p>
+<p><img src="/../images/amap-react-4.png" alt="amap-react-4"></p>
+<h3 id="自定义显示窗体"><a href="#自定义显示窗体" class="headerlink" title="自定义显示窗体"></a>自定义显示窗体</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 点击坐标点显示信息</span></span><br><span class="line">showInfo = <span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 实例化信息窗体</span></span><br><span class="line">  <span class="keyword">let</span> that = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">let</span> title = <span class="string">`<span class="subst">$&#123;item.branchName&#125;</span>- <span class="subst">$&#123;item.branchNo&#125;</span>`</span>,</span><br><span class="line">    content = [];</span><br><span class="line">  content.push(</span><br><span class="line">    <span class="string">`&lt;b&gt;机构名称：&lt;/b&gt;&lt;strong&gt;<span class="subst">$&#123;item.branchName&#125;</span>(<span class="subst">$&#123;item.branchNo&#125;</span>)&lt;/strong&gt;`</span></span><br><span class="line">  );</span><br><span class="line">  content.push(<span class="string">`&lt;b&gt;地址：&lt;/b&gt;<span class="subst">$&#123;item.address&#125;</span>`</span>);</span><br><span class="line">  content.push(<span class="string">`&lt;b&gt;地区：&lt;/b&gt;<span class="subst">$&#123;item.areaName&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">let</span> infoWindow = <span class="keyword">new</span> AMap.InfoWindow(&#123;</span><br><span class="line">    isCustom: <span class="literal">true</span>, <span class="comment">// 使用自定义窗体</span></span><br><span class="line">    content: createInfoWindow(title, content.join(<span class="string">"&lt;br/&gt;"</span>)),</span><br><span class="line">    offset: <span class="keyword">new</span> AMap.Pixel(<span class="number">16</span>, <span class="number">-25</span>)</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 构建自定义信息窗体</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">createInfoWindow</span>(<span class="params">title, content</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> info = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">    info.className = <span class="string">"custom-info input-card content-window-card"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 可以通过下面的方式修改自定义窗体的宽高</span></span><br><span class="line">    <span class="comment">// info.style.width = "400px";</span></span><br><span class="line">    <span class="comment">// 定义顶部标题</span></span><br><span class="line">    <span class="keyword">var</span> top = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">    top.className = <span class="string">"info-top"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> logoImg = <span class="built_in">document</span>.createElement(<span class="string">"img"</span>);</span><br><span class="line">    logoImg.src = <span class="built_in">require</span>(<span class="string">"src/assets/logo.jpg"</span>);</span><br><span class="line">    logoImg.style.width = <span class="string">"100px"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> closeX = <span class="built_in">document</span>.createElement(<span class="string">"i"</span>);</span><br><span class="line">    closeX.innerText = <span class="string">"×"</span>;</span><br><span class="line">    closeX.className = <span class="string">"closeImg"</span>;</span><br><span class="line">    closeX.onclick = closeInfoWindow;</span><br><span class="line"></span><br><span class="line">    top.appendChild(logoImg);</span><br><span class="line">    top.appendChild(closeX);</span><br><span class="line">    info.appendChild(top);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断是涨是跌</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">judge</span>(<span class="params">before, current</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (!current) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"无数据"</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">Number</span>(before) &gt; <span class="built_in">Number</span>(current)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`&lt;div class="down"&gt;<span class="subst">$&#123;current&#125;</span>&lt;/div&gt;`</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">Number</span>(before) &lt; <span class="built_in">Number</span>(current)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`&lt;div class="up"&gt;<span class="subst">$&#123;current&#125;</span>&lt;/div&gt;`</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`&lt;div&gt;<span class="subst">$&#123;current&#125;</span>&lt;/div&gt;`</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义中部内容</span></span><br><span class="line">    <span class="keyword">let</span> middle = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">    middle.className = <span class="string">"info-middle"</span>;</span><br><span class="line">    middle.style.backgroundColor = <span class="string">"white"</span>;</span><br><span class="line">    middle.innerHTML = content;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> branchInfoHtml = <span class="built_in">document</span>.createElement(<span class="string">"table"</span>);</span><br><span class="line">    branchInfoHtml.className = <span class="string">"branchInfoMap"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> htmlTpl = <span class="string">`</span></span><br><span class="line"><span class="string">          &lt;tr&gt;&lt;td&gt;存款&lt;/td&gt;&lt;td&gt;贷款&lt;/td&gt;&lt;td&gt;客户数&lt;/td&gt;&lt;td&gt;发卡数&lt;/td&gt;&lt;/tr&gt;</span></span><br><span class="line"><span class="string">          &lt;tr&gt;&lt;td&gt;`</span>;</span><br><span class="line">    htmlTpl += judge(item.deposit_1, item.deposit_0) + <span class="string">"&lt;/td&gt;&lt;td&gt;"</span>;</span><br><span class="line">    htmlTpl += judge(item.loan_1, item.loan_0) + <span class="string">"&lt;/td&gt;&lt;td&gt;"</span>;</span><br><span class="line">    htmlTpl += judge(item.customer_1, item.customer_0) + <span class="string">"&lt;/td&gt;&lt;td&gt;"</span>;</span><br><span class="line">    htmlTpl += judge(item.card_1, item.card_0) + <span class="string">"&lt;/td&gt;&lt;/tr&gt;"</span>;</span><br><span class="line">    branchInfoHtml.innerHTML = htmlTpl;</span><br><span class="line">    middle.appendChild(branchInfoHtml);</span><br><span class="line">    info.appendChild(middle);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义底部内容</span></span><br><span class="line">    <span class="keyword">let</span> bottom = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">    bottom.className = <span class="string">"info-bottom"</span>;</span><br><span class="line">    bottom.style.position = <span class="string">"relative"</span>;</span><br><span class="line">    bottom.style.top = <span class="string">"0px"</span>;</span><br><span class="line">    bottom.style.margin = <span class="string">"0 auto"</span>;</span><br><span class="line">    <span class="keyword">let</span> aTag = <span class="built_in">document</span>.createElement(<span class="string">"a"</span>);</span><br><span class="line">    aTag.innerText = <span class="string">"详细信息"</span>;</span><br><span class="line">    aTag.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      e.preventDefault();</span><br><span class="line">      router.push(&#123;</span><br><span class="line">        pathname: <span class="string">"/branch/manage"</span>,</span><br><span class="line">        state: &#123;</span><br><span class="line">          branchNo: item.branchNo</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    bottom.appendChild(aTag);</span><br><span class="line">    info.appendChild(bottom);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> info;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 关闭信息窗体</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">closeInfoWindow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    map.clearInfoWindow();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> infoWindow;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>css 部分</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content-window-card</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">box-shadow</span>: none;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: auto;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.content-window-card</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">2rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.custom-info</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: solid <span class="number">1px</span> silver;</span><br><span class="line">  <span class="attribute">min-width</span>: <span class="number">210px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.info-top</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">background</span>: none repeat scroll <span class="number">0</span> <span class="number">0</span> <span class="number">#f9f9f9</span>;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span> <span class="number">5px</span> <span class="number">0</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.info-top</span> <span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#333333</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">31px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.info-top</span> <span class="selector-class">.closeImg</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: -<span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">transition-duration</span>: <span class="number">0.25s</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.info-top</span> <span class="selector-class">.closeImg</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(1.2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.info-middle</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">6px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.info-bottom</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f9f9f9</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.info-bottom</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.branchInfoMap</span> &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.branchInfoMap</span> <span class="selector-tag">td</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.branchInfoMap</span> <span class="selector-class">.up</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">"↑"</span>;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">color</span>: green;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.branchInfoMap</span> <span class="selector-class">.down</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">"↓"</span>;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/amap-react-3.png" alt="amap-react-3"></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>文章标题: </span>
+      <a href="http://www.tiankai.party/posts/60639/">使用高德地图API</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>发表时间: </span>
+      <span>
+        2019-10-24, 15:10:08
+      </span>
+    </p>
+    <p class="copyright-item">
+      <span>最后更新: </span>
+      <span>
+        2019-11-07, 10:11:30
+      </span>
+    </p>
+
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/60639/">http://www.tiankai.party/posts/60639/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/高德地图/">高德地图</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/posts/61798/">
+        <span class="next-text nav-default">TypeScript中的声明文件</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+  
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

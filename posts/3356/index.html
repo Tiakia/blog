@@ -265,12 +265,12 @@
         
           <span class="post-category">
             
-              <a href="/categories/node/">node</a>
+              <a href="/categories/nodejs/">nodejs</a>
             
           </span>
         
         <span class="post-counts">
-          Count: 861 字
+          Count: 864 字
         </span>
         <span class="post-times">
           Time: 3 分钟
@@ -299,23 +299,26 @@
 
     <div class="post-content">
       
-        <p>npm 从5.2版开始，增加了 npx 命令,也可以单独下载:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g npx</span><br></pre></td></tr></table></figure></p>
-<p>npx的出现是为了解决一些我们平时工作中的一些痛点，本文列举几个常用的场景。<br><a id="more"></a></p>
-<h3 id="避免全局安装模块"><a href="#避免全局安装模块" class="headerlink" title="避免全局安装模块"></a>避免全局安装模块</h3><p>以<code>create-react-app</code>为例，我们在创建脚手架项目时，脚手架一般都是安装到全局环境中，但是这些模块我们有时候只是偶尔用一下，也要安装到全局，这样会占用我们电脑的空间，这种情况我们可以使用<code>npx</code>来解决问题。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npx create-react-app myapp</span><br></pre></td></tr></table></figure></p>
+        <p>npm 从 5.2 版开始，增加了 npx 命令,也可以单独下载:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g npx</span><br></pre></td></tr></table></figure>
+<p>npx 的出现是为了解决一些我们平时工作中的一些痛点，本文列举几个常用的场景。</p>
+<a id="more"></a>
+<h3 id="避免全局安装模块"><a href="#避免全局安装模块" class="headerlink" title="避免全局安装模块"></a>避免全局安装模块</h3><p>以<code>create-react-app</code>为例，我们在创建脚手架项目时，脚手架一般都是安装到全局环境中，但是这些模块我们有时候只是偶尔用一下，也要安装到全局，这样会占用我们电脑的空间，这种情况我们可以使用<code>npx</code>来解决问题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npx create-react-app myapp</span><br></pre></td></tr></table></figure>
 <p><code>npx</code>可以做到运行<code>create-react-app</code>而不安装它，上面代码运行时，<code>npx</code> 将<code>create-react-app</code>下载到一个临时目录，使用以后再删除。所以，以后再次执行上面的命令，会重新下载<code>create-react-app</code>。</p>
 <h4 id="运行指定版本的包"><a href="#运行指定版本的包" class="headerlink" title="运行指定版本的包"></a>运行指定版本的包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npx create-react-app@3.0 myapp</span><br></pre></td></tr></table></figure>
 <p>上面代码指定运行<code>3.0</code>版本的<code>create-react-app</code></p>
 <h4 id="使用本地包还是远程包"><a href="#使用本地包还是远程包" class="headerlink" title="使用本地包还是远程包"></a>使用本地包还是远程包</h4><ul>
-<li><p><code>--no-install</code>参数<br>如果想让 <code>npx</code> 强制使用本地模块，不下载远程模块，可以使用<strong><code>--no-install</code></strong>参数。如果本地不存在该模块，就会报错。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npx --no-install create-react-app myapp</span><br></pre></td></tr></table></figure>
-<p>  上面代码指定使用本地版本的<code>create-react-app</code>来创建<code>myapp</code></p>
-</li>
-<li><p><code>--ignore-existing</code>参数<br>如果想使用远程的<code>create-react-app</code>模块，不使用本地<code>create-react-app</code>模块，可以使用<strong><code>--ignore-existing</code></strong>参数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npx --ignore-existing create-react-app myapp</span><br></pre></td></tr></table></figure>
-<p>  上面的代码不会调用本地的<code>create-react-app</code>去创建<code>myapp</code>，而是会从远程调用最新的<code>create-react-app</code></p>
-</li>
+<li><code>--no-install</code>参数<br>如果想让 <code>npx</code> 强制使用本地模块，不下载远程模块，可以使用<strong><code>--no-install</code></strong>参数。如果本地不存在该模块，就会报错。</li>
 </ul>
-<h3 id="调用项目安装的模块"><a href="#调用项目安装的模块" class="headerlink" title="调用项目安装的模块"></a>调用项目安装的模块</h3><p><code>npx</code> 想要解决的主要问题，就是调用项目内部安装的模块。比如，项目内部安装了测试工具 <code>Mocha</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npx --no-install create-react-app myapp</span><br></pre></td></tr></table></figure>
+<pre><code>上面代码指定使用本地版本的`create-react-app`来创建`myapp`
+</code></pre><ul>
+<li><code>--ignore-existing</code>参数<br>如果想使用远程的<code>create-react-app</code>模块，不使用本地<code>create-react-app</code>模块，可以使用<strong><code>--ignore-existing</code></strong>参数</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npx --ignore-existing create-react-app myapp</span><br></pre></td></tr></table></figure>
+<pre><code>上面的代码不会调用本地的`create-react-app`去创建`myapp`，而是会从远程调用最新的`create-react-app`
+</code></pre><h3 id="调用项目安装的模块"><a href="#调用项目安装的模块" class="headerlink" title="调用项目安装的模块"></a>调用项目安装的模块</h3><p><code>npx</code> 想要解决的主要问题，就是调用项目内部安装的模块。比如，项目内部安装了测试工具 <code>Mocha</code>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -D mocha</span><br></pre></td></tr></table></figure>
 <p>一般来说，调用 <code>Mocha</code> ，只能在项目脚本和 <code>package.json</code> 的<code>scripts</code>字段里面， 如果想在命令行下调用，必须像下面这样。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 项目的根目录下执行</span></span><br><span class="line">$ node-modules/.bin/mocha --version</span><br></pre></td></tr></table></figure>
@@ -325,12 +328,13 @@
 <p>由于 <code>npx</code> 会检查环境变量<code>$PATH</code>，所以系统命令也可以调用。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 等同于 ls</span></span><br><span class="line">$ npx ls</span><br></pre></td></tr></table></figure>
 <p>注意，<code>Bash</code> 内置的命令不在<code>$PATH</code>里面，所以不能用。比如，<code>cd</code>是 <code>Bash</code> 命令，因此就不能用<code>npx cd</code>。</p>
-<h3 id="使用不同版本的-node"><a href="#使用不同版本的-node" class="headerlink" title="使用不同版本的 node"></a>使用不同版本的 node</h3><p>假设你本机安装的<code>node 10.15.0</code>的版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npx node@9 -v</span><br><span class="line">v9.11.2</span><br><span class="line">$ node -v</span><br><span class="line">v10.15.0</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用不同版本的-node"><a href="#使用不同版本的-node" class="headerlink" title="使用不同版本的 node"></a>使用不同版本的 node</h3><p>假设你本机安装的<code>node 10.15.0</code>的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npx node@9 -v</span><br><span class="line">v9.11.2</span><br><span class="line">$ node -v</span><br><span class="line">v10.15.0</span><br></pre></td></tr></table></figure>
 <p>上面的指令表示，我们使用<code>npx</code>安装了<code>node v9.11.2</code>版本，使用后再删掉，再次打印<code>node</code>的版本变回了我们本机原本安装的<code>10.15.0</code>版本，某些情况下可能比<code>nvm</code>管理<code>node</code>版本更方便些。</p>
 <ul>
-<li><code>-p</code>参数<br><code>-p</code>参数用于安装指定版本的模块，所以上面的指令可以写成这样：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npx -p node@9 node -v</span><br><span class="line">v9.11.2</span><br></pre></td></tr></table></figure>
-</li>
+<li><code>-p</code>参数<br><code>-p</code>参数用于安装指定版本的模块，所以上面的指令可以写成这样：</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npx -p node@9 node -v</span><br><span class="line">v9.11.2</span><br></pre></td></tr></table></figure>
 <p>上面的指令表示，先安装<code>node v9.11.2</code>版本，然后再执行<code>node -v</code>命令</p>
 <hr>
 <p>如果你是<code>Windows</code>系统要使用<code>nvmw</code>来管理<code>node</code>版本的话，可能会出错，这里推荐我修改的 <a href="https://github.com/tiakia/nvmw-china" target="_blank" rel="noopener">nvmw-china</a>来管理版本。</p>
@@ -364,7 +368,7 @@
     <p class="copyright-item">
       <span>最后更新: </span>
       <span>
-        2019-04-26, 10:04:20
+        2019-10-24, 14:10:26
       </span>
     </p>
 

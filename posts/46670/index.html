@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="canvas加水印">
+
+
+
+
+  <meta name="keywords" content="React,React Native,微信小程序,Webpack,Javascript">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/46670/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> canvas加水印 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+      <a href="/comments">
+        <li class="mobile-menu-item">
+          
+          
+            留言板
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/comments">
+            
+            
+              留言板
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+<a href="https://github.com/tiakia"><img style="position:fixed;top:0;right:0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          canvas加水印
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+        2019-09-04
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/canvas/">canvas</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          Count: 356 字
+        </span>
+        <span class="post-times">
+          Time: 1 分钟
+        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/46670/" -->
+        <!--      data-title="canvas加水印" -->
+        <!--      id="/posts/46670/" -->
+        <!--      data-flag-title="canvas加水印"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#createPattern"><span class="toc-text">createPattern</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>我们都知道用 canvas 加水印的步骤：</p>
+<ol>
+<li>创建一个<code>canvas</code>，获取它的 2D 画笔<code>ctx</code></li>
+<li>获取要加水印的图片<code>img</code></li>
+<li>在图片完全加载后，获取图片的宽高设置给<code>canvas</code><a id="more"></a></li>
+<li>把图片画到<code>canvas</code>画布上<code>ctx.drawImage(img, x, y)</code></li>
+<li>在<code>canvas</code>上画水印(<code>ctx.fillText()</code>)</li>
+<li>把<code>canvas</code>导出图片(<code>ctx.toDataURL(&#39;image/jpeg&#39;)</code>)</li>
+</ol>
+<p>大体的步骤就是这样，中间可能会加一些，水印的旋转，水印样式的设置，这里介绍一个创建水印平铺的函数：</p>
+<h3 id="createPattern"><a href="#createPattern" class="headerlink" title="createPattern"></a>createPattern</h3><p><code>ctx.createPattern(image, repetition)</code></p>
+<ul>
+<li><code>image</code> 可以是 HTML 的<code>img</code>元素/<code>svg</code>图片/<code>video</code>/<code>canvas</code>元素</li>
+<li><code>repetition</code> 标识图片如何进行平铺<ul>
+<li><code>repeat</code></li>
+<li><code>repeat-x</code></li>
+<li><code>repeat-y</code></li>
+<li><code>no-repeat</code></li>
+</ul>
+</li>
+</ul>
+<p>这里有一个例子，创建平铺的对象是<code>canvas</code>元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 水印canvas</span></span><br><span class="line"><span class="keyword">let</span> waterMark = <span class="built_in">document</span>.getElementById(<span class="string">"waterMark"</span>);</span><br><span class="line"><span class="keyword">let</span> waterCtx = waterMark.getContext(<span class="string">"2d"</span>);</span><br><span class="line"><span class="comment">// 水印 canvas 坐标旋转</span></span><br><span class="line">waterCtx.rotate((<span class="number">-20</span> * <span class="built_in">Math</span>.PI) / <span class="number">180</span>);</span><br><span class="line"><span class="comment">// 设置水印字体样式和文字</span></span><br><span class="line">waterCtx.font = <span class="string">"20px Microsoft Yahei"</span>;</span><br><span class="line">waterCtx.fillStyle = <span class="string">"rgba(255,255,255,0.5)"</span>;</span><br><span class="line">waterCtx.fillText(<span class="string">"晋商银行"</span>, <span class="number">-20</span>, <span class="number">65</span>);</span><br><span class="line"><span class="comment">// 水印 canvas 坐标还原</span></span><br><span class="line">waterCtx.rotate((<span class="number">20</span> * <span class="built_in">Math</span>.PI) / <span class="number">180</span>);</span><br><span class="line"><span class="comment">// 新建图片，设置图片的URL</span></span><br><span class="line"><span class="keyword">let</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">img.src = url;</span><br><span class="line">img.onload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 创建展示图片的canvas</span></span><br><span class="line">  <span class="keyword">let</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">"previewImg"</span>);</span><br><span class="line">  <span class="comment">// 设置展示canvas的宽高为图片的宽高</span></span><br><span class="line">  canvas.width = img.width;</span><br><span class="line">  canvas.height = img.height;</span><br><span class="line">  <span class="keyword">let</span> ctx = canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line">  ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="comment">// 创建平铺水印</span></span><br><span class="line">  <span class="keyword">let</span> pat = ctx.createPattern(waterMark, <span class="string">"repeat"</span>);</span><br><span class="line">  <span class="comment">// 填充水印</span></span><br><span class="line">  ctx.fillStyle = pat;</span><br><span class="line">  <span class="comment">// 填充图片</span></span><br><span class="line">  ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, img.width, img.height);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>文章标题: </span>
+      <a href="http://www.tiankai.party/posts/46670/">canvas加水印</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>发表时间: </span>
+      <span>
+        2019-09-04, 19:09:03
+      </span>
+    </p>
+    <p class="copyright-item">
+      <span>最后更新: </span>
+      <span>
+        2019-10-28, 10:10:55
+      </span>
+    </p>
+
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/46670/">http://www.tiankai.party/posts/46670/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/canvas/">canvas</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/3386/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">React-Hooks异步操作二三事</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/29511/">
+        <span class="next-text nav-default">css设置Scoll滚动条样式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+  
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

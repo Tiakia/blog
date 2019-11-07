@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="整理一些常用的lodash工具函数">
+
+
+
+
+  <meta name="keywords" content="React,React Native,微信小程序,Webpack,Javascript">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/51993/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 整理一些常用的lodash工具函数 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+      <a href="/comments">
+        <li class="mobile-menu-item">
+          
+          
+            留言板
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/comments">
+            
+            
+              留言板
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+<a href="https://github.com/tiakia"><img style="position:fixed;top:0;right:0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          整理一些常用的lodash工具函数
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+        2019-07-11
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/javascript/">javascript</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          Count: 1.7k 字
+        </span>
+        <span class="post-times">
+          Time: 7 分钟
+        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/51993/" -->
+        <!--      data-title="整理一些常用的lodash工具函数" -->
+        <!--      id="/posts/51993/" -->
+        <!--      data-flag-title="整理一些常用的lodash工具函数"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#compact"><span class="toc-text">compact</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随机取值"><span class="toc-text">随机取值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组筛选"><span class="toc-text">数组筛选</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#返回新数组"><span class="toc-text">返回新数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改原数组"><span class="toc-text">修改原数组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组降维"><span class="toc-text">数组降维</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快速生成数组"><span class="toc-text">快速生成数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#枚举渲染"><span class="toc-text">枚举渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#before-after"><span class="toc-text">before/after</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#柯里化"><span class="toc-text">柯里化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防抖"><span class="toc-text">防抖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节流"><span class="toc-text">节流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#once"><span class="toc-text">once</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delay"><span class="toc-text">delay</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深拷贝"><span class="toc-text">深拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isEmpty"><span class="toc-text">isEmpty</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isEqual"><span class="toc-text">isEqual</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h3 id="compact"><a href="#compact" class="headerlink" title="compact"></a>compact</h3><p>作用： 返回数组中有意义的值组成新数组，<code>false</code>, <code>null</code>,<code>0</code>, <code>&quot;&quot;</code>, <code>undefined</code>,<code>NaN</code> 被忽略掉。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * _.compact([0, 1, false, 2, '', 3]);</span></span><br><span class="line"><span class="comment"> * // =&gt; [1, 2, 3]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compact</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> index = <span class="number">-1</span>,</span><br><span class="line">    length = array == <span class="literal">null</span> ? <span class="number">0</span> : array.length,</span><br><span class="line">    resIndex = <span class="number">0</span>,</span><br><span class="line">    result = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (++index &lt; length) &#123;</span><br><span class="line">    <span class="keyword">var</span> value = array[index];</span><br><span class="line">    <span class="keyword">if</span> (value) &#123;</span><br><span class="line">      result[resIndex++] = value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="随机取值"><a href="#随机取值" class="headerlink" title="随机取值"></a>随机取值</h3><ul>
+<li><p><code>_.sample(collection)</code></p>
+<p>从数组或对象中随机取出一个元素(对象的话取的是 value 值)</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_.sample([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]);</span><br><span class="line"><span class="comment">// =&gt; 3</span></span><br><span class="line">_.sample(&#123; <span class="attr">a</span>: <span class="string">"1"</span>, <span class="attr">b</span>: <span class="string">"2"</span>, <span class="attr">c</span>: <span class="string">"3"</span> &#125;);</span><br><span class="line"><span class="comment">// =&gt; "2"</span></span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><p><code>_.sampleSize(collection,[n=1])</code></p>
+<p>从数组或对象中随机取出 n 个元素组成的数组</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_.sampleSize([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], <span class="number">2</span>);</span><br><span class="line"><span class="comment">// =&gt; [2,4]</span></span><br><span class="line">_.sampleSize(&#123; <span class="attr">a</span>: <span class="string">"1"</span>, <span class="attr">b</span>: <span class="string">"2"</span>, <span class="attr">c</span>: <span class="string">"3"</span> &#125;, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// =&gt; ["1", "2"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组筛选"><a href="#数组筛选" class="headerlink" title="数组筛选"></a>数组筛选</h3><h4 id="返回新数组"><a href="#返回新数组" class="headerlink" title="返回新数组"></a>返回新数组</h4><ul>
+<li><p><code>_.without(array, [values])</code></p>
+<p>创建一个剔除所有给定值的新数组</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.without([<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// =&gt; [3]</span></span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><p><code>_.difference(array,[values])</code></p>
+<p>创建一个具有唯一 array 值的数组，每个值不包含在其他给定的数组中</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.difference([<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>], [<span class="number">4</span>, <span class="number">2</span>]);</span><br><span class="line"><span class="comment">// =&gt; [3,1]</span></span><br></pre></td></tr></table></figure>
+<h4 id="修改原数组"><a href="#修改原数组" class="headerlink" title="修改原数组"></a>修改原数组</h4><ul>
+<li><p><code>_.pull(array, [values])</code></p>
+<p>移除数组 array 中所有和给定值相等的元素</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">_.pull(array, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(array);</span><br><span class="line"><span class="comment">// =&gt; [1, 1]</span></span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><code>_.pullAll(array,values)</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">_.pullAll(array, [<span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(array);</span><br><span class="line"><span class="comment">// =&gt; [1, 1]</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组降维"><a href="#数组降维" class="headerlink" title="数组降维"></a>数组降维</h3><ul>
+<li><p><code>_.flattten(array)</code></p>
+<p>减少一级 array 嵌套深度。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.flatten([<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, [<span class="number">4</span>]], <span class="number">5</span>]]);</span><br><span class="line"><span class="comment">// =&gt; [1, 2, [3, [4]], 5]</span></span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><p><code>_.flattenDeep(array)</code></p>
+<p>将 array 递归为一维数组。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.flattenDeep([<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, [<span class="number">4</span>]], <span class="number">5</span>]]);</span><br><span class="line"><span class="comment">// =&gt; [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><p><code>_.flattenDepth(array, [depth=1])</code></p>
+<p>根据 depth 递归减少 array 的嵌套层级</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, [<span class="number">4</span>]], <span class="number">5</span>]];</span><br><span class="line"></span><br><span class="line">_.flattenDepth(array, <span class="number">1</span>);</span><br><span class="line"><span class="comment">// =&gt; [1, 2, [3, [4]], 5]</span></span><br><span class="line"></span><br><span class="line">_.flattenDepth(array, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// =&gt; [1, 2, 3, [4], 5]</span></span><br></pre></td></tr></table></figure>
+<h3 id="快速生成数组"><a href="#快速生成数组" class="headerlink" title="快速生成数组"></a>快速生成数组</h3><ul>
+<li><p><code>_.range([start=0], end, [step=1])</code></p>
+<p>返回一个包含<code>start</code>,不包含<code>end</code>的数组，</p>
+<ul>
+<li>参数：<ul>
+<li><code>[start=0](number)</code>: 开始的范围。</li>
+<li><code>end (number)</code>: 结束的范围。</li>
+<li><code>[step=1](number)</code>: 范围的增量 或者 减量。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">_.range(<span class="number">4</span>);</span><br><span class="line"><span class="comment">// =&gt; [0, 1, 2, 3]</span></span><br><span class="line"></span><br><span class="line">_.range(<span class="number">-4</span>);</span><br><span class="line"><span class="comment">// =&gt; [0, -1, -2, -3]</span></span><br><span class="line"></span><br><span class="line">_.range(<span class="number">1</span>, <span class="number">5</span>);</span><br><span class="line"><span class="comment">// =&gt; [1, 2, 3, 4]</span></span><br><span class="line"></span><br><span class="line">_.range(<span class="number">0</span>, <span class="number">20</span>, <span class="number">5</span>);</span><br><span class="line"><span class="comment">// =&gt; [0, 5, 10, 15]</span></span><br><span class="line"></span><br><span class="line">_.range(<span class="number">0</span>, <span class="number">-4</span>, <span class="number">-1</span>);</span><br><span class="line"><span class="comment">// =&gt; [0, -1, -2, -3]</span></span><br><span class="line"></span><br><span class="line">_.range(<span class="number">1</span>, <span class="number">4</span>, <span class="number">0</span>);</span><br><span class="line"><span class="comment">// =&gt; [1, 1, 1]</span></span><br><span class="line"></span><br><span class="line">_.range(<span class="number">0</span>);</span><br><span class="line"><span class="comment">// =&gt; []</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>原生方法：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [...new <span class="built_in">Array</span>(<span class="number">100</span>).keys()];</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [0, 1, 2, ... 99]</span></span><br></pre></td></tr></table></figure>
+<h3 id="枚举渲染"><a href="#枚举渲染" class="headerlink" title="枚举渲染"></a>枚举渲染</h3><figure class="highlight jsx"><figcaption><span>harmony</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Loading</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; loadingText, LOADING_STATUS, loadingStatus, onRetry &#125; = props;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;View className=<span class="string">"loading-status"</span>&gt;</span><br><span class="line">      &#123;</span><br><span class="line">        &#123;</span><br><span class="line">          loading: loadingText,</span><br><span class="line">          fail: <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">onClick</span>=<span class="string">&#123;onRetry&#125;</span>&gt;</span> 加载失败, 点击重试 <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span>,</span><br><span class="line">          <span class="string">"no-more"</span>: <span class="string">"没有更多了"</span></span><br><span class="line">        &#125;[</span><br><span class="line">          loadingStatus</span><br><span class="line">        ] <span class="comment">/** loadingStatus 是 `loading`、`fail`、`no-more`  其中一种状态 **/</span></span><br><span class="line">      &#125;</span><br><span class="line">    &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="before-after"><a href="#before-after" class="headerlink" title="before/after"></a>before/after</h3><ul>
+<li><p><code>_.after(n, func)</code></p>
+<p>before 的反向函数;此方法创建一个函数，当他被调用 n 或更多次之后将马上触发 func 。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> saves = [<span class="string">"profile"</span>, <span class="string">"settings"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> done = _.after(saves.length, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"done saving!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">_.forEach(saves, <span class="function"><span class="keyword">function</span>(<span class="params">type</span>) </span>&#123;</span><br><span class="line">  asyncSave(&#123; <span class="attr">type</span>: type, <span class="attr">complete</span>: done &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// =&gt; Logs 'done saving!' after the two async saves have completed.</span></span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><p><code>_.before(n, func)</code> 超过多少次不再调用<code>func</code></p>
+<p>创建一个调用 func 的函数，通过 this 绑定和创建函数的参数调用 func，调用次数不超过 n 次。 之后再调用这个函数，将返回一次最后调用 func 的结果。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jQuery(element).on(<span class="string">"click"</span>, _.before(<span class="number">5</span>, addContactToList));</span><br><span class="line"><span class="comment">// =&gt; allows adding up to 4 contacts to the list</span></span><br></pre></td></tr></table></figure>
+<h3 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h3><ul>
+<li><p><code>_.curry(func,[arity=func.length])</code></p>
+<ul>
+<li><p>参数：</p>
+<ul>
+<li><p><code>func</code>:用来柯里化的函数</p>
+</li>
+<li><p><code>[arity=func.length]</code>:需要提供给 func 的参数数量。</p>
+</li>
+</ul>
+</li>
+<li><p>返回值：返回新的柯里化函数</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b + c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> curried = _.curry(abc);</span><br><span class="line"></span><br><span class="line">curried(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>);</span><br><span class="line"><span class="comment">// =&gt; 6</span></span><br><span class="line"></span><br><span class="line">curried(<span class="number">1</span>, <span class="number">2</span>)(<span class="number">3</span>);</span><br><span class="line"><span class="comment">// =&gt; 6</span></span><br><span class="line"></span><br><span class="line">curried(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"><span class="comment">// =&gt; 6</span></span><br></pre></td></tr></table></figure>
+<h3 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h3><p>所谓防抖，就是指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间。<br>单反也有相似的概念，在拍照的时候手如果拿不稳晃的时候拍照一般手机是拍不出好照片的，因此智能手机是在你按一下时连续拍许多张， 能过合成手段，生成一张。翻译成 JS 就是，事件内的 N 个动作会变忽略，只有事件后<code>由程序触发</code>的动作有效。</p>
+<ul>
+<li><p><code>_.debounce(func, [wait=0], [options={}])</code></p>
+<p>debounced（防抖动）函数提供一个 <code>cancel</code> 方法取消延迟的函数调用以及 <code>flush</code> 方法立即调用</p>
+<ul>
+<li>参数：<ul>
+<li><code>func (Function)</code>: 要防抖动的函数。</li>
+<li><code>[wait=0] (number)</code>: 需要延迟的毫秒数。</li>
+<li><code>[options={}] (Object)</code>: 选项对象。</li>
+<li><code>[options.leading=false] (boolean)</code>: 指定在延迟开始前调用。</li>
+<li><code>[options.maxWait] (number)</code>: 设置 func 允许被延迟的最大值。</li>
+<li><code>[options.trailing=true] (boolean)</code>: 指定在延迟结束后调用。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 避免窗口在变动时出现昂贵的计算开销。</span></span><br><span class="line">jQuery(<span class="built_in">window</span>).on(<span class="string">"resize"</span>, _.debounce(calculateLayout, <span class="number">150</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当点击时 `sendMail` 随后就被调用。</span></span><br><span class="line">jQuery(element).on(</span><br><span class="line">  <span class="string">"click"</span>,</span><br><span class="line">  _.debounce(sendMail, <span class="number">300</span>, &#123;</span><br><span class="line">    leading: <span class="literal">true</span>,</span><br><span class="line">    trailing: <span class="literal">false</span></span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 确保 `batchLog` 调用1次之后，1秒内会被触发。</span></span><br><span class="line"><span class="keyword">var</span> debounced = _.debounce(batchLog, <span class="number">250</span>, &#123; <span class="attr">maxWait</span>: <span class="number">1000</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> source = <span class="keyword">new</span> EventSource(<span class="string">"/stream"</span>);</span><br><span class="line">jQuery(source).on(<span class="string">"message"</span>, debounced);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取消一个 trailing 的防抖动调用</span></span><br><span class="line">jQuery(<span class="built_in">window</span>).on(<span class="string">"popstate"</span>, debounced.cancel);</span><br></pre></td></tr></table></figure>
+<h3 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h3><p>所谓节流，就是指连续触发事件但是在 n 秒中只执行一次函数。节流会稀释函数的执行频率。节流的概念可以想象一下水坝，你建了水坝在河道中，不能让水流动不了，你只能让水流慢些。换言之，你不能让用户的方法都不执行。如果这样干，就是 <code>debounce</code> 了。</p>
+<ul>
+<li><p><code>_.throttle(func, [wait=0], [options={}])</code></p>
+<p>该函数提供一个 cancel 方法取消延迟的函数调用以及 flush 方法立即调用</p>
+<ul>
+<li>参数：<ul>
+<li><code>func (Function)</code>: 要节流的函数。</li>
+<li><code>[wait=0](number)</code>: 需要节流的毫秒。</li>
+<li><code>[options={}](Object)</code>: 选项对象。</li>
+<li><code>[options.leading=true](boolean)</code>: 指定调用在节流开始前。</li>
+<li><code>[options.trailing=true](boolean)</code>: 指定调用在节流结束后。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 避免在滚动时过分的更新定位</span></span><br><span class="line">jQuery(<span class="built_in">window</span>).on(<span class="string">"scroll"</span>, _.throttle(updatePosition, <span class="number">100</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 点击后就调用 `renewToken`，但5分钟内超过1次。</span></span><br><span class="line"><span class="keyword">var</span> throttled = _.throttle(renewToken, <span class="number">300000</span>, &#123; <span class="attr">trailing</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">jQuery(element).on(<span class="string">"click"</span>, throttled);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取消一个 trailing 的节流调用。</span></span><br><span class="line">jQuery(<span class="built_in">window</span>).on(<span class="string">"popstate"</span>, throttled.cancel);</span><br></pre></td></tr></table></figure>
+<h3 id="once"><a href="#once" class="headerlink" title="once"></a>once</h3><p>创建一个只能调用 func 一次的函数。 重复调用返回第一次调用的结果。</p>
+<ul>
+<li><code>_.once(func)</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> initialize = _.once(createApplication);</span><br><span class="line">initialize();</span><br><span class="line">initialize();</span><br><span class="line"><span class="comment">// `initialize` 只能调用 `createApplication` 一次。</span></span><br></pre></td></tr></table></figure>
+<h3 id="delay"><a href="#delay" class="headerlink" title="delay"></a>delay</h3><ul>
+<li><code>_.delay(func, wait, [args])</code></li>
+</ul>
+<p>延迟 wait 毫秒后调用 func。 调用时，任何附加的参数会传给 func。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">_.delay(</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(text);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="number">1000</span>,</span><br><span class="line">  <span class="string">"later"</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">// =&gt; 一秒后输出 'later'。</span></span><br></pre></td></tr></table></figure>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><ul>
+<li><p><code>_.cloneDeep(value)</code></p>
+<p>返回深拷贝后的值</p>
+</li>
+</ul>
+<h3 id="isEmpty"><a href="#isEmpty" class="headerlink" title="isEmpty"></a>isEmpty</h3><ul>
+<li><code>_.isEmpty(value)</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">_.isEmpty([]);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">_.isEmpty(&#123;&#125;);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">_.isEmpty(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">_.isEmpty(<span class="literal">true</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">_.isEmpty(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">_.isEmpty([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br><span class="line"></span><br><span class="line">_.isEmpty(&#123; <span class="attr">a</span>: <span class="number">1</span> &#125;);</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br></pre></td></tr></table></figure>
+<h3 id="isEqual"><a href="#isEqual" class="headerlink" title="isEqual"></a>isEqual</h3><ul>
+<li><p><code>_.isEqual(value, other)</code></p>
+<p>执行深比较来确定两者的值是否相等。如果 两个值完全相同，那么返回 true，否则返回 false。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> other = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;;</span><br><span class="line"></span><br><span class="line">_.isEqual(object, other);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">object === other;</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br></pre></td></tr></table></figure>
+<p>###</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>文章标题: </span>
+      <a href="http://www.tiankai.party/posts/51993/">整理一些常用的lodash工具函数</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>发表时间: </span>
+      <span>
+        2019-07-11, 14:07:56
+      </span>
+    </p>
+    <p class="copyright-item">
+      <span>最后更新: </span>
+      <span>
+        2019-10-24, 14:10:31
+      </span>
+    </p>
+
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/51993/">http://www.tiankai.party/posts/51993/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/lodash/">lodash</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/43216/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">安装双系统Deepin教程</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/58614/">
+        <span class="next-text nav-default">如何写出漂亮的js代码</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+  
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
