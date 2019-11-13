@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="typeScript查漏补缺">
+
+
+
+
+  <meta name="keywords" content="React,React Native,微信小程序,Webpack,Javascript">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/4914/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> typeScript查漏补缺 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+      <a href="/comments">
+        <li class="mobile-menu-item">
+          
+          
+            留言板
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/comments">
+            
+            
+              留言板
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+<a href="https://github.com/tiakia"><img style="position:fixed;top:0;right:0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          typeScript查漏补缺
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+        2019-10-11
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/typeScript/">typeScript</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          Count: 1.9k 字
+        </span>
+        <span class="post-times">
+          Time: 8 分钟
+        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/4914/" -->
+        <!--      data-title="typeScript查漏补缺" -->
+        <!--      id="/posts/4914/" -->
+        <!--      data-flag-title="typeScript查漏补缺"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#type-和-interface-有什么区别"><span class="toc-text">type 和 interface 有什么区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相同点"><span class="toc-text">相同点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不同点"><span class="toc-text">不同点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ts-中的泛型"><span class="toc-text">ts 中的泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型函数"><span class="toc-text">泛型函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型接口"><span class="toc-text">泛型接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型类"><span class="toc-text">泛型类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型约束"><span class="toc-text">泛型约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用约束检查对象的属性"><span class="toc-text">使用约束检查对象的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#never-类型"><span class="toc-text">never 类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#返回非-never-类型"><span class="toc-text">返回非 never 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#never-类型处理错误"><span class="toc-text">never 类型处理错误</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>今天群组讨论的时候，发现了 typeScript 有很多功能不是很清楚，所以查找了些资料，这里整理一下：</p>
+<ol>
+<li><code>ts</code> 中的 <code>type</code> 和 <code>interface</code> 有什么区别</li>
+<li><code>ts</code> 中的泛型使用</li>
+<li><code>never</code> 类型的使用</li>
+</ol>
+<a id="more"></a>
+<h2 id="type-和-interface-有什么区别"><a href="#type-和-interface-有什么区别" class="headerlink" title="type 和 interface 有什么区别"></a><code>type</code> 和 <code>interface</code> 有什么区别</h2><h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><blockquote>
+<p>都可以描述一个对象或者函数</p>
+</blockquote>
+<ul>
+<li>interface</li>
+</ul>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> User &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  age: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> SetUser &#123;</span><br><span class="line">  (name: <span class="built_in">string</span>, age: <span class="built_in">number</span>): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>type</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User = &#123; name: <span class="built_in">string</span>; age: <span class="built_in">number</span> &#125;;</span><br><span class="line"><span class="keyword">type</span> SetUser = <span class="function">(<span class="params">name: <span class="built_in">string</span>, age: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">void</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>都允许扩展</p>
+</blockquote>
+<p><code>interface</code>和<code>type</code>都可以扩展，并且俩者之间可以相互<code>extends</code></p>
+<ul>
+<li>interface extends interface</li>
+</ul>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Name &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> User <span class="keyword">extends</span> Name &#123;</span><br><span class="line">  age: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>type extends type</li>
+</ul>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Name = &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">type</span> User = Name &amp; &#123; age: <span class="built_in">number</span> &#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>interface extends type</li>
+</ul>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Name = &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">interface</span> User <span class="keyword">extends</span> Name &#123;</span><br><span class="line">  age: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>type extends interface</li>
+</ul>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Name &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> User = Name &amp; &#123;</span><br><span class="line">  age: <span class="built_in">number</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><blockquote>
+<p><code>type</code>可以而<code>interface</code>不行</p>
+</blockquote>
+<ul>
+<li><code>type</code>可以声明基本类型别名、联合类型，元组等类型</li>
+</ul>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本类型别名</span></span><br><span class="line"><span class="keyword">type</span> Name = <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明联合类型</span></span><br><span class="line"><span class="keyword">interface</span> Dog &#123;</span><br><span class="line">  wong();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> Cat &#123;</span><br><span class="line">  miao();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Pet = Dog | Cat;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体定义数组每个位置的类型</span></span><br><span class="line"><span class="keyword">type</span> PetList = [Dog, Cat];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>type</code>语句中还可以使用<code>typeof</code>获取实例的类型进行赋值</li>
+</ul>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当你想获取一个变量的类型时，用typeof</span></span><br><span class="line"><span class="keyword">let</span> div = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line"><span class="keyword">let</span> B = <span class="keyword">typeof</span> div;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其他骚操作</li>
+</ul>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> StringOrNumber = <span class="built_in">string</span> | <span class="built_in">number</span>;</span><br><span class="line"><span class="keyword">type</span> Text = <span class="built_in">string</span> | &#123; text: <span class="built_in">string</span> &#125;;</span><br><span class="line"><span class="keyword">type</span> NameLookup = Dictionary&lt;<span class="built_in">string</span>, Person&gt;;</span><br><span class="line"><span class="keyword">type</span> Callback&lt;T&gt; = <span class="function">(<span class="params">data: T</span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line"><span class="keyword">type</span> Pair&lt;T&gt; = [T, T];</span><br><span class="line"><span class="keyword">type</span> Coordinates = Pair&lt;<span class="built_in">number</span>&gt;;</span><br><span class="line"><span class="keyword">type</span> Tree&lt;T&gt; = T | &#123; left: Tree&lt;T&gt;; right: Tree&lt;T&gt; &#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>interface</code>可以而<code>type</code>不行</p>
+</blockquote>
+<ul>
+<li><code>interface</code>可以声明合并</li>
+</ul>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> User &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  age: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> User &#123;</span><br><span class="line">  sex: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* User &#123;</span></span><br><span class="line"><span class="comment">*   name: string;</span></span><br><span class="line"><span class="comment">*   age: number;</span></span><br><span class="line"><span class="comment">*   sex: string;</span></span><br><span class="line"><span class="comment">* &#125;</span></span><br><span class="line"><span class="comment">* */</span></span><br></pre></td></tr></table></figure>
+<p>一般来说，如果不清楚什么时候用 <code>interface/type</code>，能用 <code>interface</code> 实现，就用 <code>interface</code> , 如果不能就用 <code>type</code> 。</p>
+<h2 id="ts-中的泛型"><a href="#ts-中的泛型" class="headerlink" title="ts 中的泛型"></a>ts 中的泛型</h2><p>通俗理解：泛型就是解决 类 接口 方法的复用性、以及对不特定数据类型的支持(类型校验)</p>
+<h3 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h3><p>如果一个函数既可以返回<code>number</code>又可以返回<code>string</code>类型，我们在规定函数类型的时候，可能会使用<code>any</code>类型，但是这种是不确定的，函数参数和返回类型都不确定，这个时候我们就可以使用泛型来解决这个问题。</p>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只能返回 string 类型</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">value: <span class="built_in">string</span></span>): <span class="title">string</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 同时支持返回string和number，代码冗余</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData1</span>(<span class="params">value: <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData2</span>(<span class="params">value: <span class="built_in">string</span></span>): <span class="title">string</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以使用泛型来解决这个问题：</p>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>&lt;<span class="title">T</span>&gt;(<span class="params">value: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回 number</span></span><br><span class="line"><span class="keyword">const</span> getNumData = getData&lt;<span class="built_in">number</span>&gt;(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// 返回 string</span></span><br><span class="line"><span class="keyword">const</span> getStrData = getData&lt;<span class="built_in">string</span>&gt;(<span class="string">"1"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h3><figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> ConfigFn&lt;T&gt; &#123;</span><br><span class="line">  (value: T): T;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>&lt;<span class="title">T</span>&gt;(<span class="params">value: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> myGetData: ConfigFn&lt;<span class="built_in">string</span>&gt; = getData;</span><br><span class="line">myGetData(<span class="string">"1"</span>); <span class="comment">// 正确</span></span><br><span class="line"><span class="comment">// myGetData(1); // 错误</span></span><br></pre></td></tr></table></figure>
+<h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><p>在<code>react</code>中可以看到我们运用泛型类的例子。</p>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">type</span> Props = &#123;</span><br><span class="line">  className?: <span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">type</span> State = &#123;</span><br><span class="line">  current?: <span class="built_in">number</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> MyComponent <span class="keyword">extends</span> React.Component&lt;Props, State&gt; &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">props: Props</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      current: <span class="number">1</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取最小值的例子：</p>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> GetMin&lt;T&gt; &#123;</span><br><span class="line">  <span class="keyword">public</span> args: T[];</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">args: T[]</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.args = args;</span><br><span class="line">  &#125;</span><br><span class="line">  add(ele: T) &#123;</span><br><span class="line">    <span class="keyword">this</span>.args.push(ele);</span><br><span class="line">  &#125;</span><br><span class="line">  min(): T &#123;</span><br><span class="line">    <span class="keyword">let</span> min: T = <span class="keyword">this</span>.args[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">this</span>.args.forEach(<span class="function">(<span class="params">val: T</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (val &lt; min) &#123;</span><br><span class="line">        min = val;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Number</span></span><br><span class="line"><span class="keyword">const</span> getMin1 = <span class="keyword">new</span> GetMin&lt;<span class="built_in">number</span>&gt;([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line">getMin1.add(<span class="number">4</span>);</span><br><span class="line"><span class="keyword">const</span> min1 = getMin1.min();</span><br><span class="line"><span class="built_in">console</span>.log(min1); <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// String</span></span><br><span class="line"><span class="keyword">const</span> getMin2 = <span class="keyword">new</span> GetMin&lt;<span class="built_in">string</span>&gt;([<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>]);</span><br><span class="line">getMin2.add(<span class="string">"d"</span>);</span><br><span class="line"><span class="keyword">const</span> min2 = getMin2.min();</span><br><span class="line"><span class="built_in">console</span>.log(min2); <span class="comment">// a</span></span><br></pre></td></tr></table></figure>
+<h3 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h3><p>简而言之就是限制泛型的类型。<br>一个很好的例子是处理字符串或者数组时，我们假设<code>length</code>属性是可用的。</p>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// this will cause an error</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(arg.length);</span><br><span class="line">  <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这种情况下，编译器不会知道 <code>T</code> 确实有<code>.length</code>属性，特别是在任何类型都可以分配给<code>T</code>的情况下。我们需要做的是将类型变量扩展到一个包含所需属性的接口。大概是这样：</p>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Length &#123;</span><br><span class="line">  length: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>&lt;<span class="title">T</span> <span class="title">extends</span> <span class="title">Length</span>&gt;(<span class="params">arg: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="comment">// length property can now be called</span></span><br><span class="line">  <span class="built_in">console</span>.log(arg.length);</span><br><span class="line">  <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在尖括号内使用<code>extends</code>关键字加上我们要扩展的类型来约束 <code>T</code>。本质上，我们是在告诉编译器，我们可以支持在<code>Length</code>内实现属性的任何类型。<br>现在，当我们使用不支持<code>.length</code> 类型的函数时，编译器会通知我们。不仅如此，<code>.length</code> 现在可以识别并用于实现属性的类型。</p>
+<p>注意:我们还可以通过用逗号分隔约束来扩展多个类型。举个例子，<code>&lt;T extends Length, Type2, Type3&gt;</code>.</p>
+<h3 id="使用约束检查对象的属性"><a href="#使用约束检查对象的属性" class="headerlink" title="使用约束检查对象的属性"></a>使用约束检查对象的属性</h3><p>约束的一个很好的用例是通过使用另一段语法:<code>extends keyof</code>来查验对象的属性。以下示例检验了我们传入函数的对象是否存在这个属性:</p>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getProperty</span>&lt;<span class="title">T</span>, <span class="title">K</span> <span class="title">extends</span> <span class="title">keyof</span> <span class="title">T</span>&gt;(<span class="params">obj: T, key: K</span>): <span class="title">T</span>[<span class="title">K</span>] </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> obj[key];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第一个参数是我们获取值的对象，第二个参数是该值的属性。返回类型描述了与<code>T[K]</code>的这种关系。</p>
+<p>我们的泛型在这里所做的是确保对象的属性的存在，这样运行时就不会发生错误。这是一个类型安全的解决方案，而不是简单地调用<code>let value = obj[key];</code>之类的东西。</p>
+<h2 id="never-类型"><a href="#never-类型" class="headerlink" title="never 类型"></a>never 类型</h2><h3 id="返回非-never-类型"><a href="#返回非-never-类型" class="headerlink" title="返回非 never 类型"></a>返回非 never 类型</h3><p>题目是这样的：</p>
+<p>如何在<code>{ a: number; b: never }</code>中获取非<code>never</code>类型，也就是<code>{a: number}</code></p>
+<p>解决这个问题前我们先来学习来个知识点：</p>
+<blockquote>
+<p>Pick&lt;T,K&gt;</p>
+</blockquote>
+<p>从 T 中提取出键为 K 的类型</p>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Todo &#123;</span><br><span class="line">  title: <span class="built_in">string</span>;</span><br><span class="line">  description: <span class="built_in">string</span>;</span><br><span class="line">  completed: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> TodoPreview = Pick&lt;Todo, <span class="string">"title"</span> | <span class="string">"completed"</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> todo: TodoPreview = &#123;</span><br><span class="line">  title: <span class="string">"Clean room"</span>,</span><br><span class="line">  completed: <span class="literal">false</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>never | number 返回什么？</p>
+</blockquote>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> A = never | <span class="built_in">number</span>; <span class="comment">// number</span></span><br><span class="line"><span class="keyword">type</span> D = never | <span class="built_in">string</span> | <span class="built_in">number</span>; <span class="comment">// string | number</span></span><br></pre></td></tr></table></figure>
+<p>那么问题的解决方案就是这样：</p>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> NoNever&lt;T&gt; = Pick&lt;</span><br><span class="line">  T,</span><br><span class="line">  &#123; [K <span class="keyword">in</span> keyof T]: T[K] <span class="keyword">extends</span> never ? never : K &#125;[keyof T]</span><br><span class="line">&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> C = &#123; a: <span class="built_in">number</span>; b: never &#125;;</span><br><span class="line"><span class="keyword">type</span> B = NoNever&lt;C&gt;;</span><br><span class="line"><span class="comment">// 解析：</span></span><br><span class="line"><span class="keyword">type</span> Ex&lt;T&gt; = &#123; [K <span class="keyword">in</span> keyof T]: T[K] <span class="keyword">extends</span> never ? never : K &#125;;</span><br><span class="line"><span class="keyword">type</span> Test = Ex&lt;C&gt;; <span class="comment">// &#123; a: "a", b: never&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> EX1&lt;T&gt; = Ex&lt;T&gt;[keyof T];</span><br><span class="line"><span class="keyword">type</span> Test1 = EX1&lt;C&gt;; <span class="comment">// "a"</span></span><br></pre></td></tr></table></figure>
+<h3 id="never-类型处理错误"><a href="#never-类型处理错误" class="headerlink" title="never 类型处理错误"></a>never 类型处理错误</h3><p>举个具体点的例子，当你有一个 union type:</p>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Foo &#123;</span><br><span class="line">  <span class="keyword">type</span>: <span class="string">"foo"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Bar &#123;</span><br><span class="line">  <span class="keyword">type</span>: <span class="string">"bar"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> All = Foo | Bar;</span><br></pre></td></tr></table></figure>
+<p>在 <code>switch</code> 当中判断 <code>type</code>，<code>TS</code> 是可以收窄类型的 (discriminated union)：</p>
+<figure class="highlight typescript"><figcaption><span>jsx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleValue</span>(<span class="params">val: All</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (val.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"foo"</span>:</span><br><span class="line">      <span class="comment">// 这里 val 被收窄为 Foo</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"bar"</span>:</span><br><span class="line">      <span class="comment">// val 在这里是 Bar</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="comment">// val 在这里是 never</span></span><br><span class="line">      <span class="keyword">const</span> exhaustiveCheck: never = val;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意在 <code>default</code> 里面我们把被收窄为 <code>never</code> 的 <code>val</code> 赋值给一个显式声明为 <code>never</code> 的变量。如果一切逻辑正确，那么这里应该能够编译通过。<br>但是假如后来有一天你的同事改了 All 的类型：<code>type All = Foo | Bar | Baz</code> 然而他忘记了在 <code>handleValue</code> 里面加上针对 <code>Baz</code> 的处理逻辑，<br>这个时候在 <code>default branch</code> 里面 <code>val</code> 会被收窄为 <code>Baz</code>，导致无法赋值给 <code>never</code>，产生一个编译错误。所以通过这个办法，你可以确保 <code>handleValue</code> 总是穷尽 (exhaust) 了所有 All 的可能类型。</p>
+<blockquote>
+<p>参考链接</p>
+</blockquote>
+<ul>
+<li><a href="https://www.jb51.net/article/163299.htm" target="_blank" rel="noopener">Typescript 中的 interface 和 type 到底有什么区别详解</a></li>
+<li><a href="https://blog.csdn.net/jasnet_u/article/details/81144199" target="_blank" rel="noopener">typescript(九)–ts 中泛型、泛型方法、泛型类、泛型接口</a></li>
+<li><a href="https://www.cnblogs.com/longailong/p/10608913.html" target="_blank" rel="noopener">typescript 中的泛型</a></li>
+<li><a href="https://blog.csdn.net/songfens/article/details/98114588" target="_blank" rel="noopener">关于 TypeScript 泛型的解释</a></li>
+<li><a href="https://www.zhihu.com/question/354601204/answer/888551021" target="_blank" rel="noopener">尤雨溪 never 类型处理错误</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>文章标题: </span>
+      <a href="http://www.tiankai.party/posts/4914/">typeScript查漏补缺</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>发表时间: </span>
+      <span>
+        2019-10-11, 10:10:38
+      </span>
+    </p>
+    <p class="copyright-item">
+      <span>最后更新: </span>
+      <span>
+        2019-11-12, 09:11:57
+      </span>
+    </p>
+
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/4914/">http://www.tiankai.party/posts/4914/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/ts/">ts</a>
+            
+              <a href="/tags/never/">never</a>
+            
+              <a href="/tags/泛型/">泛型</a>
+            
+              <a href="/tags/interface/">interface</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/60639/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">使用高德地图API</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/46869/">
+        <span class="next-text nav-default">10月需要记住的日子</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+  
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
