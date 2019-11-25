@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="code-split的几种方式">
+
+
+
+
+  <meta name="keywords" content="React,React Native,微信小程序,Webpack,Javascript">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/16200/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> code-split的几种方式 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+      <a href="/comments">
+        <li class="mobile-menu-item">
+          
+          
+            留言板
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/comments">
+            
+            
+              留言板
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+<a href="https://github.com/tiakia"><img style="position:fixed;top:0;right:0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          code-split的几种方式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+        2019-11-20
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/react/">react</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          Count: 965 字
+        </span>
+        <span class="post-times">
+          Time: 4 分钟
+        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/16200/" -->
+        <!--      data-title="code-split的几种方式" -->
+        <!--      id="/posts/16200/" -->
+        <!--      data-flag-title="code-split的几种方式"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import"><span class="toc-text">import()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-an-Async-Component"><span class="toc-text">create an Async Component</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#react-loadable"><span class="toc-text">react-loadable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-lazy"><span class="toc-text">React.lazy()</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>我们在打包项目的时候有时候会遇到打包后的体积过大的问题，这时候会提醒我们使用<br><code>code-split</code>来分割我们的代码，今天我们就来认识一下在react中常见的我们使用的代码分割的<br>方式。<br><a id="more"></a></p>
+<h2 id="import"><a href="#import" class="headerlink" title="import()"></a>import()</h2><p><code>import()</code>允许我们按需的导入组件，只有在组件要加载的时候才会导入，配合<br><code>react-router</code>可以实现我们需要的<code>code-split</code>.</p>
+<p>我们先来看一下，不使用代码分割的<code>react-router</code>代码是怎样的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入组件</span></span><br><span class="line"><span class="keyword">import</span> Home form <span class="string">'./containers/Home'</span>;</span><br><span class="line"><span class="keyword">import</span> Posts <span class="keyword">from</span> <span class="string">'./containers/Posts'</span>;</span><br><span class="line"><span class="keyword">import</span> NotFound <span class="keyword">from</span> <span class="string">'./containers/NotFound'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; </span><br><span class="line">&lt;Switch&gt;</span><br><span class="line">  &lt;Route path=<span class="string">"/"</span> exact component=&#123;Home&#125; /&gt;</span><br><span class="line">  &lt;Route path=<span class="string">"/posts/:id"</span> component=&#123;Posts&#125; /&gt;</span><br><span class="line">  &lt;Route component=&#123;NotFound&#125; /&gt;</span><br><span class="line">&lt;<span class="regexp">/Switch&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>react-router</code>的<code>Switch</code>是只有在路由匹配到后才会加载对应的组件,然而我们是在一开<br>始的时候就导入了所有的组件，当我们的项目很大的时候，这种加载方式会使我们的页面变<br>的很臃肿。所以我们需要使用代码分割，只有在组件要加载的时候才会导入它。</p>
+<h3 id="create-an-Async-Component"><a href="#create-an-Async-Component" class="headerlink" title="create an Async Component"></a>create an Async Component</h3><ul>
+<li><code>src/components/AsyncComponent.js</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">AsyncComponent</span>(<span class="params">importComponent</span>) </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">AsyncComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">      <span class="keyword">super</span>(props);</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">this</span>.state = &#123;</span><br><span class="line">        component: <span class="literal">null</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">async</span> componentDidMount() &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; <span class="attr">default</span>: component &#125; = <span class="keyword">await</span> importComponent();</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        component</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">const</span> C = <span class="keyword">this</span>.state.component;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">return</span> C ? <span class="xml"><span class="tag">&lt;<span class="name">C</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span> : null;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">  </span></span><br><span class="line"><span class="xml">  return AsyncComponent;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我们创建了一个高阶组件<code>AsyncComponent</code>，它做了这几件事：</p>
+<ul>
+<li>接受一个组件作为参数</li>
+<li>在<code>componentDidMount</code>中，获得传入的组件，设置到<code>state</code>中</li>
+<li><code>render</code>的时候，如果<code>state</code>已经被设置了，那么展示设置的组件，如果没有不展示。</li>
+<li>这样简单的实现了一个按需加载组件</li>
+</ul>
+<p>然后我们使用我们封装的这个高阶组件来重新导入一下上面的组件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Route, Switch &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> AsyncComponent <span class="keyword">from</span> <span class="string">'src/components/AsyncComponent'</span>;</span><br><span class="line">imoprt AppliedRoute <span class="keyword">from</span> <span class="string">'./components/AppliedRoute'</span>;</span><br><span class="line"><span class="keyword">import</span> AuthenticatedRoute <span class="keyword">from</span> <span class="string">'./components/AuthenticatedRoute'</span>;</span><br><span class="line"><span class="keyword">import</span> UnauthenticatedRoute <span class="keyword">from</span> <span class="string">'./components/UnauthenticatedRoute'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> AsyncHome = AsyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> imoprt(<span class="string">'./containers/Home'</span>));</span><br><span class="line"><span class="keyword">const</span> AsyncLogin = AsyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./containers/Login'</span>));</span><br><span class="line"><span class="keyword">const</span> AsyncNotes = AsyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./containers/Notes'</span>));</span><br><span class="line"><span class="keyword">const</span> AsyncSignup = AsyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./containers/Signup'</span>));</span><br><span class="line"><span class="keyword">const</span> AsyncNewNote = AsyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./containers/NewNote'</span>));</span><br><span class="line"><span class="keyword">const</span> AsyncNotFound = AsyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./containers/NotFound'</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (&#123; childProps &#125;) =&gt; </span><br><span class="line">&lt;Switch&gt;</span><br><span class="line">  &lt;AppliedRoute </span><br><span class="line">     path=<span class="string">"/"</span></span><br><span class="line">     exact</span><br><span class="line">     component=&#123;AsyncHome&#125;</span><br><span class="line">     props=&#123;childProps&#125;</span><br><span class="line">  /&gt;</span><br><span class="line">  &lt;UnauthenticatedRoute</span><br><span class="line">     path=<span class="string">"/login"</span></span><br><span class="line">     exact</span><br><span class="line">     component=&#123;AsyncLogin&#125;</span><br><span class="line">     props=&#123;childProps&#125;</span><br><span class="line">  /&gt;</span><br><span class="line">  &lt;UnauthenticatedRoute</span><br><span class="line">     path=<span class="string">"/signup"</span></span><br><span class="line">     exact</span><br><span class="line">     component=&#123;AsyncSignup&#125;</span><br><span class="line">     props=&#123;childProps&#125;</span><br><span class="line">  /&gt;</span><br><span class="line">  &lt;AuthenticatedRoute</span><br><span class="line">     path=<span class="string">"/notes/new"</span></span><br><span class="line">     exact</span><br><span class="line">     component=&#123;AsyncNewNote&#125;</span><br><span class="line">     props=&#123;childProps&#125;</span><br><span class="line">  /&gt;</span><br><span class="line">  &lt;AuthenticatedRoute</span><br><span class="line">     path=<span class="string">'/notes/:id'</span></span><br><span class="line">     exact</span><br><span class="line">     component=&#123;AsyncNotes&#125;</span><br><span class="line">     props=&#123;childProps&#125;</span><br><span class="line">  /&gt;</span><br><span class="line">  &lt;Route component=&#123;NotFound&#125; /&gt;</span><br><span class="line">&lt;<span class="regexp">/Switch&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们的代码只是在每次引入的时候用<code>AsyncComponent</code>包裹了一下，现在已经是实现了<br><code>code-split</code>了，只有在路由匹配到的时候才会加载对应的组件。</p>
+<h2 id="react-loadable"><a href="#react-loadable" class="headerlink" title="react-loadable"></a>react-loadable</h2><p>实现组件按需加载，社区有成熟的架子，我们可以使用<code>react-loadable</code>来实现上面的功能。</p>
+<ul>
+<li>安装 </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save react-loadable</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> LoadingComponent <span class="keyword">from</span> <span class="string">'src/components/LoadingComponent'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> AsyncHome = Loadable(&#123;</span><br><span class="line">  loader: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">"./containers/Home"</span>),</span><br><span class="line">  loading: LoadingComponent</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在组件加载前，界面会显示我们自定义的<code>loading</code>页面。其他的<code>API</code>配置可以查看<br><a href="https://github.com/jamiebuilds/react-loadable" target="_blank" rel="noopener"><code>react-loadable</code>的官网页面</a></p>
+<h2 id="React-lazy"><a href="#React-lazy" class="headerlink" title="React.lazy()"></a>React.lazy()</h2><p><code>React</code>现在已经是实现了<code>code-split</code>，我们可以通过<code>Suspense</code>和<code>React.lazy()</code>来实<br>现和上面一样的功能，这俩个是成对出现的，<code>loading</code>页面要在<code>Suspense</code>中设置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cosnt AsynHome = React.lazy(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./containers/Home'</span>));</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">       &lt;Suspense fallback=&#123;&lt;div&gt;loading...&lt;<span class="regexp">/div&gt;&#125;&gt;</span></span><br><span class="line"><span class="regexp">         &lt;AsynHome/</span>&gt;</span><br><span class="line">       &lt;<span class="regexp">/Suspense&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>React.lazy()</code>目前只适用于默认导出的模块。如果要对不是默认导出的模块使用的话可以<br>参考这个：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ManyComponent.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> MyComponent = <span class="comment">/* ... */</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> MyUnusedConponent = <span class="comment">/* ... */</span>;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MyComponent.js</span></span><br><span class="line"><span class="keyword">export</span> &#123; MyComponent <span class="keyword">as</span> <span class="keyword">default</span> &#125; <span class="keyword">from</span> <span class="string">'./ManyComponents.js'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MyApp.js</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; lazy &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">const</span> Mycomponent  = lazy(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./MyComponent.js'</span>));</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>文章标题: </span>
+      <a href="http://www.tiankai.party/posts/16200/">code-split的几种方式</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>发表时间: </span>
+      <span>
+        2019-11-20, 12:11:06
+      </span>
+    </p>
+    <p class="copyright-item">
+      <span>最后更新: </span>
+      <span>
+        2019-11-25, 14:11:18
+      </span>
+    </p>
+
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/16200/">http://www.tiankai.party/posts/16200/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/code-split/">code-split</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/posts/60639/">
+        <span class="next-text nav-default">使用高德地图API</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+  
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
