@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Nodejs之module.exports和exports的区别">
+  <meta name="description" content="试验一个npm包的生成">
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.tiankai.party/posts/4453/">
+<link rel="canonical" href="http://www.tiankai.party/posts/12567/">
 
 
 
@@ -100,7 +100,7 @@
   window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
 </script>
 
-    <title> Nodejs之module.exports和exports的区别 - Tiankai's Blog </title>
+    <title> 试验一个npm包的生成 - Tiankai's Blog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -254,13 +254,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Nodejs之module.exports和exports的区别
+          试验一个npm包的生成
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-        2018-04-11
+        2019-12-05
         </span>
         
           <span class="post-category">
@@ -270,16 +270,16 @@
           </span>
         
         <span class="post-counts">
-          Count: 449 字
+          Count: 505 字
         </span>
         <span class="post-times">
-          Time: 1 分钟
+          Time: 2 分钟
         </span>
         <!-- <span class="post-visits leancloud-visitors" -->
-        <!--      data-url="/posts/4453/" -->
-        <!--      data-title="Nodejs之module.exports和exports的区别" -->
-        <!--      id="/posts/4453/" -->
-        <!--      data-flag-title="Nodejs之module.exports和exports的区别"> -->
+        <!--      data-url="/posts/12567/" -->
+        <!--      data-title="试验一个npm包的生成" -->
+        <!--      id="/posts/12567/" -->
+        <!--      data-flag-title="试验一个npm包的生成"> -->
         <!--   阅读次数 0 -->
         <!--    <i class="leancloud-visitors-count"></i> -->
         <!-- </span> -->
@@ -291,7 +291,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#module-exports-View"><span class="toc-text">module.exports = View</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#发布npm包"><span class="toc-text">发布npm包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tk-one包"><span class="toc-text">tk-one包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-text">知识点</span></a></li></ol>
     </div>
   </div>
 
@@ -299,23 +299,52 @@
 
     <div class="post-content">
       
-        <p>刚开始看 node 被 module.exports 和 exports 给搞混了，在网上搜到一个很好的例子</p>
-<a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">num</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//&#123;num: 1&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//&#123;num: 1&#125;</span></span><br><span class="line"></span><br><span class="line">b.name = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//&#123;num: 2&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//&#123;num: 2&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = &#123; <span class="attr">num</span>: <span class="number">3</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//&#123;num: 2&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//&#123;num: 3&#125;</span></span><br></pre></td></tr></table></figure>
-<p><strong>解释</strong> a 是一个对象，b 是对 a 的引用，即 a 和 b 指向同一块内存，所以前两个输出一样。当对 b 作修改时，即 a 和 b 指向同一块内存地址的内容发生了改变，所以 a 也会体现出来，所以第三四个输出一样。当 b 被覆盖时，b 指向了一块新的内存，a 还是指向原来的内存，所以最后两个输出不一样。</p>
-<p>明白了上述例子后，我们只需要知道三点就知道 <code>exports</code> 和 <code>module.exports</code> 的区别了：</p>
-<ol>
-<li><code>module.exports</code> 初始值为一个空对象 {}</li>
-<li><code>exports</code> 是指向的 <code>module.exports</code> 的引用</li>
-<li><code>require()</code> 返回的是 <code>module.exports</code> 而不是 <code>exports</code></li>
-</ol>
-<p><code>exports</code> 是引用 <code>module.exports</code> 的值。<code>module.exports</code> 被改变的时候，<code>exports</code> 不会被改变，而模块导出的时候，真正导出的执行是 <code>module.exports</code>，而不是 <code>exports</code></p>
-<figure class="highlight javascript"><figcaption><span>foo.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123; <span class="attr">a</span>: <span class="number">2</span> &#125;;</span><br><span class="line">exports.a = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><figcaption><span>test.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="built_in">require</span>(<span class="string">"./foo.js"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(x.a); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<p><strong>exports 在 module.exports 被改变后，失效。</strong></p>
-<h4 id="module-exports-View"><a href="#module-exports-View" class="headerlink" title="module.exports = View"></a>module.exports = View</h4><p>导出的整个 View 对象，外面模块调用它的时候，能够调用 View 的所有方法。不过需要注意的是只有是 View 自己的方法才可以调用，如果是继承过来的则不能调用。</p>
-<figure class="highlight javascript"><figcaption><span>foo.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">View</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">View.prototype.test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"test"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">View.test1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"test1"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = View;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><figcaption><span>test.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="built_in">require</span>(<span class="string">"./foo.js"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(x.test); <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(x.test1); <span class="comment">//[Function]</span></span><br><span class="line">x.test1(); <span class="comment">//test1</span></span><br></pre></td></tr></table></figure>
+        <p>前段时间看到了一个把有道词典做成命令行的项目<a href="https://github.com/kenshinji/yddict" target="_blank" rel="noopener">yddict</a>,个人感觉挺有意思的，然后就研究了一下他的代码，萌生了也写一个自己的命令行项目，就产生这个<a href="https://github.com/tiakia/one" target="_blank" rel="noopener">one</a>项目，试验了一把如何发布<code>npm</code>包。<br><a id="more"></a></p>
+<h2 id="发布npm包"><a href="#发布npm包" class="headerlink" title="发布npm包"></a>发布npm包</h2><ul>
+<li>注册npm<br>要发布一个<code>npm</code>包首先要在<a href="https://www.npmjs.com/signup" target="_blank" rel="noopener">npmjs.com</a>注册账号。</li>
+<li>初始化 <code>npm init</code></li>
+<li>安装依赖包 <code>npm install &lt;package-name&gt;</code></li>
+<li><p>编写自己的代码</p>
+<ul>
+<li>在根目录新建<code>index.js</code>（这个要和<code>package.json</code>中的<code>main</code>字段一致），最后要将代码导出到这里。<figure class="highlight javascript"><figcaption><span>index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    message: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'This is my first npm package'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>发布<code>npm</code>包</p>
+<ul>
+<li><code>npm login</code> 登录在官网注册过的账号</li>
+<li><code>npm publish</code>发布（<code>package.json</code>的<code>name</code>字段为包名）</li>
+</ul>
+</li>
+<li>更新版本<ul>
+<li>更改<code>package.json</code>的<code>version</code>字段（1.0.0 =&gt; 1.0.1）</li>
+<li><code>npm publish</code>更新成功</li>
+</ul>
+</li>
+<li><p>测试</p>
+<ul>
+<li><p>安装</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;<span class="keyword">package</span>-name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hello <span class="keyword">from</span> <span class="string">'&lt;package-name&gt;'</span>;</span><br><span class="line">hello();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="tk-one包"><a href="#tk-one包" class="headerlink" title="tk-one包"></a>tk-one包</h2><p>如果是全局包的话有点不一样。需要在<code>package.json</code>中指定一个<code>bin</code>字段用于暴露全局使用的命令：<br><figure class="highlight javascript"><figcaption><span>package.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="string">"bin"</span>: &#123;</span><br><span class="line">    <span class="string">"one"</span>: <span class="string">"./index.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>然后在<code>index.js</code>文件的头部要加上这句话<br><figure class="highlight javascript"><figcaption><span>index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br></pre></td></tr></table></figure></p>
+<p>这样才能识别命令.<br>我已经发布为<code>npm</code>包了，可以试验一下。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">npm install -g tk-one</span><br><span class="line"><span class="comment"># 使用</span></span><br><span class="line">one</span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">npm uninstall -g tk-one</span><br></pre></td></tr></table></figure></p>
+<p>这个命令会将One当天的数据作为图片保存到D盘根目录。还参考了这个项目<a href="https://github.com/Vincedream/NodeMail" target="_blank" rel="noopener">NodeMail</a>用来爬取ONE网站的数据。有兴趣的可以去看看这俩个项目。</p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>这个用到的知识点有：</p>
+<ul>
+<li>nodejs爬取网站数据</li>
+<li>nodejs将数据返回给前端，或者写入文件中。</li>
+<li>使用canvas将数据绘制成图片转成base64码，通过nodejs保存在本地</li>
+<li>puppeteer截图保存图片</li>
+<li>ejs相关知识</li>
+</ul>
+<p>项目源码在这里可以自己下载下来研究：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/tiakia/one.git</span><br><span class="line">npm install</span><br><span class="line">node index.js</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -327,7 +356,7 @@
   <div class="post-copyright">
     <p class="copyright-item">
       <span>文章标题: </span>
-      <a href="http://www.tiankai.party/posts/4453/">Nodejs之module.exports和exports的区别</a>
+      <a href="http://www.tiankai.party/posts/12567/">试验一个npm包的生成</a>
     </p>
     <p class="copyright-item">
       <span>原文作者: </span>
@@ -336,19 +365,19 @@
     <p class="copyright-item">
       <span>发表时间: </span>
       <span>
-        2018-04-11, 10:04:44
+        2019-12-05, 09:12:21
       </span>
     </p>
     <p class="copyright-item">
       <span>最后更新: </span>
       <span>
-        2019-01-02, 17:01:48
+        2019-12-20, 20:12:23
       </span>
     </p>
 
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.tiankai.party/posts/4453/">http://www.tiankai.party/posts/4453/</a>
+      <a href="http://www.tiankai.party/posts/12567/">http://www.tiankai.party/posts/12567/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -385,7 +414,9 @@
         
           <div class="post-tags">
             
-              <a href="/tags/nodejs/">nodejs</a>
+              <a href="/tags/npm/">npm</a>
+            
+              <a href="/tags/node/">node</a>
             
           </div>
         
@@ -393,15 +424,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/posts/27167/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">异步编程值async-await</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
     
-    
-      <a class="next" href="/posts/38990/">
-        <span class="next-text nav-default">Genymotion启动模拟器问题集锦</span>
+      <a class="next" href="/posts/10356/">
+        <span class="next-text nav-default">postMessage实现跨域</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

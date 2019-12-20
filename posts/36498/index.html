@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Nodejs之module.exports和exports的区别">
+  <meta name="description" content="nodejs之利用buffer转换数据">
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.tiankai.party/posts/4453/">
+<link rel="canonical" href="http://www.tiankai.party/posts/36498/">
 
 
 
@@ -100,7 +100,7 @@
   window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
 </script>
 
-    <title> Nodejs之module.exports和exports的区别 - Tiankai's Blog </title>
+    <title> nodejs之利用buffer转换数据 - Tiankai's Blog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -254,13 +254,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Nodejs之module.exports和exports的区别
+          nodejs之利用buffer转换数据
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-        2018-04-11
+        2019-11-11
         </span>
         
           <span class="post-category">
@@ -270,16 +270,16 @@
           </span>
         
         <span class="post-counts">
-          Count: 449 字
+          Count: 543 字
         </span>
         <span class="post-times">
-          Time: 1 分钟
+          Time: 2 分钟
         </span>
         <!-- <span class="post-visits leancloud-visitors" -->
-        <!--      data-url="/posts/4453/" -->
-        <!--      data-title="Nodejs之module.exports和exports的区别" -->
-        <!--      id="/posts/4453/" -->
-        <!--      data-flag-title="Nodejs之module.exports和exports的区别"> -->
+        <!--      data-url="/posts/36498/" -->
+        <!--      data-title="nodejs之利用buffer转换数据" -->
+        <!--      id="/posts/36498/" -->
+        <!--      data-flag-title="nodejs之利用buffer转换数据"> -->
         <!--   阅读次数 0 -->
         <!--    <i class="leancloud-visitors-count"></i> -->
         <!-- </span> -->
@@ -291,7 +291,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#module-exports-View"><span class="toc-text">module.exports = View</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nodejs支持的字符编码"><span class="toc-text">Nodejs支持的字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据转换"><span class="toc-text">数据转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串转换为buffer"><span class="toc-text">字符串转换为buffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串转为base64"><span class="toc-text">字符串转为base64</span></a></li></ol>
     </div>
   </div>
 
@@ -299,23 +299,44 @@
 
     <div class="post-content">
       
-        <p>刚开始看 node 被 module.exports 和 exports 给搞混了，在网上搜到一个很好的例子</p>
-<a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">num</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//&#123;num: 1&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//&#123;num: 1&#125;</span></span><br><span class="line"></span><br><span class="line">b.name = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//&#123;num: 2&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//&#123;num: 2&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = &#123; <span class="attr">num</span>: <span class="number">3</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//&#123;num: 2&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//&#123;num: 3&#125;</span></span><br></pre></td></tr></table></figure>
-<p><strong>解释</strong> a 是一个对象，b 是对 a 的引用，即 a 和 b 指向同一块内存，所以前两个输出一样。当对 b 作修改时，即 a 和 b 指向同一块内存地址的内容发生了改变，所以 a 也会体现出来，所以第三四个输出一样。当 b 被覆盖时，b 指向了一块新的内存，a 还是指向原来的内存，所以最后两个输出不一样。</p>
-<p>明白了上述例子后，我们只需要知道三点就知道 <code>exports</code> 和 <code>module.exports</code> 的区别了：</p>
-<ol>
-<li><code>module.exports</code> 初始值为一个空对象 {}</li>
-<li><code>exports</code> 是指向的 <code>module.exports</code> 的引用</li>
-<li><code>require()</code> 返回的是 <code>module.exports</code> 而不是 <code>exports</code></li>
-</ol>
-<p><code>exports</code> 是引用 <code>module.exports</code> 的值。<code>module.exports</code> 被改变的时候，<code>exports</code> 不会被改变，而模块导出的时候，真正导出的执行是 <code>module.exports</code>，而不是 <code>exports</code></p>
-<figure class="highlight javascript"><figcaption><span>foo.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123; <span class="attr">a</span>: <span class="number">2</span> &#125;;</span><br><span class="line">exports.a = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><figcaption><span>test.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="built_in">require</span>(<span class="string">"./foo.js"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(x.a); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<p><strong>exports 在 module.exports 被改变后，失效。</strong></p>
-<h4 id="module-exports-View"><a href="#module-exports-View" class="headerlink" title="module.exports = View"></a>module.exports = View</h4><p>导出的整个 View 对象，外面模块调用它的时候，能够调用 View 的所有方法。不过需要注意的是只有是 View 自己的方法才可以调用，如果是继承过来的则不能调用。</p>
-<figure class="highlight javascript"><figcaption><span>foo.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">View</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">View.prototype.test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"test"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">View.test1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"test1"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = View;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><figcaption><span>test.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="built_in">require</span>(<span class="string">"./foo.js"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(x.test); <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(x.test1); <span class="comment">//[Function]</span></span><br><span class="line">x.test1(); <span class="comment">//test1</span></span><br></pre></td></tr></table></figure>
+        <p>Nodejs从8.0版本以后开始对buffer的声明有了区分，原来<code>new Buffer</code>的声明方式已经被废弃了，改为了单独的<code>Buffer.form()</code>,<code>Buffer.alloc()</code>,<code>Buffer.allocUnsafe()</code>。<br><a id="more"></a></p>
+<ul>
+<li><p><code>Buffer.from(array)</code>返回一个新的<code>Buffer</code>，其中包含提供的八位字节数的副本。</p>
+</li>
+<li><p><code>Buffer.from(arrayBuffer[, byteOffset [, length]])</code> 返回一个新的<code>Buffer</code>,它与给定的 <code>ArrayBuffer</code> 共享相同的已分配内存。</p>
+</li>
+<li><p><code>Buffer.from(buffer)</code> 返回一个新的<code>Buffer</code>,其中包含给定 <code>Buffer</code> 的内容的副本。</p>
+</li>
+<li><p><code>Buffer.from(string[, encoding])</code> 返回一个新的<code>Buffer</code>，其中包含提供的字符串副本。</p>
+</li>
+<li><p><code>Buffer.alloc(size[, fill [, encoding]])</code> 返回一个指定大小的新建的已初始化的<code>Buffer</code>.此方法比<code>Buffer.allocUnsafe(size)</code>慢，但能确保新建的<code>Buffer</code>实例永远不会包含可能敏感的旧数据。如果<code>size</code>不是数字，则将会跑出<code>TypeError</code></p>
+</li>
+<li><p><code>Buffer.allocUnsafe(size)</code> 和 <code>Buffer.allocUnsafeSlow(size)</code>分别返回一个指定大小的新建的未初始化的<code>Buffer</code>,由于<code>Buffer</code>是未初始化的，因此分配的内存片段可能包含敏感的旧数据。</p>
+</li>
+</ul>
+<p>今天我们用到的就是<code>Buffer.from()</code>，当字符串数据被存储入<code>Buffer</code>实例或从<code>Buffer</code>实例中被提取时，可以指定一个编码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> buf = Buffer.from(<span class="string">'hello world'</span>, <span class="string">'ascii'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(buf.toString(<span class="string">'hex'</span>));</span><br><span class="line"><span class="comment">// 打印: 68656c6c6f20776f726c64</span></span><br><span class="line"><span class="built_in">console</span>.log(buf.toString(<span class="string">'base64'</span>));</span><br><span class="line"><span class="comment">// 打印: aGVsbG8gd29ybGQ=</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Buffer.from(<span class="string">'fhqwhgads'</span>, <span class="string">'ascii'</span>));</span><br><span class="line"><span class="comment">// 打印: &lt;Buffer 66 68 71 77 68 67 61 64 73&gt;</span></span><br><span class="line"><span class="built_in">console</span>.log(Buffer.from(<span class="string">'fhqwhgads'</span>, <span class="string">'utf16le'</span>));</span><br><span class="line"><span class="comment">// 打印: &lt;Buffer 66 00 68 00 71 00 77 00 68 00 67 00 61 00 64 00 73 00&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Nodejs支持的字符编码"><a href="#Nodejs支持的字符编码" class="headerlink" title="Nodejs支持的字符编码"></a>Nodejs支持的字符编码</h3><ul>
+<li><code>ascii</code></li>
+<li><code>utf8</code></li>
+<li><code>utf16le</code></li>
+<li><code>ucs2</code>: <code>utf16e</code>的别名</li>
+<li><code>base64</code></li>
+<li><code>latin1</code></li>
+<li><code>binary</code></li>
+<li><code>hex</code></li>
+</ul>
+<h3 id="数据转换"><a href="#数据转换" class="headerlink" title="数据转换"></a>数据转换</h3><p>数据转换都是通过创建一个<code>Buffer</code>,然后通过<code>buf.toString([encoding])</code>转换为所需的数据格式.</p>
+<p>第一步： 转换<code>Buffer</code>数据，<code>Buffer.from(string[,encoding])</code></p>
+<p>第二步： <code>Buffer</code>数据转换为所需的数据<code>buf.toString([encoding])</code></p>
+<h3 id="字符串转换为buffer"><a href="#字符串转换为buffer" class="headerlink" title="字符串转换为buffer"></a>字符串转换为buffer</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'hello world'</span>;</span><br><span class="line"><span class="keyword">const</span> buf = Buffer.from(str);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(buf);</span><br><span class="line"><span class="comment">// &lt;Buffer 68 65 6c 6c 6f 20 77 6f 72 6c 64&gt;</span></span><br><span class="line"><span class="built_in">console</span>.log(buf.toString());</span><br><span class="line"><span class="comment">// hello world</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符串转为base64"><a href="#字符串转为base64" class="headerlink" title="字符串转为base64"></a>字符串转为base64</h3><ul>
+<li><p>base64编码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'hello world'</span>;</span><br><span class="line"><span class="keyword">const</span> buf = Buffer.from(str);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> base64 = buf.toString(<span class="string">'base64'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(base64);</span><br><span class="line"><span class="comment">// aGVsbG8gd29ybGQ=</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>base64解码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> base64Buf = Buffer.from(base64,<span class="string">'base64'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> str = base64Buf.toString();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str);</span><br><span class="line"><span class="comment">// hello world;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -327,7 +348,7 @@
   <div class="post-copyright">
     <p class="copyright-item">
       <span>文章标题: </span>
-      <a href="http://www.tiankai.party/posts/4453/">Nodejs之module.exports和exports的区别</a>
+      <a href="http://www.tiankai.party/posts/36498/">nodejs之利用buffer转换数据</a>
     </p>
     <p class="copyright-item">
       <span>原文作者: </span>
@@ -336,19 +357,19 @@
     <p class="copyright-item">
       <span>发表时间: </span>
       <span>
-        2018-04-11, 10:04:44
+        2019-11-11, 09:11:20
       </span>
     </p>
     <p class="copyright-item">
       <span>最后更新: </span>
       <span>
-        2019-01-02, 17:01:48
+        2019-12-11, 17:12:02
       </span>
     </p>
 
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.tiankai.party/posts/4453/">http://www.tiankai.party/posts/4453/</a>
+      <a href="http://www.tiankai.party/posts/36498/">http://www.tiankai.party/posts/36498/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -393,15 +414,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/posts/27167/">
+      <a class="prev" href="/posts/16200/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">异步编程值async-await</span>
+        <span class="prev-text nav-default">code-split的几种方式</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/posts/38990/">
-        <span class="next-text nav-default">Genymotion启动模拟器问题集锦</span>
+      <a class="next" href="/posts/60639/">
+        <span class="next-text nav-default">使用高德地图API</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

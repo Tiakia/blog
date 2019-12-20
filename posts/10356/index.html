@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="postMessage实现跨域">
+
+
+
+
+  <meta name="keywords" content="React,React Native,微信小程序,Webpack,Javascript">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tiankai's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="http://www.tiankai.party/posts/10356/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?661158ab1e0fccea66251d60f7dae96a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"","app_key":""},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> postMessage实现跨域 - Tiankai's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Tiankai's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+      <a href="/comments">
+        <li class="mobile-menu-item">
+          
+          
+            留言板
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Tiankai's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/comments">
+            
+            
+              留言板
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+<a href="https://github.com/tiakia"><img style="position:fixed;top:0;right:0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          postMessage实现跨域
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+        2019-11-29
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/nodejs/">nodejs</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          Count: 786 字
+        </span>
+        <span class="post-times">
+          Time: 3 分钟
+        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/10356/" -->
+        <!--      data-title="postMessage实现跨域" -->
+        <!--      id="/posts/10356/" -->
+        <!--      data-flag-title="postMessage实现跨域"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#跨域方式介绍"><span class="toc-text">跨域方式介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#postMessage跨域"><span class="toc-text">postMessage跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chatRobot"><span class="toc-text">chatRobot</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="跨域方式介绍"><a href="#跨域方式介绍" class="headerlink" title="跨域方式介绍"></a>跨域方式介绍</h2><ul>
+<li><code>JSONP</code>跨域</li>
+<li><code>iframe</code>+<code>domain</code>跨域</li>
+<li><code>nginx</code>反向代理跨域</li>
+<li><code>cors</code>跨域</li>
+<li><code>postMessage</code>跨域</li>
+</ul>
+<a id="more"></a>
+<p>  我们一般常用的<code>cors</code>跨域，通过后端设置<code>Access-Control-Allow-Origin</code>响应头来实现跨域,<code>JSONP</code>是利用<code>script</code>标签的<code>src</code>不受同源策略的约束来实现跨域。<code>JSONP</code> 主要由回调函数和数据两部分组成。回调函数的名字一般是在请求中指定的。而数据就是传入回调函数中的 <code>JSON</code> 数据。我们一般可以在全局定义一个回调函数，然后在<code>script</code>标签里传入回调函数即可：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.handleData = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span><br><span class="line">script.src = <span class="string">"https://xxxx.com/v0/search?q=xuxi&amp;callback=handleData"</span>;</span><br><span class="line"><span class="built_in">document</span>.body.insertBefore(script, <span class="built_in">document</span>.body.firstChild);</span><br></pre></td></tr></table></figure></p>
+<p>但是<code>JSONP</code>的跨域方式只支持<code>GET</code>请求。</p>
+<h2 id="postMessage跨域"><a href="#postMessage跨域" class="headerlink" title="postMessage跨域"></a>postMessage跨域</h2><p>使用<code>postMessage</code>跨域我们首先要获取页面的引用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// window.open方式获取引用</span></span><br><span class="line"><span class="comment">// const popup = window.open("http://localhost:8001/a.html");</span></span><br><span class="line"><span class="comment">// iframe 方式获取引用</span></span><br><span class="line"><span class="comment">// &lt;iframe id="pageA" src="http://localhost:8001/a.html"&gt;&lt;/iframe&gt;</span></span><br><span class="line"><span class="keyword">const</span> popup = <span class="built_in">document</span>.getElementById(<span class="string">"pageA"</span>).contentWindow;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用postMessage发送数据，必须加上域名来指定哪些页面可以接收信息</span></span><br><span class="line">popup.postMessage(<span class="string">'hello world'</span>, <span class="string">'localhost:8001'</span>);</span><br></pre></td></tr></table></figure>
+<p>然后监听<code>message</code>事件：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> domin = <span class="string">"http://localhost:8001"</span>;</span><br><span class="line">  <span class="built_in">window</span>.addEventListener(</span><br><span class="line">    <span class="string">"message"</span>,</span><br><span class="line">    event =&gt; &#123;</span><br><span class="line">      <span class="comment">// 验证消息发送方是否合格</span></span><br><span class="line">      <span class="keyword">if</span> (event.origin === domin) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"received message: "</span>, event.data);</span><br><span class="line">         event.source.postMessage(<span class="string">'hello'</span>, event.origin);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="literal">false</span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>event</code>的几个核心属性：</p>
+<ul>
+<li><strong>data</strong>:跨域发送的数据</li>
+<li><strong>origin</strong>:跨域发送数据的窗口</li>
+<li><strong>source</strong>:对发送数据窗口的引用</li>
+</ul>
+<blockquote>
+<p>注意： 必须要在<code>window.onload</code>事件完成后postMessage才能生效</p>
+</blockquote>
+<h2 id="chatRobot"><a href="#chatRobot" class="headerlink" title="chatRobot"></a>chatRobot</h2><p>为了试验<code>postMessage</code>跨域基于腾讯AI做了一个<a href="https://github.com/tiakia/chatRobot" target="_blank" rel="noopener">聊天机器人项目</a>;</p>
+<p><img src="/images/chatRobot.png" alt="/images/chatRobot.png"></p>
+<ol>
+<li><p><strong>PageA</strong>通过<code>node</code>启动服务在<code>localhost:8001</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (req.url === <span class="string">"/a.html"</span>) &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123; <span class="string">"Content-Type"</span>: <span class="string">"text/html"</span> &#125;);</span><br><span class="line">    <span class="keyword">let</span> data = fs.readFileSync(resolve(__dirname, <span class="string">"./a.html"</span>));</span><br><span class="line">    res.end(data);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">8001</span>, <span class="string">"127.0.0.1"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"listening at port 127.0.0.1:8001"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>PageB</strong>通过<code>node</code>启动服务在<code>localhost:8000</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.writeHead(<span class="number">200</span>, &#123; <span class="string">"Content-type"</span>: <span class="string">"text/html"</span> &#125;);</span><br><span class="line">  <span class="keyword">const</span> data = fs.readFileSync(path.resolve(__dirname, <span class="string">"./b.html"</span>));</span><br><span class="line">  res.end(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">8000</span>, <span class="string">"127.0.0.1"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"pageB listening at port 127.0.0.1:8000"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在浏览器访问<code>localhost:8000</code>就会看到上面的结果。</p>
+<ol start="3">
+<li><p>然后在<code>PageB</code>中通过<code>postMessage</code>向<code>PageA</code>发送数据：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> domin = <span class="string">"http://localhost:8001"</span>;</span><br><span class="line">  <span class="keyword">let</span> input = <span class="built_in">document</span>.getElementById(<span class="string">"input"</span>);</span><br><span class="line">  <span class="keyword">let</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>);</span><br><span class="line"></span><br><span class="line">  btn.addEventListener(</span><br><span class="line">    <span class="string">"click"</span>,</span><br><span class="line">    () =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (input.value) &#123;</span><br><span class="line">        <span class="comment">// 通过postMessage发送数据</span></span><br><span class="line">        popup.postMessage(input.value, domin);</span><br><span class="line">        input.value = <span class="string">""</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="literal">false</span></span><br><span class="line">  );</span><br><span class="line">  <span class="comment">//绑定回车事件</span></span><br><span class="line">  <span class="built_in">document</span>.onkeydown = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.keyCode === <span class="number">13</span>) &#123;</span><br><span class="line">      btn.click();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// window.open方式获取引用</span></span><br><span class="line">  <span class="comment">// const popup = window.open("http://localhost:8000/a.html");</span></span><br><span class="line">  <span class="comment">// iframe 方式获取引用</span></span><br><span class="line">  <span class="keyword">const</span> popup = <span class="built_in">document</span>.getElementById(<span class="string">"pageA"</span>).contentWindow;</span><br><span class="line">  <span class="comment">// 发送初始消息</span></span><br><span class="line">  <span class="comment">// popup.postMessage("你好", domin);</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">window</span>.addEventListener(</span><br><span class="line">    <span class="string">"message"</span>,</span><br><span class="line">    event =&gt; &#123;</span><br><span class="line">      <span class="comment">// 验证消息发送方是否合格</span></span><br><span class="line">      <span class="keyword">if</span> (event.origin === domin) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"received message: "</span>, event.data);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="literal">false</span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>PageB</code>接受到数据后，展示在聊天界面上，然后请求腾讯AI，将返回的数据展示在聊天界面</p>
+</li>
+</ol>
+<p>大体步骤就是这样，其他的关于细节展示方面的问题，有兴趣的可以去<a href="https://github.com/tiakia/chatRobot" target="_blank" rel="noopener">github查看源码</a>.</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>文章标题: </span>
+      <a href="http://www.tiankai.party/posts/10356/">postMessage实现跨域</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.tiankai.party">tiankai</a>
+    </p>
+    <p class="copyright-item">
+      <span>发表时间: </span>
+      <span>
+        2019-11-29, 09:11:20
+      </span>
+    </p>
+    <p class="copyright-item">
+      <span>最后更新: </span>
+      <span>
+        2019-12-20, 19:12:36
+      </span>
+    </p>
+
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.tiankai.party/posts/10356/">http://www.tiankai.party/posts/10356/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/wechat.jpg" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/imgs/ali.jpg" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/postMessage/">postMessage</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/posts/12567/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">试验一个npm包的生成</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/posts/16200/">
+        <span class="next-text nav-default">code-split的几种方式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+    <div id="gitalk-container"></div>
+    
+  </div>
+  
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:tiankai0426@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/tiakia" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">tiankai</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+  
+  <script>
+     (function() {
+         function render() {
+             new Gitalk({
+                 clientID: "d45abc7a6db571b50af9",
+                 clientSecret: "15ab54f8f528045cdf07d8dbb2d4c0faa69f9462",
+                 owner: 'tiakia',
+                 repo: 'tiakiaBlogComment',
+                 admin: ['tiakia'],
+                 id: decodeURI(location.pathname)
+             }).render('gitalk-container')
+         }
+         var gc = document.createElement('script');
+         gc.type = 'text/javascript';
+         gc.src = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+         gc.charset = 'UTF-8';
+         gc.onload = render;
+         gc.async = true;
+         document.querySelector('body').appendChild(gc);
+         var gcs = document.createElement('link');
+         gcs.href = '//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+         gcs.type = 'text/css';
+         gcs.rel = 'stylesheet';
+         gcs.media = 'screen,print';
+         document.querySelector('head').appendChild(gcs);
+     })();
+    </script>
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
