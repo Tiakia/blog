@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tiankai.party/"/>
-  <updated>2019-12-20T12:23:32.157Z</updated>
+  <updated>2019-12-20T12:27:38.453Z</updated>
   <id>http://www.tiankai.party/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于antd封装的模态框新增编辑组件</title>
+    <link href="http://www.tiankai.party/posts/54457/"/>
+    <id>http://www.tiankai.party/posts/54457/</id>
+    <published>2019-12-11T09:07:06.000Z</published>
+    <updated>2019-12-20T12:27:38.453Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>占坑<br><a id="more"></a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;占坑&lt;br&gt;
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://www.tiankai.party/categories/javascript/"/>
+    
+    
+      <category term="antd" scheme="http://www.tiankai.party/tags/antd/"/>
+    
+  </entry>
   
   <entry>
     <title>试验一个npm包的生成</title>
@@ -174,16 +196,16 @@
     <published>2019-10-03T02:37:18.000Z</published>
     <updated>2019-11-07T03:19:35.792Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>        <div id="aplayer-uUPnfmqR" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">            <pre class="aplayer-lrc-content"></pre>        </div>        <script>          var ap = new APlayer({            element: document.getElementById("aplayer-uUPnfmqR"),            narrow: false,            autoplay: false,            showlrc: false,            music: {              title: "千与千寻",              author: "久木田薰",              url: "/../mp3/千与千寻.mp3",              pic: "/../images/timg.jpg",              lrc: ""            }          });          window.aplayers || (window.aplayers = []);          window.aplayers.push(ap);        </script><p>我觉得这个随笔应该配上音乐。<br>博客从七月份就一直断更了，年初的时候心里给自己默默立了个 flag,每个月最少保证三篇博客文章，没有在博客中发文证明是怕啊，自己哪天突然懒的写了，不写了，以后再回顾的时候会不会很尴尬。哈哈<br>七月份断更没写是懈怠了，还好每次遇到好的点子都会存下来，现在补起来也不是太费事。</p><a id="more"></a><p>七月份断更了是这时候做了个买车的决定，天天看懂车帝，看别人的评论，心里想的都是买车，不知道在哪看到每年七八月份是淡季买车优惠大，所以就一直看，周末了就去店里逛了解车配置，价格。<br>然后在 7 月 20 号一个周六的下午，在我家领导的陪伴下，从下午聊到了晚上，终于买了人生中的第一辆车。后来的精力就都在车上了一直也没更新博客。这里总结一些买车的知识点吧，也是方便于还没买车的各位：</p><ul><li>每年的七八月份确实是淡季，这个时候买车最合适，尤其是月末的时候提车，销售会为了业绩降价。</li><li>降价的前提是你了解市场价，你可以在 QQ 上直接搜你中意的车型，会有车友群，群里会有人分享自己的落地价，然后自己有个价格区间，带着价格去谈。</li><li>4s 店送的脚垫不要！！！谈价的时候直接谈落地价，不要谈裸车价，送的东西不要，自己出来买，比送的好。</li></ul><p>大概就这些了，加上车友群后就啥也知道了。</p><p>买了车后，然后就张罗着<strong>订婚</strong>（加粗）的事情了，告人、订饭店、准备烟酒之类的，就是今天 <code>2019-10-03</code>我订婚了和我的宝宝，带着双方父母亲人的祝福。</p><p>希望我们的生活会越来越好，先苦后甜。</p><p>时间真是个奇妙的东西，慢的时候你觉得一个下午的时间是那么漫长，快的时候在你还没反应过来的时候就已经悄然溜走，转眼间我们俩在一起已经了三个年头了，以前一直想的是要谈一个时间够久的恋爱，现在是真的实现了。<br>回忆起这一路走来，有过苦，有过甜，我们吵架我们欢笑，吵吵闹闹，终于在今天有了幸福的答卷。以后的路，以后的生活慢慢来。</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>        <div id="aplayer-WhySVgre" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">            <pre class="aplayer-lrc-content"></pre>        </div>        <script>          var ap = new APlayer({            element: document.getElementById("aplayer-WhySVgre"),            narrow: false,            autoplay: false,            showlrc: false,            music: {              title: "千与千寻",              author: "久木田薰",              url: "/../mp3/千与千寻.mp3",              pic: "/../images/timg.jpg",              lrc: ""            }          });          window.aplayers || (window.aplayers = []);          window.aplayers.push(ap);        </script><p>我觉得这个随笔应该配上音乐。<br>博客从七月份就一直断更了，年初的时候心里给自己默默立了个 flag,每个月最少保证三篇博客文章，没有在博客中发文证明是怕啊，自己哪天突然懒的写了，不写了，以后再回顾的时候会不会很尴尬。哈哈<br>七月份断更没写是懈怠了，还好每次遇到好的点子都会存下来，现在补起来也不是太费事。</p><a id="more"></a><p>七月份断更了是这时候做了个买车的决定，天天看懂车帝，看别人的评论，心里想的都是买车，不知道在哪看到每年七八月份是淡季买车优惠大，所以就一直看，周末了就去店里逛了解车配置，价格。<br>然后在 7 月 20 号一个周六的下午，在我家领导的陪伴下，从下午聊到了晚上，终于买了人生中的第一辆车。后来的精力就都在车上了一直也没更新博客。这里总结一些买车的知识点吧，也是方便于还没买车的各位：</p><ul><li>每年的七八月份确实是淡季，这个时候买车最合适，尤其是月末的时候提车，销售会为了业绩降价。</li><li>降价的前提是你了解市场价，你可以在 QQ 上直接搜你中意的车型，会有车友群，群里会有人分享自己的落地价，然后自己有个价格区间，带着价格去谈。</li><li>4s 店送的脚垫不要！！！谈价的时候直接谈落地价，不要谈裸车价，送的东西不要，自己出来买，比送的好。</li></ul><p>大概就这些了，加上车友群后就啥也知道了。</p><p>买了车后，然后就张罗着<strong>订婚</strong>（加粗）的事情了，告人、订饭店、准备烟酒之类的，就是今天 <code>2019-10-03</code>我订婚了和我的宝宝，带着双方父母亲人的祝福。</p><p>希望我们的生活会越来越好，先苦后甜。</p><p>时间真是个奇妙的东西，慢的时候你觉得一个下午的时间是那么漫长，快的时候在你还没反应过来的时候就已经悄然溜走，转眼间我们俩在一起已经了三个年头了，以前一直想的是要谈一个时间够久的恋爱，现在是真的实现了。<br>回忆起这一路走来，有过苦，有过甜，我们吵架我们欢笑，吵吵闹闹，终于在今天有了幸福的答卷。以后的路，以后的生活慢慢来。</p>]]></content>
     
     <summary type="html">
     
-      &lt;div id=&quot;aplayer-uUPnfmqR&quot; class=&quot;aplayer aplayer-tag-marker&quot; style=&quot;margin-bottom: 20px;&quot;&gt;
+      &lt;div id=&quot;aplayer-WhySVgre&quot; class=&quot;aplayer aplayer-tag-marker&quot; style=&quot;margin-bottom: 20px;&quot;&gt;
             &lt;pre class=&quot;aplayer-lrc-content&quot;&gt;&lt;/pre&gt;
         &lt;/div&gt;
         &lt;script&gt;
           var ap = new APlayer({
-            element: document.getElementById(&quot;aplayer-uUPnfmqR&quot;),
+            element: document.getElementById(&quot;aplayer-WhySVgre&quot;),
             narrow: false,
             autoplay: false,
             showlrc: false,
@@ -482,34 +504,6 @@
     
     
       <category term="工具" scheme="http://www.tiankai.party/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记录几种不常见的js计算</title>
-    <link href="http://www.tiankai.party/posts/16185/"/>
-    <id>http://www.tiankai.party/posts/16185/</id>
-    <published>2019-05-22T07:50:19.000Z</published>
-    <updated>2019-07-04T07:28:09.448Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>总结几种平时不常见的 js 中的计算方式</p><ul><li>按位与</li><li>异或</li><li>添加标志位</li><li>清除标志位</li></ul><a id="more"></a><h3 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h3><p><strong>十进制转换二进制：</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"5"</span>.charCodeAt().toString(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5 的二进制为 0101</span></span><br><span class="line"><span class="comment">// 1 的二进制为 0001</span></span><br><span class="line"><span class="comment">// 2 的二进制为 0010</span></span><br><span class="line"><span class="comment">// 3 的二进制为 0011</span></span><br><span class="line"><span class="comment">// 4 的二进制为 0100</span></span><br></pre></td></tr></table></figure><p><strong>二进制转换十进制：</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0100'</span>, <span class="number">2</span>) = <span class="number">4</span>;</span><br></pre></td></tr></table></figure><h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> &amp; <span class="number">1</span> -&gt; <span class="number">1</span></span><br><span class="line"><span class="number">5</span> &amp; <span class="number">2</span> -&gt; <span class="number">0</span></span><br><span class="line"><span class="number">5</span> &amp; <span class="number">3</span> -&gt; <span class="number">1</span></span><br><span class="line"><span class="number">5</span> &amp; <span class="number">4</span> -&gt; <span class="number">4</span></span><br></pre></td></tr></table></figure><p><strong>按位与的计算规则：</strong><br>只有在相同位置都为 1 时 结果才是 1,其他则为 0</p><hr><table><thead><tr><th>十进制</th><th>二进制</th><th>计算</th><th>结果</th><th>转换为十进制</th></tr></thead><tbody><tr><td>5</td><td>0101</td><td>5 &amp; 5</td><td>0101</td><td>5</td></tr><tr><td>4</td><td>0100</td><td>5 &amp; 4</td><td>0100</td><td>4</td></tr><tr><td>3</td><td>0011</td><td>5 &amp; 3</td><td>0001</td><td>1</td></tr><tr><td>2</td><td>0010</td><td>5 &amp; 2</td><td>0000</td><td>0</td></tr><tr><td>1</td><td>0001</td><td>5 &amp; 1</td><td>0001</td><td>1</td></tr></tbody></table><h3 id="异或"><a href="#异或" class="headerlink" title="异或"></a>异或</h3><p><strong>计算规则</strong><br>相同则为 0 不同则为 1</p><hr><table><thead><tr><th>十进制</th><th>二进制</th><th>计算</th><th>结果</th><th>转换为十进制</th></tr></thead><tbody><tr><td>5</td><td>0101</td><td>5 ^ 5</td><td>0000</td><td>0</td></tr><tr><td>4</td><td>0100</td><td>5 ^ 4</td><td>0001</td><td>1</td></tr><tr><td>3</td><td>0011</td><td>5 ^ 3</td><td>0110</td><td>6</td></tr><tr><td>2</td><td>0010</td><td>5 ^ 2</td><td>0111</td><td>7</td></tr><tr><td>1</td><td>0001</td><td>5 ^ 1</td><td>0100</td><td>4</td></tr></tbody></table><h3 id="添加标志位"><a href="#添加标志位" class="headerlink" title="添加标志位"></a>添加标志位</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> | <span class="number">1</span> =&gt; <span class="number">0101</span> =&gt; <span class="number">5</span></span><br></pre></td></tr></table></figure><p><strong>计算规则</strong><br>只要有 1 就为 1</p><hr><table><thead><tr><th>十进制</th><th>二进制</th><th>计算</th><th>结果</th><th>转换为十进制</th></tr></thead><tbody><tr><td>5</td><td>0101</td><td>5 \ 5</td><td>0101</td><td>5</td></tr><tr><td>4</td><td>0100</td><td>5 \ 4</td><td>0101</td><td>5</td></tr><tr><td>3</td><td>0011</td><td>5 \ 3</td><td>0111</td><td>7</td></tr><tr><td>2</td><td>0010</td><td>5 \ 2</td><td>0111</td><td>7</td></tr><tr><td>1</td><td>0001</td><td>5 \ 1</td><td>0101</td><td>5</td></tr></tbody></table><h3 id="清除标志位"><a href="#清除标志位" class="headerlink" title="清除标志位"></a>清除标志位</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> &amp; ~<span class="number">1</span> =&gt; <span class="number">0100</span> =&gt; <span class="number">4</span></span><br></pre></td></tr></table></figure><p><strong>计算规则</strong><br>相同则为 0,不同则前面的为准，覆盖</p><hr><table><thead><tr><th>十进制</th><th>二进制</th><th>计算</th><th>结果</th><th>转换为十进制</th></tr></thead><tbody><tr><td>5</td><td>0101</td><td>5 &amp; ~5</td><td>0000</td><td>0</td></tr><tr><td>4</td><td>0100</td><td>5 &amp; ~4</td><td>0001</td><td>4</td></tr><tr><td>3</td><td>0011</td><td>5 &amp; ~3</td><td>0100</td><td>4</td></tr><tr><td>2</td><td>0010</td><td>5 &amp; ~2</td><td>0101</td><td>5</td></tr><tr><td>1</td><td>0001</td><td>5 &amp; ~1</td><td>0100</td><td>4</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;总结几种平时不常见的 js 中的计算方式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;按位与&lt;/li&gt;
-&lt;li&gt;异或&lt;/li&gt;
-&lt;li&gt;添加标志位&lt;/li&gt;
-&lt;li&gt;清除标志位&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://www.tiankai.party/categories/javascript/"/>
-    
-    
-      <category term="js" scheme="http://www.tiankai.party/tags/js/"/>
     
   </entry>
   
