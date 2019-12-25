@@ -258,6 +258,73 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/posts/33743/">Java中的继承</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+        2017-11-13
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </span>
+        
+        <span class="post-counts">
+          Count: 1.1k 字
+        </span>
+        <span class="post-times">
+          Time: 4 分钟
+        </span>
+        <!-- <span class="post-visits leancloud-visitors" -->
+        <!--      data-url="/posts/33743/" -->
+        <!--      data-title="Java中的继承" -->
+        <!--      id="/posts/33743/" -->
+        <!--      data-flag-title="Java中的继承"> -->
+        <!--   阅读次数 0 -->
+        <!--    <i class="leancloud-visitors-count"></i> -->
+        <!-- </span> -->
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h4 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>使用<code>extends</code>关键字来实现俩个类的继承关系。<br>子类可以使用父类中定义的属性和方法。</p>
+<p><strong>注意</strong> 父类中使用 private 定义的属性在子类中是不能继承的。<br>Animal</p>
+<figure class="highlight jsp"><figcaption><span>Animal</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Name: "</span>+name+<span class="string">" Age: "</span>+age +<span class="string">" 动物具有吃的功能"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/posts/33743/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/posts/26716/">java中的包</a>
         
       </h1>
@@ -891,71 +958,6 @@
 <p>其中：</p>
           <div class="read-more">
             <a href="/posts/56302/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/posts/3393/">java中数组的使用</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-        2017-10-26
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/java/">java</a>
-            
-          </span>
-        
-        <span class="post-counts">
-          Count: 1.1k 字
-        </span>
-        <span class="post-times">
-          Time: 4 分钟
-        </span>
-        <!-- <span class="post-visits leancloud-visitors" -->
-        <!--      data-url="/posts/3393/" -->
-        <!--      data-title="java中数组的使用" -->
-        <!--      id="/posts/3393/" -->
-        <!--      data-flag-title="java中数组的使用"> -->
-        <!--   阅读次数 0 -->
-        <!--    <i class="leancloud-visitors-count"></i> -->
-        <!-- </span> -->
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h3 id="java-中操作数组需要四步"><a href="#java-中操作数组需要四步" class="headerlink" title="java 中操作数组需要四步"></a>java 中操作数组需要四步</h3><h4 id="1-声明数组"><a href="#1-声明数组" class="headerlink" title="1.声明数组"></a>1.声明数组</h4><p>语法：<br> <strong>数据类型[] 数组名</strong><br> <strong>数据类型 数组名[]</strong></p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] score; <span class="comment">//存储学生成绩 类型为整型</span></span><br><span class="line"><span class="keyword">double</span> height[]; <span class="comment">//存储学生身高 类型为浮点型</span></span><br><span class="line">String[] names; <span class="comment">//存储学生姓名 类型为字符串</span></span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/posts/3393/" class="read-more-link">阅读更多</a>
           </div>
         
       
